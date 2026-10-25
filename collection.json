@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966265026,
+ "updatedAt": 1792966272463,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -50,6 +50,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803120
+  },
+  "ja:SV8a-013": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "シガロコ",
+   "localId": "013",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/013",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803126
+  },
+  "ja:SV8a-014": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ベラカス",
+   "localId": "014",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/014",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803127
   }
  }
 }
