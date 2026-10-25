@@ -283,6 +283,31 @@ const loading = msg => view().innerHTML = `<div class="empty">${esc(msg)}</div>`
 const errorBox = (e, retry) => { view().innerHTML = `<div class="empty"><b>Couldn't reach the card database</b>Check your connection and try again.<br><br><button class="btn" id="retry">Try again</button></div>`; $("#retry").onclick = retry; };
 
 /* ---------- sets ---------- */
+/* English names for Japanese sets, keyed by TCGdex set id. Sets not listed keep their Japanese name. */
+const JA_SETS = {
+PMCG1:"Expansion Pack",PMCG2:"Jungle",PMCG3:"Mystery of the Fossils",PMCG4:"Rocket Gang",PMCG5:"Leaders' Stadium",PMCG6:"Challenge from the Darkness",
+neo1:"Neo Genesis",neo2:"Neo Discovery",neo3:"Neo Revelation",neo4:"Neo Destiny",VS1:"Pokémon Card VS",web1:"Pokémon Card web",
+E1:"Base Expansion Pack",E2:"The Town on No Map",E3:"Wind from the Sea",E4:"Split Earth",E5:"Mysterious Mountains",
+ADV1:"Expansion Pack",ADV2:"Miracle of the Desert",ADV3:"Rulers of the Heavens",ADV4:"Magma vs Aqua: Two Ambitions",ADV5:"Undone Seal",
+PCG1:"Flight of Legends",PCG2:"Clash in the Blue Sky",PCG3:"Rocket Gang Strikes Back",PCG4:"Golden Sky, Silvery Ocean",PCG5:"Mirage Forest",PCG6:"Holon Research Tower",PCG7:"Holon Phantoms",PCG8:"Miracle Crystal",PCG9:"Offense and Defense of the Furthest Ends",PCG10:"World Champions Pack",
+L1a:"HeartGold Collection",L1b:"SoulSilver Collection",L2:"Reviving Legends",LL:"Lost Link",L3:"Clash at the Summit",
+XY1a:"Collection X",XY1b:"Collection Y",XY2:"Wild Blaze",XY3:"Rising Fist",XY4:"Phantom Gate",XY5a:"Gaia Volcano",XY5b:"Tidal Storm",XY6:"Emerald Break",XY7:"Bandit Ring",XY8a:"Blue Shock",XY8b:"Red Flash",XY9:"Rage of the Broken Heavens",XY10:"Awakening of Psychic Kings",XY11a:"Explosive Fighter",XY11b:"Cold-Blooded Rebel",CP5:"Cold-Blooded Rebel",
+SM1S:"Collection Sun",SM1M:"Collection Moon","SM1+":"Sun & Moon",SM2L:"Alolan Moonlight",SM2K:"Islands Awaiting You","sm2+":"Beyond a New Challenge",SM3H:"Did You See the Fighting Rainbow?",SM3N:"Darkness that Consumes Light","SM3+":"Shining Legends",SM4S:"Awakened Heroes",SM4A:"Ultradimensional Beasts","SM4+":"GX Battle Boost",
+SM5S:"Ultra Sun",SM5M:"Ultra Moon","SM5+":"Ultra Force",SM6:"Forbidden Light",SM6a:"Dragon Storm",SM6b:"Champion Road",SM7:"Charisma of the Wrecked Sky",SM7a:"Thunderclap Spark",SM7b:"Fairy Rise",SM8:"Super-Burst Impact",SM8a:"Dark Order",SM8b:"GX Ultra Shiny",
+SM9:"Tag Bolt",SM9a:"Night Unison",SM9b:"Full Metal Wall",SM10:"Double Blaze",SM10a:"GG End",SM10b:"Sky Legend",SMP2:"Detective Pikachu",SM11:"Miracle Twins",SM11a:"Remix Bout",SM11b:"Dream League",SM12:"Alter Genesis",SM12a:"Tag Team GX Tag All Stars",
+SM1p:"Sun & Moon",SM2p:"Beyond a New Challenge",SM3p:"Shining Legends",SM4p:"GX Battle Boost",SM5p:"Ultra Force",
+S1W:"Sword",S1H:"Shield",S1a:"VMAX Rising",S2:"Rebellion Crash",S2a:"Explosive Walker",S3:"Infinity Zone",S3a:"Legendary Heartbeat",S4:"Astonishing Volt Tackle",S4a:"Shiny Star V",
+S5I:"Single Strike Master",S5R:"Rapid Strike Master",S5a:"Matchless Fighters",S6H:"Silver Lance",S6K:"Jet-Black Spirit",S6a:"Eevee Heroes",S7D:"Skyscraping Perfection",S7R:"Blue Sky Stream",
+S8:"Fusion Arts",S8a:"25th Anniversary Collection",S8b:"VMAX Climax",S9:"Star Birth",S9a:"Battle Region",S10D:"Time Gazer",S10P:"Space Juggler",S10a:"Dark Phantasma",S10b:"Pokémon GO",
+S11:"Lost Abyss",S11a:"Incandescent Arcana",S12:"Paradigm Trigger",S12a:"VSTAR Universe",
+SV1S:"Scarlet ex",SV1V:"Violet ex",SV1a:"Triplet Beat",SV2P:"Snow Hazard",SV2D:"Clay Burst",SV2a:"Pokémon Card 151",SV3:"Ruler of the Black Flame",SV3a:"Raging Surf",
+SV4K:"Ancient Roar",SV4M:"Future Flash",SV4a:"Shiny Treasure ex",SV5K:"Wild Force",SV5M:"Cyber Judge",SV5a:"Crimson Haze",SV6:"Mask of Change",SV6a:"Night Wanderer",
+SV7:"Stellar Miracle",SV7a:"Paradise Dragona",SV8:"Super Electric Breaker",SV8a:"Terastal Festival ex",SV9:"Battle Partners",SV9a:"Hot Wind Arena",SV10:"Glory of Team Rocket",
+SV11B:"Black Bolt",SV11W:"White Flare","SV-P":"Scarlet & Violet Promos",SVK:"Stellar Miracle Deck Build Box",SVLN:"Starter Set Stellar Sylveon ex",SVLS:"Starter Set Stellar Ceruledge ex",
+M1L:"Mega Brave",M1S:"Mega Symphonia",M2:"Inferno X",M2a:"MEGA Dream ex",M3:"Nihil Zero",M4:"Ninja Spinner",M5:"Abyss Eye",M6:"Emerald Storm",MC:"Start Deck 100 Battle Collection","M-P":"Mega Promos"
+};
+const setName = (lang, id, name) => (lang === "ja" && JA_SETS[id]) || name;
+
 function ownedBySet(lang) {
   const m = {};
   for (const [k, c] of Object.entries(store.cards)) if (k.startsWith(lang + ":") && c.qty > 0) m[c.setId] = (m[c.setId] || 0) + 1;
@@ -312,14 +337,14 @@ async function renderSets() {
     const q = state.q.trim().toLowerCase();
     let html = "";
     for (const s of series) {
-      const sets = (s.sets || []).slice().reverse().filter(x => (!q || x.name.toLowerCase().includes(q)) && (state.setsMode === "all" || owned[x.id]));
+      const sets = (s.sets || []).slice().reverse().filter(x => (!q || x.name.toLowerCase().includes(q) || setName(lang, x.id, x.name).toLowerCase().includes(q)) && (state.setsMode === "all" || owned[x.id]));
       if (!sets.length) continue;
       html += `<section class="serie"><div class="label">${esc(s.name)}</div><div class="sets">` + sets.map(x => {
         const tot = (x.cardCount && (x.cardCount.official || x.cardCount.total)) || 0;
         const have = owned[x.id] || 0; const r = tot ? Math.min(1, have / tot) : 0;
         return `<button class="set" data-id="${esc(x.id)}">
           ${x.logo ? `<img class="logo" loading="lazy" src="${esc(x.logo)}.webp" alt="">` : `<span class="logo"></span>`}
-          <span class="meta"><span class="name">${esc(x.name)}</span>
+          <span class="meta"><span class="name">${esc(setName(lang, x.id, x.name))}</span>
           <span class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></span>
           <span class="count num"><span>${have} / ${tot}</span><span>${tot ? Math.round(r * 100) + "%" : ""}</span></span></span></button>`;
       }).join("") + `</div></section>`;
@@ -338,7 +363,7 @@ async function renderSet(id) {
   loading("Opening set…");
   let set;
   try { set = await api(`/${lang}/sets/${encodeURIComponent(id)}`, { ttlHours: 12 }); } catch (e) { return errorBox(e, () => renderSet(id)); }
-  setTitle(set.name);
+  setTitle(setName(lang, set.id, set.name));
   const tot = set.cardCount.official || set.cardCount.total;
   const draw = () => {
     const cards = set.cards || [];
@@ -351,7 +376,7 @@ async function renderSet(id) {
     const r = tot ? Math.min(1, ownedN / tot) : 0;
     view().innerHTML = `
       <div class="sethead">
-        ${set.logo ? `<img class="logo" src="${esc(set.logo)}.webp" alt="${esc(set.name)}">` : ""}
+        ${set.logo ? `<img class="logo" src="${esc(set.logo)}.webp" alt="${esc(setName(lang, set.id, set.name))}">` : ""}
         <div class="kv num">
           <div><span class="label">Collected</span><span class="big">${ownedN}<span class="sub"> / ${tot}</span></span></div>
           <div><span class="label">Complete</span><span class="big">${Math.round(r * 100)}%</span></div>
@@ -440,7 +465,7 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
         <div class="img">${card.image ? `<img src="${esc(imgUrl(card.image, "high"))}" alt="${esc(card.name)}">` : `<span class="ph">No image yet</span>`}</div>
         <div style="min-width:0;display:grid;gap:10px">
           <div><h2>${esc(card.name)}</h2>
-          <div class="sub">${esc(s ? s.name : "")} · #${esc(card.localId)}${card.set && card.set.cardCount ? " / " + (card.set.cardCount.official || "") : ""}${card.rarity ? "<br>" + esc(card.rarity) : ""}${card.illustrator ? "<br>Illus. " + esc(card.illustrator) : ""}</div></div>
+          <div class="sub">${esc(s ? setName(lang, s.id, s.name) : "")} · #${esc(card.localId)}${card.set && card.set.cardCount ? " / " + (card.set.cardCount.official || "") : ""}${card.rarity ? "<br>" + esc(card.rarity) : ""}${card.illustrator ? "<br>Illus. " + esc(card.illustrator) : ""}</div></div>
           <div><div class="label" style="margin-bottom:4px">Copies owned</div>
           <div class="stepper"><button id="minus" aria-label="Remove a copy">−</button><output id="qty" class="num">${r.qty}</output><button id="plus" aria-label="Add a copy">+</button></div></div>
           <div class="row"><button class="btn ${r.wish ? "on" : ""}" id="wish">${r.wish ? "♥ On wishlist" : "♡ Add to wishlist"}</button></div>
@@ -552,7 +577,7 @@ function renderWish() {
     </div>
     <div class="list">${rows.map(x => `<button class="item" data-k="${esc(x.k)}">
       <span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span>
-      <span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(x.r.setName || x.r.setId)} · #${esc(x.r.localId)}</span>
+      <span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(setName(lang, x.r.setId, x.r.setName) || x.r.setId)} · #${esc(x.r.localId)}</span>
         <span class="row" style="gap:6px;margin-top:3px">${x.hit ? `<span class="pill hit">AT TARGET</span>` : ""}${x.vs30 != null && x.vs30 < -0.05 ? `<span class="pill deal">BELOW 30D AVG</span>` : ""}</span></span>
       <span class="right num"><b>${eur(x.now)}</b>
         ${x.since != null ? `<span class="${x.since > 0 ? "up" : "down"}" style="font-size:12px;font-weight:700">${x.since > 0 ? "▲" : x.since < 0 ? "▼" : ""} ${pct(x.since)} since added</span>` : ""}
@@ -581,7 +606,7 @@ function renderValue() {
       <div class="stat"><div class="label">Sets</div><div class="big">${sets}</div></div>
     </div>
     <div class="panel num"><h3>Value over time</h3>${chart(series)}</div>
-    <div class="panel"><h3>Most valuable</h3>${top.length ? `<div class="list">${top.map(x => `<div class="item"><span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span><span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(x.r.setName || x.r.setId)} · #${esc(x.r.localId)}</span></span><span class="right num"><b>${eur(x.p)}</b>${x.r.qty > 1 ? `<span class="sub">×${x.r.qty}</span>` : ""}</span></div>`).join("")}</div>` : `<div class="sub">Mark cards as owned and their prices show up here.</div>`}</div>
+    <div class="panel"><h3>Most valuable</h3>${top.length ? `<div class="list">${top.map(x => `<div class="item"><span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span><span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(setName(lang, x.r.setId, x.r.setName) || x.r.setId)} · #${esc(x.r.localId)}</span></span><span class="right num"><b>${eur(x.p)}</b>${x.r.qty > 1 ? `<span class="sub">×${x.r.qty}</span>` : ""}</span></div>`).join("")}</div>` : `<div class="sub">Mark cards as owned and their prices show up here.</div>`}</div>
     ${syncPanel()}
     <div class="panel"><h3>Backup</h3>
       <p class="sub" style="margin-top:0">Your collection is saved on this device. Export a backup now and then, or to move it to another phone.</p>
