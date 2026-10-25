@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966441215,
+ "updatedAt": 1792966446277,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -206,6 +206,42 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803151
+  },
+  "ja:SV8a-044": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ナミイルカ",
+   "localId": "044",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/044",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803157
+  },
+  "ja:SV8a-045": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "イルカマン",
+   "localId": "045",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/045",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803158
+  },
+  "ja:SV8a-047": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "テツノツツミ",
+   "localId": "047",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/047",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803160
   }
  }
 }
