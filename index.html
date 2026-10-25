@@ -72,6 +72,7 @@ main{padding:14px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(saf
 .sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
 .set{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 12px}
 .set .logo{width:64px;height:40px;object-fit:contain}
+.set span.logo{display:grid;place-items:center;border-radius:8px;background:var(--line);color:var(--muted);font:700 12px/1 var(--f-display);overflow:hidden;text-align:center}
 .set .meta{min-width:0;display:grid;gap:5px}
 .set .name{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .set .count{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
@@ -210,6 +211,10 @@ async function api(path, { ttlHours = 0 } = {}) {
   return d;
 }
 const imgUrl = (base, q = "low") => base ? base + "/" + q + ".webp" : "";
+/* Japanese sets have no logo on TCGdex, so fall back to the symbol, then to card #1 of the set. */
+const setIcon = (lang, serieId, x) => x.logo ? x.logo + ".webp" : x.symbol ? x.symbol + ".webp" : serieId ? `https://assets.tcgdex.net/${lang}/${serieId}/${x.id}/001/low.webp` : "";
+const iconGone = id => `this.replaceWith(Object.assign(document.createElement('span'),{className:'logo',textContent:'${id.replace(/[^\w.+-]/g, "")}'}))`;
+const iconBadge = id => `<span class="logo">${esc(id)}</span>`;
 const keyOf = (lang, id) => lang + ":" + id;
 
 /* ---------- prices ---------- */
@@ -343,7 +348,7 @@ async function renderSets() {
         const tot = (x.cardCount && (x.cardCount.official || x.cardCount.total)) || 0;
         const have = owned[x.id] || 0; const r = tot ? Math.min(1, have / tot) : 0;
         return `<button class="set" data-id="${esc(x.id)}">
-          ${x.logo ? `<img class="logo" loading="lazy" src="${esc(x.logo)}.webp" alt="">` : `<span class="logo"></span>`}
+          ${setIcon(lang, s.id, x) ? `<img class="logo" loading="lazy" src="${esc(setIcon(lang, s.id, x))}" alt="" onerror="${iconGone(x.id)}">` : iconBadge(x.id)}
           <span class="meta"><span class="name">${esc(setName(lang, x.id, x.name))}</span>
           <span class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></span>
           <span class="count num"><span>${have} / ${tot}</span><span>${tot ? Math.round(r * 100) + "%" : ""}</span></span></span></button>`;
@@ -376,7 +381,7 @@ async function renderSet(id) {
     const r = tot ? Math.min(1, ownedN / tot) : 0;
     view().innerHTML = `
       <div class="sethead">
-        ${set.logo ? `<img class="logo" src="${esc(set.logo)}.webp" alt="${esc(setName(lang, set.id, set.name))}">` : ""}
+        ${setIcon(lang, set.serie && set.serie.id, set) ? `<img class="logo" src="${esc(setIcon(lang, set.serie && set.serie.id, set))}" alt="${esc(setName(lang, set.id, set.name))}" onerror="this.remove()">` : ""}
         <div class="kv num">
           <div><span class="label">Collected</span><span class="big">${ownedN}<span class="sub"> / ${tot}</span></span></div>
           <div><span class="label">Complete</span><span class="big">${Math.round(r * 100)}%</span></div>
