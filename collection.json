@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966522178,
+ "updatedAt": 1792966535802,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -506,6 +506,78 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803227
+  },
+  "ja:SV8a-134": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ガチグマ アカツキex",
+   "localId": "134",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/134",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803247
+  },
+  "ja:SV8a-131": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "スピンロトム",
+   "localId": "131",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/131",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803244
+  },
+  "ja:SV8a-138": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "改造ハンマー",
+   "localId": "138",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/138",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803251
+  },
+  "ja:SV8a-139": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "カウンターキャッチャー",
+   "localId": "139",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/139",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803252
+  },
+  "ja:SV8a-141": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "スーパーエネルギー回収",
+   "localId": "141",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/141",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803254
+  },
+  "ja:SV8a-143": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "大地の器",
+   "localId": "143",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/143",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803256
   }
  }
 }
