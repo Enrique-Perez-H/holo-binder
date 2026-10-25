@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966514949,
+ "updatedAt": 1792966522178,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -494,6 +494,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803225
+  },
+  "ja:SV8a-114": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ブロロン",
+   "localId": "114",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/114",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803227
   }
  }
 }
