@@ -86,7 +86,7 @@ main{padding:14px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(saf
 
 /* binder grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
-.tile{position:relative;border:0;padding:0;background:none;text-align:left;display:grid;gap:4px}
+.tile{position:relative;border:0;padding:0;background:none;text-align:left;display:grid;grid-template-columns:minmax(0,1fr);gap:4px;min-width:0}
 .tile .img{aspect-ratio:63/88;width:100%;max-width:100%;border-radius:6px;overflow:hidden;background:var(--raised);position:relative}
 .tile img{width:100%;height:100%;object-fit:cover;display:block}
 .tile.missing img{filter:grayscale(1) brightness(.55);opacity:.55}
@@ -96,6 +96,8 @@ main{padding:14px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(saf
 .heart{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center}
 .quick{position:absolute;right:5px;bottom:5px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font:700 18px/1 var(--f-body);display:grid;place-items:center}
 .tile.owned .quick{background:var(--accent)}
+.minus{position:absolute;left:5px;bottom:5px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font:700 18px/1 var(--f-body);display:grid;place-items:center}
+.vrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .ph{position:absolute;inset:0;display:grid;place-items:center;padding:6px;text-align:center;font-size:11px;color:var(--muted)}
 
 /* sheet */
@@ -407,6 +409,7 @@ function tile(lang, c, set) {
       ${own && r.qty > 1 ? `<span class="badge num">×${r.qty}</span>` : ""}
       ${r && r.wish ? `<span class="heart"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ff5a5f"><path d="M12 21s-8-5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 6-8 11-8 11z"/></svg></span>` : ""}
     </button>
+    ${own ? `<button class="minus" data-minus aria-label="Remove a copy">−</button>` : ""}
     <button class="quick" data-quick aria-label="${own ? "Add another copy" : "Mark as owned"}">+</button>
     <span class="no num"><span>${esc(c.name)}</span><span>${esc(c.localId)}</span></span>
   </div>`;
@@ -416,6 +419,8 @@ function bindTiles(set, redraw) {
     const c = (set.cards || []).find(x => x.id === t.dataset.id);
     const realSet = set.id ? set : null;
     $("[data-open]", t).onclick = () => openCard(store.lang, c.id, { brief: c, set: realSet }, redraw);
+    const mi = $("[data-minus]", t);
+    if (mi) mi.onclick = () => { changeQty(store.lang, c, realSet, -1).then(redraw); redraw(); };
     $("[data-quick]", t).onclick = async () => {
       let s = realSet;
       if (!s) { try { s = (await api(`/${store.lang}/cards/${encodeURIComponent(c.id)}`)).set; } catch (e) {} }
@@ -436,10 +441,23 @@ function ensureRec(lang, c, set) {
   return r;
 }
 function prune(lang, id) { const k = keyOf(lang, id); const r = store.cards[k]; if (r && r.qty <= 0 && !r.wish) delete store.cards[k]; }
-function changeQty(lang, c, set, d) {
+const VARIANTS = [["normal", "Normal"], ["reverse", "Reverse holo"], ["holo", "Holo"], ["firstEdition", "1st Edition"]];
+/* r.qty is the total. r.variants holds how many of those are each variant; the rest are "unsorted". */
+function changeQty(lang, c, set, d, variant) {
   const r = ensureRec(lang, c, set);
   const was = r.qty;
-  r.qty = Math.max(0, r.qty + d);
+  const v = r.variants = r.variants || {};
+  const sorted = () => Object.values(v).reduce((a, b) => a + b, 0);
+  if (variant) {
+    if (d < 0 && !v[variant]) { if (!Object.keys(v).length) delete r.variants; return Promise.resolve(); }
+    v[variant] = (v[variant] || 0) + d;
+    if (!v[variant]) delete v[variant];
+    r.qty += d;
+  } else if (d < 0) {
+    if (r.qty > sorted()) r.qty -= 1;
+    else { const top = Object.keys(v).sort((a, b) => v[b] - v[a])[0]; if (top) { v[top] -= 1; if (!v[top]) delete v[top]; } r.qty = Math.max(0, r.qty - 1); }
+  } else r.qty += d;
+  if (!Object.keys(v).length) delete r.variants;
   if (was === 0 && r.qty > 0 && r.wish) { r.wish = false; toast("Got it! Moved from wishlist to collection."); }
   prune(lang, c.id); changed();
   if (!store.prices[keyOf(lang, c.id)]) return fetchCard(lang, c.id).then(() => changed()).catch(() => {});
@@ -464,6 +482,8 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
     const now = mainPrice(price);
     const vs30 = price && price.avg30 && now ? now / price.avg30 - 1 : null;
     const sinceAdd = r.wish && r.wishPrice && now ? now / r.wishPrice - 1 : null;
+    const vlist = VARIANTS.filter(([key]) => card.variants && card.variants[key]);
+    const unsorted = r.qty - Object.values(r.variants || {}).reduce((a, b) => a + b, 0);
     const cmUrl = "https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=" + encodeURIComponent(card.name + " " + (card.set ? card.set.name : ""));
     $("#sheetbody").innerHTML = `<div class="detail">
       <div class="hero">
@@ -471,8 +491,11 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
         <div style="min-width:0;display:grid;gap:10px">
           <div><h2>${esc(card.name)}</h2>
           <div class="sub">${esc(s ? setName(lang, s.id, s.name) : "")} · #${esc(card.localId)}${card.set && card.set.cardCount ? " / " + (card.set.cardCount.official || "") : ""}${card.rarity ? "<br>" + esc(card.rarity) : ""}${card.illustrator ? "<br>Illus. " + esc(card.illustrator) : ""}</div></div>
-          <div><div class="label" style="margin-bottom:4px">Copies owned</div>
-          <div class="stepper"><button id="minus" aria-label="Remove a copy">−</button><output id="qty" class="num">${r.qty}</output><button id="plus" aria-label="Add a copy">+</button></div></div>
+          ${vlist.length > 1 ? `<div style="display:grid;gap:8px"><div class="label">Copies owned · ${r.qty}</div>
+            ${vlist.map(([key, label]) => `<div class="vrow"><span>${label}</span><div class="stepper"><button data-v="${key}" data-d="-1" aria-label="Remove a ${label} copy">−</button><output class="num">${(r.variants && r.variants[key]) || 0}</output><button data-v="${key}" data-d="1" aria-label="Add a ${label} copy">+</button></div></div>`).join("")}
+            ${unsorted > 0 ? `<div class="vrow"><span class="sub">Variant not set</span><div class="stepper"><button id="minus" aria-label="Remove a copy">−</button><output class="num">${unsorted}</output><span></span></div></div>` : ""}</div>`
+          : `<div><div class="label" style="margin-bottom:4px">Copies owned</div>
+          <div class="stepper"><button id="minus" aria-label="Remove a copy">−</button><output id="qty" class="num">${r.qty}</output><button id="plus" aria-label="Add a copy">+</button></div></div>`}
           <div class="row"><button class="btn ${r.wish ? "on" : ""}" id="wish">${r.wish ? "♥ On wishlist" : "♡ Add to wishlist"}</button></div>
         </div>
       </div>
@@ -497,8 +520,9 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
       </div>
     </div>`;
     const b = brief || card;
-    $("#plus").onclick = () => { changeQty(lang, b, s, +1); draw(); };
-    $("#minus").onclick = () => { changeQty(lang, b, s, -1); draw(); };
+    const plus = $("#plus"); if (plus) plus.onclick = () => { changeQty(lang, b, s, +1); draw(); };
+    const minus = $("#minus"); if (minus) minus.onclick = () => { changeQty(lang, b, s, -1); draw(); };
+    document.querySelectorAll("#sheetbody [data-v]").forEach(btn => btn.onclick = () => { changeQty(lang, b, s, +btn.dataset.d, btn.dataset.v); draw(); });
     $("#wish").onclick = () => {
       const rec = ensureRec(lang, b, s);
       rec.wish = !rec.wish;
