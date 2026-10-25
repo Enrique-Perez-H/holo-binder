@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966503304,
+ "updatedAt": 1792966514949,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -446,6 +446,54 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803212
+  },
+  "ja:SV8a-103": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "マシマシラex",
+   "localId": "103",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/103",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803216
+  },
+  "ja:SV8a-107": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "メタング",
+   "localId": "107",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/107",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803220
+  },
+  "ja:SV8a-108": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ジラーチ",
+   "localId": "108",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/108",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803221
+  },
+  "ja:SV8a-112": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ジュラルドン",
+   "localId": "112",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/112",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803225
   }
  }
 }
