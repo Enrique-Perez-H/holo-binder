@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966587053,
+ "updatedAt": 1792966603564,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -758,6 +758,20 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803317
+  },
+  "ja:SV8a-217": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ブラッキーex",
+   "localId": "217",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/217",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803330,
+   "wishPrice": 382.44,
+   "wishAt": "2026-10-25"
   }
  }
 }
