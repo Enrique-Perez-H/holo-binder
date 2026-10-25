@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966290017,
+ "updatedAt": 1792966441215,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -98,6 +98,114 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803134
+  },
+  "ja:SV8a-024": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "テツノドクガ",
+   "localId": "024",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/024",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803137
+  },
+  "ja:SV8a-028": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "トサキント",
+   "localId": "028",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/028",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803141
+  },
+  "ja:SV8a-029": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "アズマオウ",
+   "localId": "029",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/029",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803142
+  },
+  "ja:SV8a-030": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "シャワーズ",
+   "localId": "030",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/030",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803143
+  },
+  "ja:SV8a-033": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "アリゲイツ",
+   "localId": "033",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/033",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803146
+  },
+  "ja:SV8a-035": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ヒンバス",
+   "localId": "035",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/035",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803148
+  },
+  "ja:SV8a-036": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ミロカロス",
+   "localId": "036",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/036",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803149
+  },
+  "ja:SV8a-037": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ユキワラシ",
+   "localId": "037",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/037",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803150
+  },
+  "ja:SV8a-038": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ユキメノコ",
+   "localId": "038",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/038",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803151
   }
  }
 }
