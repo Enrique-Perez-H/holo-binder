@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966535802,
+ "updatedAt": 1792966558261,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -578,6 +578,174 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803256
+  },
+  "ja:SV8a-151": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "夜のタンカ",
+   "localId": "151",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/151",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803264
+  },
+  "ja:SV8a-159": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "マキシマムベルト",
+   "localId": "159",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/159",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803272
+  },
+  "ja:SV8a-162": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "アオキの手際",
+   "localId": "162",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/162",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803275
+  },
+  "ja:SV8a-163": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "アカマツ",
+   "localId": "163",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/163",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803276
+  },
+  "ja:SV8a-166": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "アンズの秘技",
+   "localId": "166",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/166",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803279
+  },
+  "ja:SV8a-167": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "オーリム博士の気迫",
+   "localId": "167",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/167",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803280
+  },
+  "ja:SV8a-169": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "スグリ",
+   "localId": "169",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/169",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803282
+  },
+  "ja:SV8a-170": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ゼイユ",
+   "localId": "170",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/170",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803283
+  },
+  "ja:SV8a-171": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "タロ",
+   "localId": "171",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/171",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803284
+  },
+  "ja:SV8a-172": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "探検家の先導",
+   "localId": "172",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/172",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803285
+  },
+  "ja:SV8a-174": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "パルデアの仲間たち",
+   "localId": "174",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/174",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803287
+  },
+  "ja:SV8a-175": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "フトゥー博士のシナリオ",
+   "localId": "175",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/175",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803288
+  },
+  "ja:SV8a-176": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ブライア",
+   "localId": "176",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/176",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803289
+  },
+  "ja:SV8a-180": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "お祭り会場",
+   "localId": "180",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/180",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803293
   }
  }
 }
