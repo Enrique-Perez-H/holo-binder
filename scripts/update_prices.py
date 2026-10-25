@@ -3,7 +3,7 @@
 
 Reads collection.json (pushed by the app), downloads Cardmarket's public
 Pokémon price guide, and appends one row per tracked card to history.json.
-Row format matches the app: [date, trend, avg, low, avg7, avg30].
+Row format matches the app: [date, trend, avg, low, avg7, avg30, reverse_trend].
 """
 import json
 import pathlib
@@ -64,7 +64,11 @@ def main(guide_source=GUIDE_URL):
         if main_price is None:
             missing += 1
             continue
-        row = [date, main_price, avg, low, pick(g, "avg7"), pick(g, "avg30")]
+        rev = None
+        if g.get("trend") is not None or g.get("avg") is not None or g.get("low") is not None:
+            # With a normal price present, the "-holo" fields are the reverse holo price.
+            rev = next((g.get(f + "-holo") for f in ("trend", "avg", "low") if g.get(f + "-holo") is not None), None)
+        row = [date, main_price, avg, low, pick(g, "avg7"), pick(g, "avg30"), rev]
         rows = products.setdefault(pid, [])
         if rows and rows[-1][0] == date:
             rows[-1] = row

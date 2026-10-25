@@ -224,19 +224,31 @@ function pickPrice(cm) {
   if (!cm) return null;
   const g = f => cm[f] ?? cm[f + "-holo"] ?? null;
   const p = { trend: g("trend"), avg: g("avg"), low: g("low"), avg1: g("avg1"), avg7: g("avg7"), avg30: g("avg30"), updated: cm.updated, idProduct: cm.idProduct };
+  /* Cardmarket's "-holo" fields are the foil price. When the card also has a normal price, that is the reverse holo. */
+  const f = x => cm[x + "-holo"] ?? null;
+  const rev = { trend: f("trend"), avg: f("avg"), low: f("low"), avg1: f("avg1"), avg7: f("avg7"), avg30: f("avg30") };
+  if ((cm.trend ?? cm.avg ?? cm.low) != null && (rev.trend ?? rev.avg ?? rev.low) != null) p.rev = rev;
   return (p.trend ?? p.avg ?? p.low) == null ? null : p;
 }
 const mainPrice = p => p ? (p.trend ?? p.avg ?? p.low) : null;
 function recordPrice(k, p) {
   if (!p) return;
   const arr = store.prices[k] || (store.prices[k] = []);
-  const row = [today(), mainPrice(p), p.avg, p.low, p.avg7, p.avg30];
+  const row = [today(), mainPrice(p), p.avg, p.low, p.avg7, p.avg30, p.rev ? mainPrice(p.rev) : null];
   if (arr.length && arr[arr.length - 1][0] === row[0]) arr[arr.length - 1] = row; else arr.push(row);
   if (arr.length > 730) arr.splice(0, arr.length - 730);
 }
 const cmIds = {};
 let changedQuiet = false;
 const latest = k => { const a = store.prices[k]; return a && a.length ? a[a.length - 1][1] : null; };
+/* Value of the copies you own: reverse holo copies use the reverse price when there is one. */
+function copiesValue(r, row) {
+  if (!row || row[1] == null) return 0;
+  const rv = (r.variants && r.variants.reverse) || 0;
+  const rp = row[6] != null ? row[6] : row[1];
+  return (r.qty - rv) * row[1] + rv * rp;
+}
+const lastRow = (k, d) => { const h = (store.prices[k] || []).filter(x => (!d || x[0] <= d) && x[1] != null); return h.length ? h[h.length - 1] : null; };
 
 async function fetchCard(lang, id) {
   const c = await api(`/${lang}/cards/${encodeURIComponent(id)}`);
@@ -376,7 +388,7 @@ async function renderSet(id) {
     const cards = set.cards || [];
     const recs = cards.map(c => store.cards[keyOf(lang, c.id)]);
     const ownedN = recs.filter(r => r && r.qty > 0).length;
-    const value = cards.reduce((s, c) => { const r = store.cards[keyOf(lang, c.id)]; const p = latest(keyOf(lang, c.id)); return s + (r && r.qty > 0 && p ? p * r.qty : 0); }, 0);
+    const value = cards.reduce((s, c) => { const r = store.cards[keyOf(lang, c.id)]; return s + (r && r.qty > 0 ? copiesValue(r, lastRow(keyOf(lang, c.id))) : 0); }, 0);
     const f = state.setFilter;
     const shown = cards.filter(c => { const r = store.cards[keyOf(lang, c.id)]; const own = r && r.qty > 0;
       return f === "all" || (f === "owned" && own) || (f === "missing" && !own) || (f === "wish" && r && r.wish); });
@@ -482,6 +494,7 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
     const now = mainPrice(price);
     const vs30 = price && price.avg30 && now ? now / price.avg30 - 1 : null;
     const sinceAdd = r.wish && r.wishPrice && now ? now / r.wishPrice - 1 : null;
+    const mainLabel = card.variants && card.variants.holo && !card.variants.normal ? "Holo" : "Normal";
     const vlist = VARIANTS.filter(([key]) => card.variants && card.variants[key]);
     const unsorted = r.qty - Object.values(r.variants || {}).reduce((a, b) => a + b, 0);
     const cmUrl = "https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=" + encodeURIComponent(card.name + " " + (card.set ? card.set.name : ""));
@@ -500,7 +513,7 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
         </div>
       </div>
       <div class="prices num">
-        <div class="row" style="justify-content:space-between"><span class="label">Cardmarket · EUR</span>${price && price.updated ? `<span class="sub">Updated ${esc(price.updated.slice(0, 10))}</span>` : ""}</div>
+        <div class="row" style="justify-content:space-between"><span class="label">Cardmarket · EUR${price && price.rev ? " · " + mainLabel : ""}</span>${price && price.updated ? `<span class="sub">Updated ${esc(price.updated.slice(0, 10))}</span>` : ""}</div>
         ${price ? `
         <div class="row" style="align-items:baseline;gap:8px"><span class="big">${eur(now)}</span><span class="sub">trend</span>
           ${vs30 != null ? `<span class="${vs30 > 0 ? "up" : "down"}" style="font-weight:700">${pct(vs30)} vs 30-day avg</span>` : ""}</div>
@@ -513,6 +526,16 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
           <div><span class="label">Tracked</span><b>${hist.length} day${hist.length === 1 ? "" : "s"}</b></div>
         </div>
         ${chart(hist, r.target)}
+        ${price.rev ? `<div class="label" style="margin-top:6px">Reverse holo</div>
+        <div class="row" style="align-items:baseline;gap:8px"><span class="big">${eur(mainPrice(price.rev))}</span><span class="sub">trend</span>
+          ${now && mainPrice(price.rev) ? `<span class="sub">${(mainPrice(price.rev) / now).toFixed(1)}× the ${mainLabel.toLowerCase()} price</span>` : ""}</div>
+        <div class="pgrid">
+          <div><span class="label">From</span><b>${eur(price.rev.low)}</b></div>
+          <div><span class="label">Avg sold</span><b>${eur(price.rev.avg)}</b></div>
+          <div><span class="label">1-day</span><b>${eur(price.rev.avg1)}</b></div>
+          <div><span class="label">7-day</span><b>${eur(price.rev.avg7)}</b></div>
+          <div><span class="label">30-day</span><b>${eur(price.rev.avg30)}</b></div>
+        </div>` : ""}
         ${sinceAdd != null ? `<div class="sub">Since you added it to your wishlist (${eur(r.wishPrice)}): <b class="${sinceAdd > 0 ? "up" : "down"}">${pct(sinceAdd)}</b></div>` : ""}
         ` : `<div class="sub">Cardmarket has no price for this card yet. Japanese and very new cards often aren't listed.</div>`}
         ${r.wish ? `<div class="target"><label class="label" for="target">Alert me below €</label><input id="target" type="number" inputmode="decimal" min="0" step="0.5" value="${r.target ?? ""}" placeholder="—"></div>` : ""}
@@ -622,11 +645,11 @@ function renderValue() {
   const lang = store.lang;
   const owned = Object.entries(store.cards).filter(([k, r]) => r.qty > 0 && k.startsWith(lang + ":"));
   const copies = owned.reduce((s, [, r]) => s + r.qty, 0);
-  const val = owned.reduce((s, [k, r]) => s + (latest(k) || 0) * r.qty, 0);
+  const val = owned.reduce((s, [k, r]) => s + copiesValue(r, lastRow(k)), 0);
   const sets = new Set(owned.map(([, r]) => r.setId)).size;
   // total value per day, carrying each card's last known price forward
   const dates = [...new Set(owned.flatMap(([k]) => (store.prices[k] || []).map(h => h[0])))].sort();
-  const series = dates.map(d => [d, owned.reduce((s, [k, r]) => { const h = (store.prices[k] || []).filter(x => x[0] <= d && x[1] != null); return s + (h.length ? h[h.length - 1][1] * r.qty : 0); }, 0)]);
+  const series = dates.map(d => [d, owned.reduce((s, [k, r]) => s + copiesValue(r, lastRow(k, d)), 0)]);
   const top = owned.map(([k, r]) => ({ k, r, p: latest(k) })).filter(x => x.p).sort((a, b) => b.p - a.p).slice(0, 10);
   view().innerHTML = `<div class="tiles num">
       <div class="stat"><div class="label">Value</div><div class="big">${eur(val)}</div></div>
