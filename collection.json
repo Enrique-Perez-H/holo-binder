@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966566969,
+ "updatedAt": 1792966576633,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -747,17 +747,17 @@
    "setName": "テラスタルフェスex",
    "cm": 803293
   },
-  "ja:SV8a-201": {
+  "ja:SV8a-204": {
    "qty": 1,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
-   "name": "オーガポン みどりのめんex",
-   "localId": "201",
-   "image": "https://assets.tcgdex.net/ja/SV/SV8a/201",
+   "name": "オーガポン かまどのめんex",
+   "localId": "204",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/204",
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
-   "cm": 803314
+   "cm": 803317
   }
  }
 }
