@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966252158,
+ "updatedAt": 1792966265026,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -26,6 +26,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803115
+  },
+  "ja:SV8a-006": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "サルノリ",
+   "localId": "006",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/006",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803119
+  },
+  "ja:SV8a-007": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "バチンキー",
+   "localId": "007",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/007",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803120
   }
  }
 }
