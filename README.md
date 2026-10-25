@@ -16,15 +16,15 @@ Card data and images come from [TCGdex](https://tcgdex.dev). Daily prices come f
 
 ## Setup (about 10 minutes)
 
-1. **Create the repo.** On GitHub, create a new repository, for example `holo-binder`. It must be public for free GitHub Pages.
-2. **Upload the files.** Upload `index.html`, the `scripts` folder and the `.github` folder, keeping the folder structure.
-3. **Turn on the website.** In the repo, go to Settings → Pages, choose "Deploy from a branch", then `main` and `/ (root)`. After a minute your app is live at `https://<you>.github.io/holo-binder/`.
-4. **Let the Action save prices.** Go to Settings → Actions → General → Workflow permissions and choose "Read and write permissions".
-5. **Create a token for the app.** Go to GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token.
+The repo `Enrique-Perez-H/holo-binder` already exists and has the files, so start at step 1.
+
+1. **Turn on the website.** In the repo, go to Settings → Pages, choose "Deploy from a branch", then `main` and `/ (root)`. After a minute your app is live at https://enrique-perez-h.github.io/holo-binder/.
+2. **Let the Action save prices.** Go to Settings → Actions → General → Workflow permissions and choose "Read and write permissions".
+3. **Create a token for the app.** Go to GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token.
    - Repository access: only this repo.
    - Permissions: Contents, Read and write.
-6. **Connect the app.** Open the app on your phone, go to the Value tab, then Daily price tracking. Enter `owner/holo-binder` and the token.
-7. **Get your first prices now (optional).** In the repo, go to Actions → Daily Cardmarket prices → Run workflow.
+4. **Connect the app.** Open the app on your phone, go to the Value tab, then Daily price tracking. Enter `Enrique-Perez-H/holo-binder` and the token.
+5. **Check the price job.** In the repo, go to Actions → Daily Cardmarket prices → Run workflow. When it finishes, `history.json` should appear in the repo.
 
 On iPhone, open the app in Safari and choose Share → Add to Home Screen.
 
