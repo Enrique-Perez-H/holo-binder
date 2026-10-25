@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792965873759,
+ "updatedAt": 1792966252158,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -14,6 +14,18 @@
    "cm": 895901,
    "wishPrice": 166.87,
    "wishAt": "2026-10-25"
+  },
+  "ja:SV8a-002": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "リーフィア",
+   "localId": "002",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/002",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803115
   }
  }
 }
