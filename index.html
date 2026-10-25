@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Holo Binder">
+<meta name="theme-color" content="#14121c">
+<title>Holo Binder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: app shell — sticky top bar, scrolling view, fixed bottom tab bar; binder grid of cards */
+:root{
+  --bg:#14121c; --surface:#1d1a28; --raised:#272336; --line:#332e45;
+  --fg:#eeeaf7; --muted:#9a93b3; --accent:#ff5a5f; --accent-ink:#fff;
+  --foil:linear-gradient(100deg,#7ad7f0,#b59cff 40%,#ff9ad5 70%,#ffd27a);
+  --good:#4fd18b; --bad:#ff7b7b; --warn:#ffc960;
+  --f-display:"Chakra Petch",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#f4f2f8; --surface:#ffffff; --raised:#ebe7f3; --line:#dcd6e8;
+  --fg:#1c1828; --muted:#6c6584; --accent:#e23d44; --accent-ink:#fff;
+  --good:#16935a; --bad:#cf3434; --warn:#a86b00; color-scheme:light;}}
+:root[data-theme="light"]{
+  --bg:#f4f2f8; --surface:#ffffff; --raised:#ebe7f3; --line:#dcd6e8;
+  --fg:#1c1828; --muted:#6c6584; --accent:#e23d44; --accent-ink:#fff;
+  --good:#16935a; --bad:#cf3434; --warn:#a86b00; color-scheme:light;}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font:15px/1.45 var(--f-body);-webkit-font-smoothing:antialiased;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+img{max-width:100%}
+[hidden]{display:none!important}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+.top h1{font:700 20px/1.1 var(--f-display);letter-spacing:.02em;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-wrap:balance}
+.iconbtn{border:0;background:var(--raised);border-radius:10px;width:36px;height:36px;display:grid;place-items:center;flex:none}
+.lang{display:flex;background:var(--raised);border-radius:10px;padding:3px;flex:none}
+.lang button{border:0;background:none;padding:5px 10px;border-radius:8px;font:600 12px var(--f-display);letter-spacing:.08em;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--surface);color:var(--fg)}
+.status{font-size:12px;color:var(--muted);padding:6px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
+
+main{padding:14px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));max-width:960px;margin:0 auto}
+.label{font:600 11px var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.empty{padding:40px 12px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--fg);font-family:var(--f-display);font-size:17px;margin-bottom:6px}
+
+/* progress */
+.bar{height:6px;border-radius:99px;background:var(--raised);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+.bar i.done{background:var(--foil)}
+
+/* set list */
+.search{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.serie{margin-top:18px}
+.serie>.label{margin:0 0 8px 2px}
+.sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.set{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 12px}
+.set .logo{width:64px;height:40px;object-fit:contain}
+.set .meta{min-width:0;display:grid;gap:5px}
+.set .name{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.set .count{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+
+/* set header */
+.sethead{display:grid;gap:10px;margin-bottom:6px}
+.sethead .logo{max-height:72px;max-width:220px;object-fit:contain}
+.big{font:700 30px/1 var(--f-display)}
+.kv{display:flex;gap:18px;flex-wrap:wrap}
+.kv div{display:grid;gap:2px}
+
+/* binder grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.tile{position:relative;border:0;padding:0;background:none;text-align:left;display:grid;gap:4px}
+.tile .img{aspect-ratio:63/88;width:100%;max-width:100%;border-radius:6px;overflow:hidden;background:var(--raised);position:relative}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile.missing img{filter:grayscale(1) brightness(.55);opacity:.55}
+.tile .no{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:4px}
+.tile .no span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{position:absolute;top:5px;left:5px;background:var(--accent);color:var(--accent-ink);font:700 11px var(--f-display);border-radius:6px;padding:1px 6px}
+.heart{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center}
+.quick{position:absolute;right:5px;bottom:5px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font:700 18px/1 var(--f-body);display:grid;place-items:center}
+.tile.owned .quick{background:var(--accent)}
+.ph{position:absolute;inset:0;display:grid;place-items:center;padding:6px;text-align:center;font-size:11px;color:var(--muted)}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(6,4,12,.6);z-index:40}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--surface);border-radius:20px 20px 0 0;max-height:92vh;overflow:auto;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));max-width:720px;margin:0 auto}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto 12px}
+.detail{display:grid;gap:16px}
+.hero{display:grid;grid-template-columns:minmax(0,150px) 1fr;gap:14px;align-items:start}
+.hero .img{aspect-ratio:63/88;border-radius:8px;overflow:hidden;background:var(--raised)}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero h2{font:700 22px/1.15 var(--f-display);margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--muted);font-size:13px}
+.stepper{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;width:max-content}
+.stepper button{border:0;background:var(--raised);width:42px;height:40px;font-size:20px;font-weight:700}
+.stepper output{min-width:46px;text-align:center;font:700 18px var(--f-display)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--raised);border-radius:12px;padding:9px 14px;font-weight:600}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.prices{border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pgrid div{display:grid;gap:1px}
+.pgrid b{font:600 15px var(--f-display)}
+.up{color:var(--bad)} .down{color:var(--good)}
+.target{display:flex;gap:8px;align-items:center}
+.target input{width:100px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+a.ext{color:var(--accent);font-weight:600;text-decoration:none}
+svg.chart{width:100%;height:auto;display:block}
+
+/* list rows */
+.list{display:grid;gap:8px}
+.item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:8px 12px 8px 8px;text-align:left}
+.item .thumb{width:52px;aspect-ratio:63/88;border-radius:4px;overflow:hidden;background:var(--raised)}
+.item .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.item .meta{min-width:0}
+.item .meta b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .right{text-align:right;display:grid;gap:2px;justify-items:end}
+.pill{font:600 11px var(--f-display);letter-spacing:.06em;border-radius:6px;padding:2px 7px;background:var(--raised)}
+.pill.deal{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.pill.hit{background:var(--foil);color:#1c1828}
+
+/* stats */
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat .big{font-size:24px;margin-top:4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:12px}
+.panel h3{margin:0 0 10px;font:600 15px var(--f-display)}
+
+/* tab bar */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);
+  padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+nav.tabs button{border:0;background:none;display:grid;justify-items:center;gap:2px;padding:6px 0;font:600 11px var(--f-body);color:var(--muted)}
+nav.tabs button svg{width:22px;height:22px}
+nav.tabs button[aria-current="page"]{color:var(--accent)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:9px 14px;border-radius:12px;font-weight:600;z-index:60;font-size:13px}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .22s ease-out}@keyframes up{from{transform:translateY(30px);opacity:.6}}}
+@media (min-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}.tiles{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <button class="iconbtn" id="back" hidden aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <h1 id="title">Sets</h1>
+  <div class="lang" role="group" aria-label="Card language">
+    <button id="lang-en" data-lang="en">EN</button><button id="lang-ja" data-lang="ja">JP</button>
+  </div>
+</header>
+<div class="status num" id="status" hidden></div>
+<main id="view"></main>
+
+<nav class="tabs" aria-label="Sections">
+  <button data-tab="sets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></svg>Sets</button>
+  <button data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>Search</button>
+  <button data-tab="wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>Wishlist</button>
+  <button data-tab="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19h16M6 15l4-5 3 3 5-7"/></svg>Value</button>
+</nav>
+<div id="sheet-root"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+"use strict";
+const API = "https://api.tcgdex.net/v2";
+const STORE_KEY = "holo-binder-v1";
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today = () => { const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+const eur = v => v == null || isNaN(v) ? "—" : "€" + (v >= 100 ? v.toFixed(0) : v.toFixed(2));
+const pct = v => v == null || !isFinite(v) ? "" : (v > 0 ? "+" : "") + (v * 100).toFixed(0) + "%";
+
+/* ---------- storage ---------- */
+function loadStore() {
+  try { const s = JSON.parse(localStorage.getItem(STORE_KEY)); if (s && s.cards) return Object.assign({ prices: {}, lang: "en" }, s); } catch (e) {}
+  return { cards: {}, prices: {}, lang: "en" };
+}
+let store = loadStore();
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch (e) { toast("Couldn't save. Storage may be full."); } }
+try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch (e) {}
+
+/* ---------- API with cache ---------- */
+const mem = new Map();
+async function api(path, { ttlHours = 0 } = {}) {
+  if (mem.has(path)) return mem.get(path);
+  const ck = "hb-cache:" + path;
+  if (ttlHours) {
+    try { const c = JSON.parse(localStorage.getItem(ck)); if (c && Date.now() - c.t < ttlHours * 3600e3) { mem.set(path, c.d); return c.d; } } catch (e) {}
+  }
+  const res = await fetch(API + path);
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const d = await res.json();
+  mem.set(path, d);
+  if (ttlHours) { try { localStorage.setItem(ck, JSON.stringify({ t: Date.now(), d })); } catch (e) {} }
+  return d;
+}
+const imgUrl = (base, q = "low") => base ? base + "/" + q + ".webp" : "";
+const keyOf = (lang, id) => lang + ":" + id;
+
+/* ---------- prices ---------- */
+function pickPrice(cm) {
+  if (!cm) return null;
+  const g = f => cm[f] ?? cm[f + "-holo"] ?? null;
+  const p = { trend: g("trend"), avg: g("avg"), low: g("low"), avg1: g("avg1"), avg7: g("avg7"), avg30: g("avg30"), updated: cm.updated, idProduct: cm.idProduct };
+  return (p.trend ?? p.avg ?? p.low) == null ? null : p;
+}
+const mainPrice = p => p ? (p.trend ?? p.avg ?? p.low) : null;
+function recordPrice(k, p) {
+  if (!p) return;
+  const arr = store.prices[k] || (store.prices[k] = []);
+  const row = [today(), mainPrice(p), p.avg, p.low, p.avg7, p.avg30];
+  if (arr.length && arr[arr.length - 1][0] === row[0]) arr[arr.length - 1] = row; else arr.push(row);
+  if (arr.length > 730) arr.splice(0, arr.length - 730);
+}
+const cmIds = {};
+let changedQuiet = false;
+const latest = k => { const a = store.prices[k]; return a && a.length ? a[a.length - 1][1] : null; };
+
+async function fetchCard(lang, id) {
+  const c = await api(`/${lang}/cards/${encodeURIComponent(id)}`);
+  const p = pickPrice(c.pricing && c.pricing.cardmarket);
+  const k = keyOf(lang, id);
+  recordPrice(k, p);
+  if (p && p.idProduct) { cmIds[k] = p.idProduct; if (store.cards[k] && store.cards[k].cm !== p.idProduct) { store.cards[k].cm = p.idProduct; changedQuiet = true; } }
+  return { card: c, price: p };
+}
+
+/* daily snapshot of every owned or wished card */
+async function snapshot() {
+  const keys = Object.keys(store.cards).filter(k => { const a = store.prices[k]; return !a || !a.length || a[a.length - 1][0] !== today(); });
+  if (!keys.length) return;
+  const st = $("#status"); st.hidden = false;
+  let done = 0, fail = 0, i = 0;
+  const work = async () => {
+    while (i < keys.length) {
+      const k = keys[i++]; const [lang, ...rest] = k.split(":");
+      try { await fetchCard(lang, rest.join(":")); } catch (e) { fail++; }
+      done++; st.textContent = `Updating Cardmarket prices ${done}/${keys.length}`;
+    }
+  };
+  await Promise.all([work(), work(), work(), work()]);
+  if (changedQuiet) { changedQuiet = false; changed(); } else save();
+  st.textContent = fail ? `Prices updated. ${fail} card(s) couldn't be reached.` : `Prices updated for ${keys.length} card(s).`;
+  setTimeout(() => st.hidden = true, 3500);
+  if (state.tab === "wish" || state.tab === "value") render();
+}
+
+/* ---------- state & routing ---------- */
+const state = { tab: "sets", stack: [], setFilter: "all", setsMode: "all", q: "", sq: "" };
+store.lang = store.lang || "en";
+function go(view) { state.stack.push(view); render(); window.scrollTo(0, 0); }
+function back() { state.stack.pop(); render(); }
+$("#back").onclick = back;
+document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => { state.tab = b.dataset.tab; state.stack = []; render(); window.scrollTo(0, 0); });
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { store.lang = b.dataset.lang; save(); state.stack = []; render(); });
+
+function render() {
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-current", b.dataset.tab === state.tab ? "page" : "false"));
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === store.lang)));
+  const top = state.stack[state.stack.length - 1];
+  $("#back").hidden = !top;
+  if (top && top.type === "set") return renderSet(top.id);
+  ({ sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
+}
+const setTitle = t => $("#title").textContent = t;
+const view = () => $("#view");
+const loading = msg => view().innerHTML = `<div class="empty">${esc(msg)}</div>`;
+const errorBox = (e, retry) => { view().innerHTML = `<div class="empty"><b>Couldn't reach the card database</b>Check your connection and try again.<br><br><button class="btn" id="retry">Try again</button></div>`; $("#retry").onclick = retry; };
+
+/* ---------- sets ---------- */
+function ownedBySet(lang) {
+  const m = {};
+  for (const [k, c] of Object.entries(store.cards)) if (k.startsWith(lang + ":") && c.qty > 0) m[c.setId] = (m[c.setId] || 0) + 1;
+  return m;
+}
+async function loadSeries(lang) {
+  const list = await api(`/${lang}/series`, { ttlHours: 24 });
+  const full = await Promise.all(list.map(s => api(`/${lang}/series/${s.id}`, { ttlHours: 24 }).catch(() => ({ ...s, sets: [] }))));
+  return full.reverse();
+}
+async function renderSets() {
+  setTitle("Sets");
+  const lang = store.lang;
+  loading("Loading sets…");
+  let series;
+  try { series = await loadSeries(lang); } catch (e) { return errorBox(e, renderSets); }
+  if (state.tab !== "sets" || state.stack.length || store.lang !== lang) return;
+  const owned = ownedBySet(lang);
+  view().innerHTML = `
+    <input class="search" id="setq" type="search" placeholder="Find a set" value="${esc(state.q)}" autocomplete="off">
+    <div class="toolbar" role="group" aria-label="Show">
+      <button class="chip" data-m="all" aria-pressed="${state.setsMode === "all"}">All sets</button>
+      <button class="chip" data-m="mine" aria-pressed="${state.setsMode === "mine"}">Sets I collect</button>
+    </div>
+    <div id="serieslist"></div>`;
+  const draw = () => {
+    const q = state.q.trim().toLowerCase();
+    let html = "";
+    for (const s of series) {
+      const sets = (s.sets || []).slice().reverse().filter(x => (!q || x.name.toLowerCase().includes(q)) && (state.setsMode === "all" || owned[x.id]));
+      if (!sets.length) continue;
+      html += `<section class="serie"><div class="label">${esc(s.name)}</div><div class="sets">` + sets.map(x => {
+        const tot = (x.cardCount && (x.cardCount.official || x.cardCount.total)) || 0;
+        const have = owned[x.id] || 0; const r = tot ? Math.min(1, have / tot) : 0;
+        return `<button class="set" data-id="${esc(x.id)}">
+          ${x.logo ? `<img class="logo" loading="lazy" src="${esc(x.logo)}.webp" alt="">` : `<span class="logo"></span>`}
+          <span class="meta"><span class="name">${esc(x.name)}</span>
+          <span class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></span>
+          <span class="count num"><span>${have} / ${tot}</span><span>${tot ? Math.round(r * 100) + "%" : ""}</span></span></span></button>`;
+      }).join("") + `</div></section>`;
+    }
+    $("#serieslist").innerHTML = html || `<div class="empty"><b>${state.setsMode === "mine" ? "No sets yet" : "No sets match"}</b>${state.setsMode === "mine" ? "Open any set and tap + on a card you own." : "Try a different name."}</div>`;
+    $("#serieslist").querySelectorAll(".set").forEach(b => b.onclick = () => go({ type: "set", id: b.dataset.id }));
+  };
+  $("#setq").oninput = e => { state.q = e.target.value; draw(); };
+  view().querySelectorAll(".chip").forEach(c => c.onclick = () => { state.setsMode = c.dataset.m; view().querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === c))); draw(); });
+  draw();
+}
+
+/* ---------- one set (binder) ---------- */
+async function renderSet(id) {
+  const lang = store.lang;
+  loading("Opening set…");
+  let set;
+  try { set = await api(`/${lang}/sets/${encodeURIComponent(id)}`, { ttlHours: 12 }); } catch (e) { return errorBox(e, () => renderSet(id)); }
+  setTitle(set.name);
+  const tot = set.cardCount.official || set.cardCount.total;
+  const draw = () => {
+    const cards = set.cards || [];
+    const recs = cards.map(c => store.cards[keyOf(lang, c.id)]);
+    const ownedN = recs.filter(r => r && r.qty > 0).length;
+    const value = cards.reduce((s, c) => { const r = store.cards[keyOf(lang, c.id)]; const p = latest(keyOf(lang, c.id)); return s + (r && r.qty > 0 && p ? p * r.qty : 0); }, 0);
+    const f = state.setFilter;
+    const shown = cards.filter(c => { const r = store.cards[keyOf(lang, c.id)]; const own = r && r.qty > 0;
+      return f === "all" || (f === "owned" && own) || (f === "missing" && !own) || (f === "wish" && r && r.wish); });
+    const r = tot ? Math.min(1, ownedN / tot) : 0;
+    view().innerHTML = `
+      <div class="sethead">
+        ${set.logo ? `<img class="logo" src="${esc(set.logo)}.webp" alt="${esc(set.name)}">` : ""}
+        <div class="kv num">
+          <div><span class="label">Collected</span><span class="big">${ownedN}<span class="sub"> / ${tot}</span></span></div>
+          <div><span class="label">Complete</span><span class="big">${Math.round(r * 100)}%</span></div>
+          <div><span class="label">Value owned</span><span class="big">${eur(value)}</span></div>
+        </div>
+        <div class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></div>
+        ${set.releaseDate ? `<div class="sub">Released ${esc(set.releaseDate)} · ${cards.length} cards incl. secret rares</div>` : ""}
+      </div>
+      <div class="toolbar" role="group" aria-label="Filter">
+        ${[["all","All"],["owned","Owned"],["missing","Missing"],["wish","Wishlist"]].map(([k,l]) => `<button class="chip" data-f="${k}" aria-pressed="${f === k}">${l}</button>`).join("")}
+      </div>
+      <div class="grid">${shown.map(c => tile(lang, c, set)).join("") || `<div class="empty" style="grid-column:1/-1">Nothing here yet.</div>`}</div>`;
+    view().querySelectorAll(".chip").forEach(c => c.onclick = () => { state.setFilter = c.dataset.f; draw(); });
+    bindTiles(set, draw);
+  };
+  draw();
+}
+function tile(lang, c, set) {
+  const k = keyOf(lang, c.id); const r = store.cards[k]; const own = r && r.qty > 0;
+  return `<div class="tile ${own ? "owned" : "missing"}" data-id="${esc(c.id)}">
+    <button class="img" data-open aria-label="${esc(c.name)} #${esc(c.localId)}">
+      ${c.image ? `<img loading="lazy" src="${esc(imgUrl(c.image))}" alt="">` : `<span class="ph">${esc(c.name)}<br>No image yet</span>`}
+      ${own && r.qty > 1 ? `<span class="badge num">×${r.qty}</span>` : ""}
+      ${r && r.wish ? `<span class="heart"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ff5a5f"><path d="M12 21s-8-5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 6-8 11-8 11z"/></svg></span>` : ""}
+    </button>
+    <button class="quick" data-quick aria-label="${own ? "Add another copy" : "Mark as owned"}">+</button>
+    <span class="no num"><span>${esc(c.name)}</span><span>${esc(c.localId)}</span></span>
+  </div>`;
+}
+function bindTiles(set, redraw) {
+  view().querySelectorAll(".tile").forEach(t => {
+    const c = (set.cards || []).find(x => x.id === t.dataset.id);
+    const realSet = set.id ? set : null;
+    $("[data-open]", t).onclick = () => openCard(store.lang, c.id, { brief: c, set: realSet }, redraw);
+    $("[data-quick]", t).onclick = async () => {
+      let s = realSet;
+      if (!s) { try { s = (await api(`/${store.lang}/cards/${encodeURIComponent(c.id)}`)).set; } catch (e) {} }
+      changeQty(store.lang, c, s, +1).then(redraw); redraw();
+    };
+  });
+}
+
+/* ---------- collection mutations ---------- */
+function ensureRec(lang, c, set) {
+  const k = keyOf(lang, c.id);
+  let r = store.cards[k];
+  if (!r) r = store.cards[k] = { qty: 0, wish: false, target: null, addedAt: today() };
+  r.name = c.name; r.localId = c.localId; r.image = c.image || r.image;
+  const s = set || c.set; if (s) { r.setId = s.id; r.setName = s.name; }
+  if (!r.setId) r.setId = c.id.slice(0, c.id.lastIndexOf("-"));
+  if (!r.cm && cmIds[k]) r.cm = cmIds[k];
+  return r;
+}
+function prune(lang, id) { const k = keyOf(lang, id); const r = store.cards[k]; if (r && r.qty <= 0 && !r.wish) delete store.cards[k]; }
+function changeQty(lang, c, set, d) {
+  const r = ensureRec(lang, c, set);
+  const was = r.qty;
+  r.qty = Math.max(0, r.qty + d);
+  if (was === 0 && r.qty > 0 && r.wish) { r.wish = false; toast("Got it! Moved from wishlist to collection."); }
+  prune(lang, c.id); changed();
+  if (!store.prices[keyOf(lang, c.id)]) return fetchCard(lang, c.id).then(() => changed()).catch(() => {});
+  return Promise.resolve();
+}
+
+/* ---------- card detail sheet ---------- */
+async function openCard(lang, id, { brief, set } = {}, onChange) {
+  const root = $("#sheet-root");
+  const close = () => { root.innerHTML = ""; document.body.style.overflow = ""; onChange && onChange(); };
+  root.innerHTML = `<div class="scrim" id="scrim"></div><div class="sheet" role="dialog" aria-modal="true" aria-label="Card"><div class="grab"></div><div id="sheetbody"><div class="empty">Loading card…</div></div></div>`;
+  document.body.style.overflow = "hidden";
+  $("#scrim").onclick = close;
+  let card, price;
+  try { ({ card, price } = await fetchCard(lang, id)); save(); }
+  catch (e) { $("#sheetbody").innerHTML = `<div class="empty"><b>Couldn't load this card</b>Check your connection and try again.</div>`; return; }
+  const k = keyOf(lang, id);
+  const s = set || card.set;
+  const draw = () => {
+    const r = store.cards[k] || { qty: 0, wish: false };
+    const hist = store.prices[k] || [];
+    const now = mainPrice(price);
+    const vs30 = price && price.avg30 && now ? now / price.avg30 - 1 : null;
+    const sinceAdd = r.wish && r.wishPrice && now ? now / r.wishPrice - 1 : null;
+    const cmUrl = "https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=" + encodeURIComponent(card.name + " " + (card.set ? card.set.name : ""));
+    $("#sheetbody").innerHTML = `<div class="detail">
+      <div class="hero">
+        <div class="img">${card.image ? `<img src="${esc(imgUrl(card.image, "high"))}" alt="${esc(card.name)}">` : `<span class="ph">No image yet</span>`}</div>
+        <div style="min-width:0;display:grid;gap:10px">
+          <div><h2>${esc(card.name)}</h2>
+          <div class="sub">${esc(s ? s.name : "")} · #${esc(card.localId)}${card.set && card.set.cardCount ? " / " + (card.set.cardCount.official || "") : ""}${card.rarity ? "<br>" + esc(card.rarity) : ""}${card.illustrator ? "<br>Illus. " + esc(card.illustrator) : ""}</div></div>
+          <div><div class="label" style="margin-bottom:4px">Copies owned</div>
+          <div class="stepper"><button id="minus" aria-label="Remove a copy">−</button><output id="qty" class="num">${r.qty}</output><button id="plus" aria-label="Add a copy">+</button></div></div>
+          <div class="row"><button class="btn ${r.wish ? "on" : ""}" id="wish">${r.wish ? "♥ On wishlist" : "♡ Add to wishlist"}</button></div>
+        </div>
+      </div>
+      <div class="prices num">
+        <div class="row" style="justify-content:space-between"><span class="label">Cardmarket · EUR</span>${price && price.updated ? `<span class="sub">Updated ${esc(price.updated.slice(0, 10))}</span>` : ""}</div>
+        ${price ? `
+        <div class="row" style="align-items:baseline;gap:8px"><span class="big">${eur(now)}</span><span class="sub">trend</span>
+          ${vs30 != null ? `<span class="${vs30 > 0 ? "up" : "down"}" style="font-weight:700">${pct(vs30)} vs 30-day avg</span>` : ""}</div>
+        <div class="pgrid">
+          <div><span class="label">From</span><b>${eur(price.low)}</b></div>
+          <div><span class="label">Avg sold</span><b>${eur(price.avg)}</b></div>
+          <div><span class="label">1-day</span><b>${eur(price.avg1)}</b></div>
+          <div><span class="label">7-day</span><b>${eur(price.avg7)}</b></div>
+          <div><span class="label">30-day</span><b>${eur(price.avg30)}</b></div>
+          <div><span class="label">Tracked</span><b>${hist.length} day${hist.length === 1 ? "" : "s"}</b></div>
+        </div>
+        ${chart(hist, r.target)}
+        ${sinceAdd != null ? `<div class="sub">Since you added it to your wishlist (${eur(r.wishPrice)}): <b class="${sinceAdd > 0 ? "up" : "down"}">${pct(sinceAdd)}</b></div>` : ""}
+        ` : `<div class="sub">Cardmarket has no price for this card yet. Japanese and very new cards often aren't listed.</div>`}
+        ${r.wish ? `<div class="target"><label class="label" for="target">Alert me below €</label><input id="target" type="number" inputmode="decimal" min="0" step="0.5" value="${r.target ?? ""}" placeholder="—"></div>` : ""}
+        <a class="ext" href="${esc(cmUrl)}" target="_blank" rel="noopener">Find it on Cardmarket ↗</a>
+      </div>
+    </div>`;
+    const b = brief || card;
+    $("#plus").onclick = () => { changeQty(lang, b, s, +1); draw(); };
+    $("#minus").onclick = () => { changeQty(lang, b, s, -1); draw(); };
+    $("#wish").onclick = () => {
+      const rec = ensureRec(lang, b, s);
+      rec.wish = !rec.wish;
+      if (rec.wish) { rec.wishPrice = now; rec.wishAt = today(); } else { rec.target = null; }
+      prune(lang, id); changed(); draw();
+    };
+    const t = $("#target");
+    if (t) t.onchange = () => { const rec = store.cards[k]; if (!rec) return; const v = parseFloat(t.value); rec.target = isFinite(v) && v > 0 ? v : null; changed(); toast(rec.target ? `You'll see a flag when it's under ${eur(rec.target)}` : "Price alert removed"); };
+  };
+  draw();
+}
+
+/* line chart of tracked daily prices */
+function chart(hist, target) {
+  const pts = hist.filter(h => h[1] != null);
+  if (pts.length < 2) return `<div class="sub">The price chart fills in as you open the app on different days. Each day the app saves today's price for every card you own or want.</div>`;
+  const W = 320, H = 120, L = 40, R = 8, T = 10, B = 20;
+  const vals = pts.map(p => p[1]); if (target) vals.push(target);
+  let lo = Math.min(...vals), hi = Math.max(...vals); if (hi === lo) { hi += 1; lo = Math.max(0, lo - 1); }
+  const pad = (hi - lo) * 0.1; lo = Math.max(0, lo - pad); hi += pad;
+  const t0 = Date.parse(pts[0][0]), t1 = Date.parse(pts[pts.length - 1][0]) || t0 + 1;
+  const x = d => L + (W - L - R) * ((Date.parse(d) - t0) / Math.max(1, t1 - t0));
+  const y = v => T + (H - T - B) * (1 - (v - lo) / (hi - lo));
+  const line = pts.map((p, i) => (i ? "L" : "M") + x(p[0]).toFixed(1) + " " + y(p[1]).toFixed(1)).join(" ");
+  const area = line + ` L${x(pts[pts.length - 1][0]).toFixed(1)} ${H - B} L${L} ${H - B} Z`;
+  const last = pts[pts.length - 1];
+  const ticks = [lo, (lo + hi) / 2, hi];
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily Cardmarket trend price">
+    ${ticks.map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 6}" y="${y(v) + 3}" text-anchor="end" font-size="9" fill="var(--muted)">${eur(v)}</text>`).join("")}
+    ${target ? `<line x1="${L}" x2="${W - R}" y1="${y(target)}" y2="${y(target)}" stroke="var(--good)" stroke-dasharray="4 3"/><text x="${W - R}" y="${y(target) - 4}" text-anchor="end" font-size="9" fill="var(--good)">your target</text>` : ""}
+    <path d="${area}" fill="var(--accent)" fill-opacity=".14"/>
+    <path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="${x(last[0])}" cy="${y(last[1])}" r="3.5" fill="var(--accent)"/>
+    <text x="${L}" y="${H - 5}" font-size="9" fill="var(--muted)">${esc(pts[0][0])}</text>
+    <text x="${W - R}" y="${H - 5}" font-size="9" text-anchor="end" fill="var(--muted)">${esc(last[0])}</text>
+  </svg>`;
+}
+
+/* ---------- search ---------- */
+let searchTimer;
+function renderSearch() {
+  setTitle("Search");
+  view().innerHTML = `<input class="search" id="cq" type="search" placeholder="Card name, e.g. Charizard" value="${esc(state.sq)}" autocomplete="off" autofocus>
+    <div id="results" style="margin-top:14px"></div>`;
+  const run = async () => {
+    const q = state.sq.trim(); const lang = store.lang; const box = $("#results");
+    if (q.length < 2) { box.innerHTML = `<div class="empty"><b>Find any card</b>Search by name across every ${lang === "ja" ? "Japanese" : "English"} set.</div>`; return; }
+    box.innerHTML = `<div class="empty">Searching…</div>`;
+    let list;
+    try { list = await api(`/${lang}/cards?name=${encodeURIComponent(q)}`); } catch (e) { box.innerHTML = `<div class="empty"><b>Search failed</b>Check your connection and try again.</div>`; return; }
+    if (q !== state.sq.trim()) return;
+    list = (list || []).slice().reverse();
+    const shown = list.slice(0, 150);
+    box.innerHTML = list.length ? `<div class="label" style="margin-bottom:10px">${list.length} cards${list.length > 150 ? " · showing 150, be more specific" : ""}</div><div class="grid">${shown.map(c => tile(lang, c)).join("")}</div>` : `<div class="empty"><b>No cards found</b>Check the spelling${lang === "ja" ? ", or search in Japanese" : ""}.</div>`;
+    const fake = { cards: shown };
+    bindTiles(fake, run);
+  };
+  $("#cq").oninput = e => { state.sq = e.target.value; clearTimeout(searchTimer); searchTimer = setTimeout(run, 350); };
+  run();
+}
+
+/* ---------- wishlist ---------- */
+function renderWish() {
+  setTitle("Wishlist");
+  const lang = store.lang;
+  const rows = Object.entries(store.cards).filter(([k, r]) => r.wish && k.startsWith(lang + ":")).map(([k, r]) => {
+    const now = latest(k); const h = store.prices[k] || [];
+    const prev = h.length > 1 ? h[h.length - 2][1] : null;
+    const avg30 = h.length ? h[h.length - 1][5] : null;
+    return { k, r, now, since: r.wishPrice && now ? now / r.wishPrice - 1 : null, day: prev && now ? now / prev - 1 : null, vs30: avg30 && now ? now / avg30 - 1 : null, hit: r.target && now != null && now <= r.target };
+  });
+  if (!rows.length) { view().innerHTML = `<div class="empty"><b>Your wishlist is empty</b>Open a card you're missing and tap “Add to wishlist”. You'll see here when its price drops.</div>`; return; }
+  rows.sort((a, b) => (b.hit - a.hit) || ((a.since ?? 0) - (b.since ?? 0)));
+  const total = rows.reduce((s, x) => s + (x.now || 0), 0);
+  const drops = rows.filter(x => x.since != null && x.since < -0.02).length;
+  view().innerHTML = `<div class="tiles num" style="margin-bottom:12px">
+      <div class="stat"><div class="label">Cards wanted</div><div class="big">${rows.length}</div></div>
+      <div class="stat"><div class="label">Cost to complete</div><div class="big">${eur(total)}</div></div>
+      <div class="stat"><div class="label">Cheaper than added</div><div class="big">${drops}</div></div>
+      <div class="stat"><div class="label">At your target</div><div class="big">${rows.filter(x => x.hit).length}</div></div>
+    </div>
+    <div class="list">${rows.map(x => `<button class="item" data-k="${esc(x.k)}">
+      <span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span>
+      <span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(x.r.setName || x.r.setId)} · #${esc(x.r.localId)}</span>
+        <span class="row" style="gap:6px;margin-top:3px">${x.hit ? `<span class="pill hit">AT TARGET</span>` : ""}${x.vs30 != null && x.vs30 < -0.05 ? `<span class="pill deal">BELOW 30D AVG</span>` : ""}</span></span>
+      <span class="right num"><b>${eur(x.now)}</b>
+        ${x.since != null ? `<span class="${x.since > 0 ? "up" : "down"}" style="font-size:12px;font-weight:700">${x.since > 0 ? "▲" : x.since < 0 ? "▼" : ""} ${pct(x.since)} since added</span>` : ""}
+        ${x.r.target ? `<span class="sub" style="font-size:11px">target ${eur(x.r.target)}</span>` : ""}</span>
+    </button>`).join("")}</div>`;
+  view().querySelectorAll(".item").forEach(b => b.onclick = () => { const id = b.dataset.k.slice(lang.length + 1); const r = store.cards[b.dataset.k];
+    openCard(lang, id, { brief: { id, name: r.name, localId: r.localId, image: r.image }, set: { id: r.setId, name: r.setName } }, renderWish); });
+}
+
+/* ---------- collection value ---------- */
+function renderValue() {
+  setTitle("Collection value");
+  const lang = store.lang;
+  const owned = Object.entries(store.cards).filter(([k, r]) => r.qty > 0 && k.startsWith(lang + ":"));
+  const copies = owned.reduce((s, [, r]) => s + r.qty, 0);
+  const val = owned.reduce((s, [k, r]) => s + (latest(k) || 0) * r.qty, 0);
+  const sets = new Set(owned.map(([, r]) => r.setId)).size;
+  // total value per day, carrying each card's last known price forward
+  const dates = [...new Set(owned.flatMap(([k]) => (store.prices[k] || []).map(h => h[0])))].sort();
+  const series = dates.map(d => [d, owned.reduce((s, [k, r]) => { const h = (store.prices[k] || []).filter(x => x[0] <= d && x[1] != null); return s + (h.length ? h[h.length - 1][1] * r.qty : 0); }, 0)]);
+  const top = owned.map(([k, r]) => ({ k, r, p: latest(k) })).filter(x => x.p).sort((a, b) => b.p - a.p).slice(0, 10);
+  view().innerHTML = `<div class="tiles num">
+      <div class="stat"><div class="label">Value</div><div class="big">${eur(val)}</div></div>
+      <div class="stat"><div class="label">Unique cards</div><div class="big">${owned.length}</div></div>
+      <div class="stat"><div class="label">Copies</div><div class="big">${copies}</div></div>
+      <div class="stat"><div class="label">Sets</div><div class="big">${sets}</div></div>
+    </div>
+    <div class="panel num"><h3>Value over time</h3>${chart(series)}</div>
+    <div class="panel"><h3>Most valuable</h3>${top.length ? `<div class="list">${top.map(x => `<div class="item"><span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span><span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(x.r.setName || x.r.setId)} · #${esc(x.r.localId)}</span></span><span class="right num"><b>${eur(x.p)}</b>${x.r.qty > 1 ? `<span class="sub">×${x.r.qty}</span>` : ""}</span></div>`).join("")}</div>` : `<div class="sub">Mark cards as owned and their prices show up here.</div>`}</div>
+    ${syncPanel()}
+    <div class="panel"><h3>Backup</h3>
+      <p class="sub" style="margin-top:0">Your collection is saved on this device. Export a backup now and then, or to move it to another phone.</p>
+      <div class="row"><button class="btn" id="export">Export backup</button><label class="btn" for="import" style="cursor:pointer">Import backup</label><input id="import" type="file" accept="application/json" hidden></div>
+    </div>`;
+  bindSyncPanel();
+  $("#export").onclick = () => {
+    const blob = new Blob([JSON.stringify(store)], { type: "application/json" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `holo-binder-${today()}.json`; document.body.appendChild(a); a.click(); a.remove();
+  };
+  $("#import").onchange = async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { const d = JSON.parse(await f.text()); if (!d.cards) throw 0; store = Object.assign({ prices: {}, lang: "en" }, d); changed(); toast(`Imported ${Object.keys(store.cards).length} cards`); render(); }
+    catch (err) { toast("That file isn't a Holo Binder backup."); }
+  };
+}
+
+/* ---------- GitHub sync + daily Cardmarket history ---------- */
+const SYNC_KEY = "holo-binder-sync";
+function syncCfg() { try { const c = JSON.parse(localStorage.getItem(SYNC_KEY)); return c && c.repo && c.token ? c : null; } catch (e) { return null; } }
+function setSyncCfg(c) { try { c ? localStorage.setItem(SYNC_KEY, JSON.stringify(c)) : localStorage.removeItem(SYNC_KEY); } catch (e) {} }
+const b64e = str => { const b = new TextEncoder().encode(str); let bin = ""; for (let i = 0; i < b.length; i += 0x8000) bin += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(bin); };
+const b64d = str => new TextDecoder().decode(Uint8Array.from(atob(str.replace(/\s/g, "")), ch => ch.charCodeAt(0)));
+let remoteSha = null, pushTimer = null, syncInfo = { state: "off", msg: "" };
+
+async function gh(path, { method = "GET", body, raw } = {}) {
+  const c = syncCfg(); if (!c) throw new Error("not connected");
+  const res = await fetch(`https://api.github.com/repos/${c.repo}/contents/${path}`, {
+    method, cache: "no-store",
+    headers: { Authorization: "Bearer " + c.token, Accept: raw ? "application/vnd.github.raw+json" : "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", ...(body ? { "Content-Type": "application/json" } : {}) },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) { const e = new Error("GitHub " + res.status); e.status = res.status; throw e; }
+  return raw ? res.text() : res.json();
+}
+
+function changed() {
+  store.cardsUpdated = Date.now(); save();
+  if (!syncCfg()) return;
+  clearTimeout(pushTimer); pushTimer = setTimeout(() => push().catch(syncError), 4000);
+}
+
+async function pull() {
+  const meta = await gh("collection.json");
+  if (!meta) { remoteSha = null; return push(); }               // first connect: upload this device's collection
+  remoteSha = meta.sha;
+  const text = meta.content ? b64d(meta.content) : await gh("collection.json", { raw: true });
+  const remote = JSON.parse(text);
+  if ((remote.updatedAt || 0) > (store.cardsUpdated || 0)) { store.cards = remote.cards || {}; store.cardsUpdated = remote.updatedAt; save(); }
+  else if ((store.cardsUpdated || 0) > (remote.updatedAt || 0)) await push();
+}
+
+async function push(retry = true) {
+  const body = { message: "Update collection", content: b64e(JSON.stringify({ updatedAt: store.cardsUpdated || Date.now(), cards: store.cards }, null, 1)) };
+  if (remoteSha) body.sha = remoteSha;
+  try {
+    const r = await gh("collection.json", { method: "PUT", body });
+    remoteSha = r.content.sha;
+    syncInfo = { state: "ok", msg: "Collection saved to GitHub" };
+  } catch (e) {
+    if (retry && (e.status === 409 || e.status === 422)) { const m = await gh("collection.json"); remoteSha = m && m.sha; return push(false); }
+    throw e;
+  }
+}
+
+/* merge the Action's daily rows into the local price history */
+async function loadHistory() {
+  const text = await gh("history.json", { raw: true });
+  if (!text) { syncInfo.history = null; return; }
+  const h = JSON.parse(text);
+  syncInfo.history = h.updated;
+  for (const [k, r] of Object.entries(store.cards)) {
+    const rows = r.cm && h.products && h.products[String(r.cm)];
+    if (!rows) continue;
+    const local = store.prices[k] || [];
+    const byDate = new Map(local.map(x => [x[0], x]));
+    for (const row of rows) if (!byDate.has(row[0])) byDate.set(row[0], row);
+    store.prices[k] = [...byDate.values()].sort((a, b) => a[0] < b[0] ? -1 : 1).slice(-730);
+  }
+  save();
+}
+
+function syncError(e) {
+  const s = e && e.status;
+  syncInfo = { ...syncInfo, state: "error", msg: s === 401 ? "GitHub rejected the token. Create a new one and reconnect." : s === 403 ? "The token can't write to this repo. Give it Contents: Read and write." : s === 404 ? "Repo not found. Check the owner/name." : "Couldn't reach GitHub. It will retry next time you open the app." };
+  if (state.tab === "value" && !state.stack.length) render();
+}
+
+let starting = null;
+function startup() {
+  if (starting) return starting;
+  starting = (async () => {
+    if (syncCfg()) {
+      try { await pull(); await loadHistory(); syncInfo.state = "ok"; syncInfo.msg = syncInfo.msg || "Synced"; } catch (e) { syncError(e); }
+      render();
+    }
+    await snapshot();
+  })().finally(() => { starting = null; });
+  return starting;
+}
+
+function syncPanel() {
+  const c = syncCfg();
+  if (!c) return `<div class="panel" id="syncpanel"><h3>Daily price tracking</h3>
+    <p class="sub" style="margin-top:0">Connect your GitHub repo to record Cardmarket prices every day, even when you don't open the app. Your collection also syncs between devices.</p>
+    <div style="display:grid;gap:8px">
+      <label class="label" for="s-repo">Repo (owner/name)</label><input class="search" id="s-repo" placeholder="kike/holo-binder" autocomplete="off" autocapitalize="off">
+      <label class="label" for="s-token">Access token</label><input class="search" id="s-token" type="password" placeholder="github_pat_…" autocomplete="off">
+      <div class="row"><button class="btn primary" id="s-connect">Connect</button><span class="sub" id="s-msg"></span></div>
+    </div></div>`;
+  const tracked = Object.values(store.cards).filter(r => r.cm).length, all = Object.keys(store.cards).length;
+  return `<div class="panel" id="syncpanel"><h3>Daily price tracking</h3>
+    <div class="sub" style="display:grid;gap:4px;margin-bottom:10px">
+      <span>Connected to <b>${esc(c.repo)}</b></span>
+      <span class="${syncInfo.state === "error" ? "up" : ""}">${esc(syncInfo.msg || "Waiting for first sync")}</span>
+      <span class="num">${syncInfo.history ? "Last daily price: " + esc(syncInfo.history) : "No daily prices yet. The first run adds them tomorrow morning, or run it now from the repo's Actions tab."}</span>
+      <span class="num">${tracked} of ${all} cards have a Cardmarket ID and are tracked.</span>
+    </div>
+    <div class="row"><button class="btn" id="s-sync">Sync now</button><button class="btn" id="s-off">Disconnect</button></div></div>`;
+}
+function bindSyncPanel() {
+  const con = $("#s-connect");
+  if (con) con.onclick = async () => {
+    const repo = $("#s-repo").value.trim().replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, ""), token = $("#s-token").value.trim();
+    if (!/^[\w.-]+\/[\w.-]+$/.test(repo) || !token) { $("#s-msg").textContent = "Enter owner/name and a token."; return; }
+    setSyncCfg({ repo, token }); $("#s-msg").textContent = "Connecting…";
+    try { await pull(); await loadHistory(); syncInfo.state = "ok"; syncInfo.msg = "Synced"; toast("Connected to GitHub"); }
+    catch (e) { setSyncCfg(null); syncError(e); $("#s-msg").textContent = syncInfo.msg; return; }
+    render();
+  };
+  const sy = $("#s-sync"); if (sy) sy.onclick = async () => { sy.disabled = true; await startup(); render(); };
+  const off = $("#s-off"); if (off) off.onclick = () => { setSyncCfg(null); syncInfo = { state: "off", msg: "" }; remoteSha = null; render(); toast("Disconnected. Your cards stay on this phone."); };
+}
+
+/* ---------- misc ---------- */
+let toastT;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2600); }
+render();
+startup();
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") startup(); });
+</script>
+</body>
+</html>

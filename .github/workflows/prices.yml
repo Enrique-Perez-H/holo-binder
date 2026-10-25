@@ -1,0 +1,31 @@
+name: Daily Cardmarket prices
+
+on:
+  schedule:
+    - cron: "23 7 * * *"   # every day at 07:23 UTC
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency: prices
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Save today's prices
+        run: python3 scripts/update_prices.py
+
+      - name: Commit history.json
+        run: |
+          git config user.name "holo-binder-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -f history.json ] || exit 0
+          git add history.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Cardmarket prices $(date -u +%F)"
+          git pull --rebase
+          git push
