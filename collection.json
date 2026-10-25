@@ -1,5 +1,5 @@
 {
- "updatedAt": 1792966609186,
+ "updatedAt": 1792966708891,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -784,6 +784,17 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803325
+  },
+  "ja:M6-001": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-25",
+   "name": "ヘラクロス",
+   "localId": "001",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 899786
   }
  }
 }
