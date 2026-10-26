@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793021733766,
+ "updatedAt": 1793021738836,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2072,6 +2072,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803117
+  },
+  "ja:SV8a-012": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "アノホラグサ",
+   "localId": "012",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/012",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803125
   }
  }
 }
