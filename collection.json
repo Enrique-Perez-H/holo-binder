@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793021823053,
+ "updatedAt": 1793021830914,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2261,6 +2261,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803258
+  },
+  "ja:SV8a-161": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ワザマシン デヴォリューション",
+   "localId": "161",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/161",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803274
+  },
+  "ja:SV8a-165": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "暗号マニアの解読",
+   "localId": "165",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/165",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803278
   }
  }
 }
