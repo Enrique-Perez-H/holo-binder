@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793008989523,
+ "updatedAt": 1793008996901,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1826,6 +1826,18 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 900130
+  },
+  "ja:M6-107": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "メガグソクムシャex",
+   "localId": "107",
+   "image": "ho:M6/050548_P_MGUSOKUMUSHIXYAIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900140
   }
  }
 }
