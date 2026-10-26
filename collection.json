@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793022151333,
+ "updatedAt": 1793022158150,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -821,7 +821,7 @@
    "image": "ho:M6/050343_P_NOKUTASU.jpg"
   },
   "ja:M6-006": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -829,10 +829,11 @@
    "localId": "006",
    "setId": "M6",
    "setName": "ストームエメラルダ",
-   "cm": 899796
+   "cm": 899796,
+   "image": "ho:M6/050344_P_MITSUHANI.jpg"
   },
   "ja:M6-007": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -840,10 +841,11 @@
    "localId": "007",
    "setId": "M6",
    "setName": "ストームエメラルダ",
-   "cm": 899797
+   "cm": 899797,
+   "image": "ho:M6/050345_P_BIKUIN.jpg"
   },
   "ja:M6-008": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -851,7 +853,8 @@
    "localId": "008",
    "setId": "M6",
    "setName": "ストームエメラルダ",
-   "cm": 899798
+   "cm": 899798,
+   "image": "ho:M6/050346_P_KOSOKUMUSHI.jpg"
   },
   "ja:M6-009": {
    "qty": 1,
