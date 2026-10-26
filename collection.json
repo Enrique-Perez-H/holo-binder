@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793021809706,
+ "updatedAt": 1793021818201,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -542,18 +542,6 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803251
-  },
-  "ja:SV8a-139": {
-   "qty": 1,
-   "wish": false,
-   "target": null,
-   "addedAt": "2026-10-25",
-   "name": "カウンターキャッチャー",
-   "localId": "139",
-   "image": "https://assets.tcgdex.net/ja/SV/SV8a/139",
-   "setId": "SV8a",
-   "setName": "テラスタルフェスex",
-   "cm": 803252
   },
   "ja:SV8a-141": {
    "qty": 1,
@@ -2237,6 +2225,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803237
+  },
+  "ja:SV8a-135": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "テツノコウベ",
+   "localId": "135",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/135",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803248
+  },
+  "ja:SV8a-137": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "鬼の仮面",
+   "localId": "137",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/137",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803250
   }
  }
 }
