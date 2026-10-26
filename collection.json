@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793008918240,
+ "updatedAt": 1793008922548,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1289,6 +1289,18 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 899947
+  },
+  "ja:M6-045": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "アリアドス",
+   "localId": "045",
+   "image": "ho:M6/050383_P_ARIADOSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 899948
   }
  }
 }
