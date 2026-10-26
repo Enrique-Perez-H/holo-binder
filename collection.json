@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793022060245,
+ "updatedAt": 1793022117645,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2312,6 +2312,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803294
+  },
+  "ja:M6-098": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "とくちゅうチョッキ",
+   "localId": "098",
+   "image": "ho:M6/050540_T_TOKUCHIXYUUCHIXYOKKI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900131
   }
  }
 }
