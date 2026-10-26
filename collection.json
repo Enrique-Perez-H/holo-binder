@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793002493187,
+ "updatedAt": 1793008882570,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -882,6 +882,41 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 899818
+  },
+  "ja:M6-010": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ガーディ",
+   "localId": "010",
+   "image": "ho:M6/050348_P_GADEI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ"
+  },
+  "ja:M6-012": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ブーバー",
+   "localId": "012",
+   "image": "ho:M6/050350_P_BUBA.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 899857
+  },
+  "ja:M6-013": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ブーバーン",
+   "localId": "013",
+   "image": "ho:M6/050351_P_BUBAN.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 899861
   }
  }
 }
