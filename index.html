@@ -142,6 +142,9 @@ svg.chart{width:100%;height:auto;display:block}
 .item .right{text-align:right;display:grid;gap:2px;justify-items:end}
 .pill{font:600 11px var(--f-display);letter-spacing:.06em;border-radius:6px;padding:2px 7px;background:var(--raised)}
 .pill.deal{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.pill.drop{background:color-mix(in srgb,var(--bad) 22%,transparent);color:var(--bad)}
+nav.tabs button{position:relative}
+.tabbadge{position:absolute;top:2px;left:calc(50% + 6px);min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font:700 10px/16px var(--f-display);text-align:center}
 .pill.hit{background:var(--foil);color:#1c1828}
 
 /* stats */
@@ -304,6 +307,7 @@ async function snapshot() {
   st.textContent = fail ? `Prices updated. ${fail} card(s) couldn't be reached.` : `Prices updated for ${keys.length} card(s).`;
   setTimeout(() => st.hidden = true, 3500);
   if (state.tab === "wish" || state.tab === "value") render();
+  checkDrops();
 }
 
 /* ---------- state & routing ---------- */
@@ -484,6 +488,33 @@ function bindTiles(set, redraw) {
   });
 }
 
+/* ---------- price drop alerts ---------- */
+const DROP = 0.2, DROP_MIN_PRICE = 0.5;
+/* A wishlist card has dropped when it's 20% or more below its 30-day average or below the price when you added it.
+   Cards worth under €0.50 are ignored because their prices jump around. */
+function priceDrop(k, r) {
+  if (!r || !r.wish) return null;
+  const row = lastRow(k); if (!row) return null;
+  const now = row[1], best = [];
+  for (const [ref, label] of [[row[5], "30-day average"], [r.wishPrice, "price when added"]])
+    if (ref && ref >= DROP_MIN_PRICE && now / ref - 1 <= -DROP) best.push({ pct: now / ref - 1, label, ref, now });
+  return best.sort((a, b) => a.pct - b.pct)[0] || null;
+}
+const ALERT_KEY = "hb-alerts";
+function checkDrops() {
+  const drops = Object.entries(store.cards).map(([k, r]) => [k, r, priceDrop(k, r)]).filter(x => x[2]);
+  const tab = document.querySelector('nav.tabs button[data-tab="wish"]');
+  if (tab) { let b = tab.querySelector(".tabbadge"); if (drops.length) { if (!b) { b = document.createElement("span"); b.className = "tabbadge"; tab.appendChild(b); } b.textContent = drops.length; } else if (b) b.remove(); }
+  let seen = {}; try { seen = JSON.parse(localStorage.getItem(ALERT_KEY)) || {}; } catch (e) {}
+  const fresh = drops.filter(([k, , d]) => seen[k] == null || d.now < seen[k] * 0.9);
+  const next = {}; for (const [k, , d] of drops) next[k] = seen[k] != null && !fresh.some(f => f[0] === k) ? seen[k] : d.now;
+  try { localStorage.setItem(ALERT_KEY, JSON.stringify(next)); } catch (e) {}
+  if (fresh.length) {
+    const [k, r, d] = fresh.slice().sort((a, b) => a[2].pct - b[2].pct)[0];
+    toast(fresh.length === 1 ? `${r.name} dropped ${Math.abs(d.pct * 100).toFixed(0)}% to ${eur(d.now)}` : `${fresh.length} wishlist cards dropped 20% or more`);
+  }
+}
+
 /* ---------- collection mutations ---------- */
 function ensureRec(lang, c, set) {
   const k = keyOf(lang, c.id);
@@ -660,22 +691,21 @@ function renderWish() {
     const now = latest(k); const h = store.prices[k] || [];
     const prev = h.length > 1 ? h[h.length - 2][1] : null;
     const avg30 = h.length ? h[h.length - 1][5] : null;
-    return { k, r, now, since: r.wishPrice && now ? now / r.wishPrice - 1 : null, day: prev && now ? now / prev - 1 : null, vs30: avg30 && now ? now / avg30 - 1 : null, hit: r.target && now != null && now <= r.target };
+    return { k, r, now, drop: priceDrop(k, r), since: r.wishPrice && now ? now / r.wishPrice - 1 : null, day: prev && now ? now / prev - 1 : null, vs30: avg30 && now ? now / avg30 - 1 : null, hit: r.target && now != null && now <= r.target };
   });
   if (!rows.length) { view().innerHTML = `<div class="empty"><b>Your wishlist is empty</b>Open a card you're missing and tap “Add to wishlist”. You'll see here when its price drops.</div>`; return; }
-  rows.sort((a, b) => (b.hit - a.hit) || ((a.since ?? 0) - (b.since ?? 0)));
+  rows.sort((a, b) => (!!b.drop - !!a.drop) || (b.hit - a.hit) || ((a.since ?? 0) - (b.since ?? 0)));
   const total = rows.reduce((s, x) => s + (x.now || 0), 0);
-  const drops = rows.filter(x => x.since != null && x.since < -0.02).length;
   view().innerHTML = `<div class="tiles num" style="margin-bottom:12px">
       <div class="stat"><div class="label">Cards wanted</div><div class="big">${rows.length}</div></div>
       <div class="stat"><div class="label">Cost to complete</div><div class="big">${eur(total)}</div></div>
-      <div class="stat"><div class="label">Cheaper than added</div><div class="big">${drops}</div></div>
+      <div class="stat"><div class="label">Dropped 20%+</div><div class="big">${rows.filter(x => x.drop).length}</div><div class="sub">vs 30-day avg or when added</div></div>
       <div class="stat"><div class="label">At your target</div><div class="big">${rows.filter(x => x.hit).length}</div></div>
     </div>
     <div class="list">${rows.map(x => `<button class="item" data-k="${esc(x.k)}">
       <span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span>
       <span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(setName(lang, x.r.setId, x.r.setName) || x.r.setId)} · #${esc(x.r.localId)}</span>
-        <span class="row" style="gap:6px;margin-top:3px">${x.hit ? `<span class="pill hit">AT TARGET</span>` : ""}${x.vs30 != null && x.vs30 < -0.05 ? `<span class="pill deal">BELOW 30D AVG</span>` : ""}</span></span>
+        <span class="row" style="gap:6px;margin-top:3px">${x.drop ? `<span class="pill drop">DROPPED ${Math.abs(x.drop.pct * 100).toFixed(0)}%</span>` : ""}${x.hit ? `<span class="pill hit">AT TARGET</span>` : ""}${x.vs30 != null && x.vs30 < -0.05 ? `<span class="pill deal">BELOW 30D AVG</span>` : ""}</span></span>
       <span class="right num"><b>${eur(x.now)}</b>
         ${x.since != null ? `<span class="${x.since > 0 ? "up" : "down"}" style="font-size:12px;font-weight:700">${x.since > 0 ? "▲" : x.since < 0 ? "▼" : ""} ${pct(x.since)} since added</span>` : ""}
         ${x.r.target ? `<span class="sub" style="font-size:11px">target ${eur(x.r.target)}</span>` : ""}</span>
@@ -846,6 +876,7 @@ function startup() {
       try { await pull(); await loadHistory(); syncInfo.state = "ok"; syncInfo.msg = syncInfo.msg || "Synced"; } catch (e) { syncError(e); }
       render();
     }
+    checkDrops();
     await snapshot();
   })().finally(() => { starting = null; });
   return starting;
