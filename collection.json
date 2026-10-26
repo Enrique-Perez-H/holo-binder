@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793021788702,
+ "updatedAt": 1793021809706,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2166,6 +2166,77 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803209
+  },
+  "ja:SV8a-102": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "イイネイヌex",
+   "localId": "102",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/102",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex"
+  },
+  "ja:SV8a-111": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ギルガルド",
+   "localId": "111",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/111",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803224
+  },
+  "ja:SV8a-116": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "テツノワダチ",
+   "localId": "116",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/116",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803229
+  },
+  "ja:SV8a-119": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ドロンチ",
+   "localId": "119",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/119",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803232
+  },
+  "ja:SV8a-121": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "シャリタツ",
+   "localId": "121",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/121",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803234
+  },
+  "ja:SV8a-124": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "タケルライコex",
+   "localId": "124",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/124",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803237
   }
  }
 }
