@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793022117645,
+ "updatedAt": 1793022145110,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -762,7 +762,7 @@
    "wishAt": "2026-10-25"
   },
   "ja:M6-001": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -770,20 +770,22 @@
    "localId": "001",
    "setId": "M6",
    "setName": "ストームエメラルダ",
-   "cm": 899786
+   "cm": 899786,
+   "image": "ho:M6/050339_P_HERAKUROSU.jpg"
   },
   "ja:M6-002": {
-   "qty": 1,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
    "name": "アメタマ",
    "localId": "002",
    "setId": "M6",
-   "setName": "ストームエメラルダ"
+   "setName": "ストームエメラルダ",
+   "image": "ho:M6/050340_P_AMETAMA.jpg"
   },
   "ja:M6-003": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -791,7 +793,8 @@
    "localId": "003",
    "setId": "M6",
    "setName": "ストームエメラルダ",
-   "cm": 899793
+   "cm": 899793,
+   "image": "ho:M6/050341_P_AMEMOSU.jpg"
   },
   "ja:M6-004": {
    "qty": 1,
