@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793009030212,
+ "updatedAt": 1793009063080,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -772,18 +772,6 @@
    "cm": 803330,
    "wishPrice": 382.44,
    "wishAt": "2026-10-25"
-  },
-  "ja:SV8a-212": {
-   "qty": 1,
-   "wish": false,
-   "target": null,
-   "addedAt": "2026-10-25",
-   "name": "ニンフィアex",
-   "localId": "212",
-   "image": "https://assets.tcgdex.net/ja/SV/SV8a/212",
-   "setId": "SV8a",
-   "setName": "テラスタルフェスex",
-   "cm": 803325
   },
   "ja:M6-001": {
    "qty": 1,
