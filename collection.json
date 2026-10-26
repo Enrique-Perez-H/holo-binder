@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793009063080,
+ "updatedAt": 1793009079253,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1895,6 +1895,34 @@
    "setName": "ストームエメラルダ",
    "cm": 900145,
    "wishPrice": 19.53,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-223": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "イーブイex",
+   "localId": "223",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/223",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803336,
+   "wishPrice": 56.82,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-224": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "イーブイex",
+   "localId": "224",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/224",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803337,
+   "wishPrice": 46.39,
    "wishAt": "2026-10-26"
   }
  }
