@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793021830914,
+ "updatedAt": 1793021844210,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2285,6 +2285,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803278
+  },
+  "ja:SV8a-179": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "メロコ",
+   "localId": "179",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/179",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803292
+  },
+  "ja:SV8a-181": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ジャミングタワー",
+   "localId": "181",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/181",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803294
   }
  }
 }
