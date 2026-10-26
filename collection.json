@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793008967548,
+ "updatedAt": 1793008989523,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1802,6 +1802,30 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 900114
+  },
+  "ja:M6-091": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ヨワシex",
+   "localId": "091",
+   "image": "ho:M6/050532_P_YOWASHIIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900117
+  },
+  "ja:M6-097": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ぼうけんのランタン",
+   "localId": "097",
+   "image": "ho:M6/050538_T_BOUKENNORANTAN.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900130
   }
  }
 }
