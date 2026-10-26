@@ -266,6 +266,14 @@ function copiesValue(r, row) {
   const rp = row[6] != null ? row[6] : row[1];
   return (r.qty - rv) * row[1] + rv * rp;
 }
+/* One copy of a card is a "single" (the most valuable one you hold); every extra copy is a duplicate. */
+function singleValue(r, row) {
+  if (!row || row[1] == null || r.qty < 1) return 0;
+  const rv = (r.variants && r.variants.reverse) || 0;
+  const rp = row[6] != null ? row[6] : row[1];
+  return Math.max(r.qty - rv > 0 ? row[1] : 0, rv > 0 ? rp : 0);
+}
+const viewValue = (r, row, v) => v === "singles" ? singleValue(r, row) : v === "dupes" ? copiesValue(r, row) - singleValue(r, row) : copiesValue(r, row);
 const lastRow = (k, d) => { const h = (store.prices[k] || []).filter(x => (!d || x[0] <= d) && x[1] != null); return h.length ? h[h.length - 1] : null; };
 
 async function fetchCard(lang, id) {
@@ -392,7 +400,7 @@ async function renderSets() {
       const sets = (s.sets || []).slice().reverse().filter(x => (!q || x.name.toLowerCase().includes(q) || setName(lang, x.id, x.name).toLowerCase().includes(q)) && (state.setsMode === "all" || owned[x.id]));
       if (!sets.length) continue;
       html += `<section class="serie"><div class="label">${esc(s.name)}</div><div class="sets">` + sets.map(x => {
-        const tot = (x.cardCount && (x.cardCount.official || x.cardCount.total)) || 0;
+        const tot = (x.cardCount && (x.cardCount.total || x.cardCount.official)) || 0;
         const have = owned[x.id] || 0; const r = tot ? Math.min(1, have / tot) : 0;
         return `<button class="set" data-id="${esc(x.id)}">
           ${setIcon(lang, s.id, x) ? `<img class="logo" loading="lazy" src="${esc(setIcon(lang, s.id, x))}" alt="" onerror="${iconGone(x.id)}">` : iconBadge(x.id)}
@@ -417,7 +425,7 @@ async function renderSet(id) {
   try { set = await api(`/${lang}/sets/${encodeURIComponent(id)}`, { ttlHours: 12 }); } catch (e) { return errorBox(e, () => renderSet(id)); }
   await jaImgReady; patchImages(lang, set.cards || []);
   setTitle(setName(lang, set.id, set.name));
-  const tot = set.cardCount.official || set.cardCount.total;
+  const tot = set.cardCount.total || set.cardCount.official || (set.cards || []).length;
   const draw = () => {
     const cards = set.cards || [];
     const recs = cards.map(c => store.cards[keyOf(lang, c.id)]);
@@ -437,7 +445,7 @@ async function renderSet(id) {
         </div>
         <div class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></div>
         ${boxesFor(lang, set.id).map(b => { const row = b.rows[b.rows.length - 1], ch = boxChange(b.rows); return `<div class="sub"><span class="pill">${lang === "ja" ? "JP" : "EN"}</span> ${esc(b.name)}: <b class="num">${eur(row[1])}</b>${ch ? ` <span class="${ch.pct > 0 ? "up" : "down"}">${pct(ch.pct)}</span>` : ""}</div>`; }).join("")}
-        ${set.releaseDate ? `<div class="sub">Released ${esc(set.releaseDate)} · ${cards.length} cards incl. secret rares</div>` : ""}
+        ${set.releaseDate ? `<div class="sub">Released ${esc(set.releaseDate)} · ${cards.length} cards${set.cardCount.official && set.cardCount.official < cards.length ? ` (${set.cardCount.official} main set + ${cards.length - set.cardCount.official} secret rares)` : ""}</div>` : ""}
       </div>
       <div class="toolbar" role="group" aria-label="Filter">
         ${[["all","All"],["owned","Owned"],["missing","Missing"],["wish","Wishlist"]].map(([k,l]) => `<button class="chip" data-f="${k}" aria-pressed="${f === k}">${l}</button>`).join("")}
@@ -690,28 +698,37 @@ function boxesPanel(lang, owned) {
 function renderValue() {
   setTitle("Collection value");
   const lang = store.lang;
+  const vv = state.valueView || "all";
   const owned = Object.entries(store.cards).filter(([k, r]) => r.qty > 0 && k.startsWith(lang + ":"));
   const copies = owned.reduce((s, [, r]) => s + r.qty, 0);
-  const val = owned.reduce((s, [k, r]) => s + copiesValue(r, lastRow(k)), 0);
+  const extras = copies - owned.length, dupCards = owned.filter(([, r]) => r.qty > 1).length;
+  const sum = v => owned.reduce((s, [k, r]) => s + viewValue(r, lastRow(k), v), 0);
+  const val = sum(vv), singlesVal = sum("singles"), dupesVal = sum("dupes");
   const sets = new Set(owned.map(([, r]) => r.setId)).size;
   // total value per day, carrying each card's last known price forward
   const dates = [...new Set(owned.flatMap(([k]) => (store.prices[k] || []).map(h => h[0])))].sort();
-  const series = dates.map(d => [d, owned.reduce((s, [k, r]) => s + copiesValue(r, lastRow(k, d)), 0)]);
-  const top = owned.map(([k, r]) => ({ k, r, p: latest(k) })).filter(x => x.p).sort((a, b) => b.p - a.p).slice(0, 10);
-  view().innerHTML = `<div class="tiles num">
-      <div class="stat"><div class="label">Value</div><div class="big">${eur(val)}</div></div>
+  const series = dates.map(d => [d, owned.reduce((s, [k, r]) => s + viewValue(r, lastRow(k, d), vv), 0)]);
+  const top = owned.map(([k, r]) => ({ k, r, p: vv === "dupes" ? viewValue(r, lastRow(k), "dupes") : latest(k), n: vv === "dupes" ? r.qty - 1 : r.qty })).filter(x => x.p && x.n > 0).sort((a, b) => b.p - a.p).slice(0, 10);
+  const label = { all: "Value", singles: "Singles value", dupes: "Duplicates value" }[vv];
+  view().innerHTML = `<div class="toolbar" role="group" aria-label="Value view">
+      ${[["all", "All"], ["singles", "Singles"], ["dupes", "Duplicates"]].map(([k, l]) => `<button class="chip" data-vv="${k}" aria-pressed="${vv === k}">${l}</button>`).join("")}
+    </div>
+    <div class="tiles num">
+      <div class="stat"><div class="label">${label}</div><div class="big">${eur(val)}</div></div>
       <div class="stat"><div class="label">Unique cards</div><div class="big">${owned.length}</div></div>
-      <div class="stat"><div class="label">Copies</div><div class="big">${copies}</div></div>
+      <div class="stat"><div class="label">Duplicate copies</div><div class="big">${extras}</div><div class="sub">${dupCards} card${dupCards === 1 ? "" : "s"} · ${copies} copies in all</div></div>
       <div class="stat"><div class="label">Sets</div><div class="big">${sets}</div></div>
     </div>
-    <div class="panel num"><h3>Value over time</h3>${chart(series)}</div>
-    <div class="panel"><h3>Most valuable</h3>${top.length ? `<div class="list">${top.map(x => `<div class="item"><span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span><span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(setName(lang, x.r.setId, x.r.setName) || x.r.setId)} · #${esc(x.r.localId)}</span></span><span class="right num"><b>${eur(x.p)}</b>${x.r.qty > 1 ? `<span class="sub">×${x.r.qty}</span>` : ""}</span></div>`).join("")}</div>` : `<div class="sub">Mark cards as owned and their prices show up here.</div>`}</div>
+    <div class="sub num" style="margin:-2px 2px 10px">Singles ${eur(singlesVal)} · Duplicates ${eur(dupesVal)} · Total ${eur(singlesVal + dupesVal)}</div>
+    <div class="panel num"><h3>${label} over time</h3>${chart(series)}</div>
+    <div class="panel"><h3>${vv === "dupes" ? "Most valuable duplicates" : "Most valuable"}</h3>${top.length ? `<div class="list">${top.map(x => `<div class="item"><span class="thumb">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span><span class="meta"><b>${esc(x.r.name)}</b><span class="sub">${esc(setName(lang, x.r.setId, x.r.setName) || x.r.setId)} · #${esc(x.r.localId)}</span></span><span class="right num"><b>${eur(x.p)}</b>${x.n > 1 ? `<span class="sub">×${x.n}${vv === "dupes" ? " extra" : ""}</span>` : vv === "dupes" ? `<span class="sub">1 extra</span>` : ""}</span></div>`).join("")}</div>` : `<div class="sub">${vv === "dupes" ? "No duplicates yet. Extra copies of a card show up here." : "Mark cards as owned and their prices show up here."}</div>`}</div>
     ${boxesPanel(lang, owned)}
     ${syncPanel()}
     <div class="panel"><h3>Backup</h3>
       <p class="sub" style="margin-top:0">Your collection is saved on this device. Export a backup now and then, or to move it to another phone.</p>
       <div class="row"><button class="btn" id="export">Export backup</button><label class="btn" for="import" style="cursor:pointer">Import backup</label><input id="import" type="file" accept="application/json" hidden></div>
     </div>`;
+  view().querySelectorAll("[data-vv]").forEach(c => c.onclick = () => { state.valueView = c.dataset.vv; renderValue(); });
   bindSyncPanel();
   $("#export").onclick = () => {
     const blob = new Blob([JSON.stringify(store)], { type: "application/json" });
