@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793009022261,
+ "updatedAt": 1793009030212,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1879,6 +1879,34 @@
    "setName": "ストームエメラルダ",
    "cm": 900142,
    "wishPrice": 9.37,
+   "wishAt": "2026-10-26"
+  },
+  "ja:M6-113": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "メガレックウザex",
+   "localId": "113",
+   "image": "ho:M6/050554_P_MREKKUUZAIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900146,
+   "wishPrice": 251.91,
+   "wishAt": "2026-10-26"
+  },
+  "ja:M6-112": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ヒガナの信頼",
+   "localId": "112",
+   "image": "ho:M6/050553_T_HIGANANOSHINRAI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900145,
+   "wishPrice": 19.53,
    "wishAt": "2026-10-26"
   }
  }
