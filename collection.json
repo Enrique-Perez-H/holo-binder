@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793009087800,
+ "updatedAt": 1793009104784,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1951,6 +1951,90 @@
    "setName": "テラスタルフェスex",
    "cm": 803324,
    "wishPrice": 65.57,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-209": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "サンダースex",
+   "localId": "209",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/209",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803322,
+   "wishPrice": 50.35,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-205": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "シャワーズex",
+   "localId": "205",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/205",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803318,
+   "wishPrice": 49.54,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-206": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "グレイシアex",
+   "localId": "206",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/206",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803319,
+   "wishPrice": 56.08,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-203": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ソウブレイズex",
+   "localId": "203",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/203",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803316,
+   "wishPrice": 13.81,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-202": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ブースターex",
+   "localId": "202",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/202",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803315,
+   "wishPrice": 57.12,
+   "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-200": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "リーフィアex",
+   "localId": "200",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/200",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803313,
+   "wishPrice": 75.39,
    "wishAt": "2026-10-26"
   }
  }
