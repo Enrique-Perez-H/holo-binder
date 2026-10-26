@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793009115712,
+ "updatedAt": 1793021733766,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2048,6 +2048,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803246
+  },
+  "ja:SV8a-008": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "カジッチュ",
+   "localId": "008",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/008",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803121
+  },
+  "ja:SV8a-004": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "モンメン",
+   "localId": "004",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/004",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803117
   }
  }
 }
