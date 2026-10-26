@@ -4,9 +4,15 @@
 Reads collection.json (pushed by the app), downloads Cardmarket's public
 Pokémon price guide, and appends one row per tracked card to history.json.
 Row format matches the app: [date, trend, avg, low, avg7, avg30, reverse_trend].
+
+It also tracks the booster box of every set in the collection. The set's Cardmarket expansion is
+found from the Cardmarket IDs of its cards, the boxes are looked up in Cardmarket's product list,
+and their prices go into the same history under history["boxes"] (set -> box names and IDs).
 """
+import datetime
 import json
 import pathlib
+import re
 import sys
 import urllib.request
 
@@ -15,6 +21,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 COLLECTION = ROOT / "collection.json"
 HISTORY = ROOT / "history.json"
 KEEP_DAYS = 730
+CATALOG = "https://downloads.s3.cardmarket.com/productCatalog/productList/products_%s_6.json"
+BOX_CATEGORY = 53  # "Pokémon Display"
+BOX_NAME = re.compile(r"Booster Box( \(\d+ Boosters?\))?$")
+RECHECK_DAYS = 7
 
 
 def pick(guide, field):
@@ -30,6 +40,55 @@ def load_json(path, default):
         return default
 
 
+def fetch_json(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "holo-binder-price-bot"})
+    with urllib.request.urlopen(req, timeout=180) as resp:
+        return json.load(resp)
+
+
+def set_keys(collection):
+    """{"ja:M6": [cardmarket ids of its cards], ...} for every set that has a card in the collection."""
+    sets = {}
+    for key, card in collection.get("cards", {}).items():
+        set_id = card.get("setId")
+        if set_id and card.get("cm"):
+            sets.setdefault(key.split(":")[0] + ":" + set_id, []).append(card["cm"])
+    return sets
+
+
+def find_boxes(sets, boxes, date):
+    """Fill in boxes[set_key] for sets we haven't looked up yet (or looked up a week ago without luck)."""
+    todo = {}
+    for key, ids in sets.items():
+        old = boxes.get(key)
+        stale = old and not old.get("products") and _days_between(old.get("checked", date), date) >= RECHECK_DAYS
+        if not old or stale:
+            todo[key] = ids
+    if not todo:
+        return
+    singles = {p["idProduct"]: p["idExpansion"] for p in fetch_json(CATALOG % "singles")["products"]}
+    sealed = fetch_json(CATALOG % "nonsingles")["products"]
+    for key, ids in todo.items():
+        counts = {}
+        for pid in ids:
+            exp = singles.get(pid)
+            if exp:
+                counts[exp] = counts.get(exp, 0) + 1
+        expansion = max(counts, key=counts.get) if counts else None
+        products = {
+            str(p["idProduct"]): p["name"]
+            for p in sealed
+            if expansion and p["idExpansion"] == expansion and p["idCategory"] == BOX_CATEGORY
+            and BOX_NAME.search(p["name"]) and "Jumbo" not in p["name"]
+        }
+        boxes[key] = {"expansion": expansion, "products": products, "checked": date}
+        print(f"{key}: expansion {expansion}, boxes: {', '.join(products.values()) or 'none found'}")
+
+
+def _days_between(a, b):
+    return (datetime.date.fromisoformat(b) - datetime.date.fromisoformat(a)).days
+
+
 def main(guide_source=GUIDE_URL):
     collection = load_json(COLLECTION, None)
     if not collection:
@@ -40,6 +99,7 @@ def main(guide_source=GUIDE_URL):
     if not ids:
         print("No tracked cards with a Cardmarket ID yet.")
         return 0
+    sets = set_keys(collection)
 
     if guide_source.startswith("http"):
         req = urllib.request.Request(guide_source, headers={"User-Agent": "holo-binder-price-bot"})
@@ -53,6 +113,16 @@ def main(guide_source=GUIDE_URL):
 
     history = load_json(HISTORY, {"products": {}})
     products = history.setdefault("products", {})
+    boxes = history.setdefault("boxes", {})
+    try:
+        find_boxes(sets, boxes, date)
+    except Exception as e:  # box tracking must never stop the card prices
+        print(f"Couldn't look up booster boxes: {e}")
+    for key in list(boxes):
+        if key not in sets:
+            del boxes[key]
+    box_ids = {pid for entry in boxes.values() for pid in entry.get("products", {})}
+    ids |= box_ids
     written = missing = 0
     for pid in sorted(ids):
         g = by_id.get(pid)
@@ -65,7 +135,7 @@ def main(guide_source=GUIDE_URL):
             missing += 1
             continue
         rev = None
-        if g.get("trend") is not None or g.get("avg") is not None or g.get("low") is not None:
+        if pid not in box_ids and (g.get("trend") is not None or g.get("avg") is not None or g.get("low") is not None):
             # With a normal price present, the "-holo" fields are the reverse holo price.
             rev = next((g.get(f + "-holo") for f in ("trend", "avg", "low") if g.get(f + "-holo") is not None), None)
         row = [date, main_price, avg, low, pick(g, "avg7"), pick(g, "avg30"), rev]
