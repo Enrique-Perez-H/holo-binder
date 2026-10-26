@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793008996901,
+ "updatedAt": 1793009022261,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1838,6 +1838,48 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 900140
+  },
+  "ja:M6-108": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ライコウex",
+   "localId": "108",
+   "image": "ho:M6/050549_P_RAIKOUIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900141,
+   "wishPrice": 38.36,
+   "wishAt": "2026-10-26"
+  },
+  "ja:M6-110": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "メガレックウザex",
+   "localId": "110",
+   "image": "ho:M6/050551_P_MREKKUUZAIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900143,
+   "wishPrice": 197.75,
+   "wishAt": "2026-10-26"
+  },
+  "ja:M6-109": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "メガゴルーグex",
+   "localId": "109",
+   "image": "ho:M6/050550_P_MGORUGUIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900142,
+   "wishPrice": 9.37,
+   "wishAt": "2026-10-26"
   }
  }
 }
