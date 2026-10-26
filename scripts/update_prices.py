@@ -61,7 +61,8 @@ def find_boxes(sets, boxes, date):
     todo = {}
     for key, ids in sets.items():
         old = boxes.get(key)
-        stale = old and not old.get("products") and _days_between(old.get("checked", date), date) >= RECHECK_DAYS
+        stale = old and not old.get("products") and (
+            old.get("cards") != len(ids) or _days_between(old.get("checked", date), date) >= RECHECK_DAYS)
         if not old or stale:
             todo[key] = ids
     if not todo:
@@ -75,13 +76,18 @@ def find_boxes(sets, boxes, date):
             if exp:
                 counts[exp] = counts.get(exp, 0) + 1
         expansion = max(counts, key=counts.get) if counts else None
+        # Prices are per language because each language's cards belong to their own Cardmarket expansion
+        # (e.g. "Black Bolt JP Booster Box"). A stray card (such as a promo) must not decide the expansion.
+        if expansion and counts[expansion] < len(ids) / 2:
+            print(f"{key}: no clear Cardmarket expansion ({counts}), skipped")
+            expansion = None
         products = {
             str(p["idProduct"]): p["name"]
             for p in sealed
             if expansion and p["idExpansion"] == expansion and p["idCategory"] == BOX_CATEGORY
             and BOX_NAME.search(p["name"]) and "Jumbo" not in p["name"]
         }
-        boxes[key] = {"expansion": expansion, "products": products, "checked": date}
+        boxes[key] = {"expansion": expansion, "products": products, "checked": date, "cards": len(ids)}
         print(f"{key}: expansion {expansion}, boxes: {', '.join(products.values()) or 'none found'}")
 
 
