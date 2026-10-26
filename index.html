@@ -436,7 +436,7 @@ async function renderSet(id) {
           <div><span class="label">Value owned</span><span class="big">${eur(value)}</span></div>
         </div>
         <div class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></div>
-        ${boxesFor(lang, set.id).map(b => { const row = b.rows[b.rows.length - 1], ch = boxChange(b.rows); return `<div class="sub">${esc(b.name)}: <b class="num">${eur(row[1])}</b>${ch ? ` <span class="${ch.pct > 0 ? "up" : "down"}">${pct(ch.pct)}</span>` : ""}</div>`; }).join("")}
+        ${boxesFor(lang, set.id).map(b => { const row = b.rows[b.rows.length - 1], ch = boxChange(b.rows); return `<div class="sub"><span class="pill">${lang === "ja" ? "JP" : "EN"}</span> ${esc(b.name)}: <b class="num">${eur(row[1])}</b>${ch ? ` <span class="${ch.pct > 0 ? "up" : "down"}">${pct(ch.pct)}</span>` : ""}</div>`; }).join("")}
         ${set.releaseDate ? `<div class="sub">Released ${esc(set.releaseDate)} · ${cards.length} cards incl. secret rares</div>` : ""}
       </div>
       <div class="toolbar" role="group" aria-label="Filter">
@@ -683,7 +683,7 @@ function boxesPanel(lang, owned) {
   if (!rows.length) return `<div class="panel"><h3>Booster boxes</h3><div class="sub">${boxData ? "No booster boxes found on Cardmarket for the sets you collect." : "Box prices show up after the daily price job has run once."}</div></div>`;
   return `<div class="panel num"><h3>Booster boxes</h3><div class="list">${rows.map(({ set, b }) => {
     const row = b.rows[b.rows.length - 1], ch = boxChange(b.rows);
-    return `<div class="item"><span class="meta"><b>${esc(b.name)}</b><span class="sub">${esc(set)}${ch ? ` · since ${esc(ch.since)}` : " · tracking started " + esc(row[0])}</span></span>
+    return `<div class="item"><span class="meta"><b>${lang === "ja" ? "JP" : "EN"} · ${esc(b.name)}</b><span class="sub">${esc(set)}${ch ? ` · since ${esc(ch.since)}` : " · tracking started " + esc(row[0])}</span></span>
       <span class="right num"><b>${eur(row[1])}</b>${ch ? `<span class="sub ${ch.pct > 0 ? "up" : "down"}">${pct(ch.pct)}</span>` : ""}</span></div>`;
   }).join("")}</div></div>`;
 }
