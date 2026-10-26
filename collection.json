@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793009104784,
+ "updatedAt": 1793009115712,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2036,6 +2036,18 @@
    "cm": 803313,
    "wishPrice": 75.39,
    "wishAt": "2026-10-26"
+  },
+  "ja:SV8a-133": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "バッフロン",
+   "localId": "133",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/133",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803246
   }
  }
 }
