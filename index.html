@@ -9,6 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Holo Binder">
 <meta name="theme-color" content="#14121c">
 <title>Holo Binder</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
@@ -45,6 +48,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* top bar */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);
   padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+#logo{border-radius:8px;flex:none}
 .top h1{font:700 20px/1.1 var(--f-display);letter-spacing:.02em;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-wrap:balance}
 .iconbtn{border:0;background:var(--raised);border-radius:10px;width:36px;height:36px;display:grid;place-items:center;flex:none}
 .lang{display:flex;background:var(--raised);border-radius:10px;padding:3px;flex:none}
@@ -161,6 +165,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
 <body>
 <header class="top">
   <button class="iconbtn" id="back" hidden aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <img id="logo" src="icon.svg" alt="" width="30" height="30">
   <h1 id="title">Sets</h1>
   <div class="lang" role="group" aria-label="Card language">
     <button id="lang-en" data-lang="en">EN</button><button id="lang-ja" data-lang="ja">JP</button>
@@ -212,7 +217,20 @@ async function api(path, { ttlHours = 0 } = {}) {
   if (ttlHours) { try { localStorage.setItem(ck, JSON.stringify({ t: Date.now(), d })); } catch (e) {} }
   return d;
 }
-const imgUrl = (base, q = "low") => base ? base + "/" + q + ".webp" : "";
+/* Japanese sets TCGdex has no pictures for: ja-images.json maps them to the official Pokémon Card site (see scripts/build_ja_images.py). */
+let JA_IMG = {};
+const jaImgReady = fetch("ja-images.json").then(r => r.ok ? r.json() : {}).then(j => { JA_IMG = j; }).catch(() => {});
+const OFFICIAL_IMG = "https://www.pokemon-card.com/assets/images/card_images/large/";
+function patchImages(lang, cards) {
+  if (lang !== "ja") return;
+  for (const c of cards) {
+    if (c.image || !c.id) continue;
+    const i = c.id.lastIndexOf("-");
+    const f = (JA_IMG[c.id.slice(0, i)] || {})[c.id.slice(i + 1)];
+    if (f) c.image = "ho:" + f;
+  }
+}
+const imgUrl = (base, q = "low") => !base ? "" : base.startsWith("ho:") ? OFFICIAL_IMG + base.slice(3) : base + "/" + q + ".webp";
 /* Japanese sets have no logo on TCGdex, so fall back to the symbol, then to card #1 of the set. */
 const setIcon = (lang, serieId, x) => x.logo ? x.logo + ".webp" : x.symbol ? x.symbol + ".webp" : serieId ? `https://assets.tcgdex.net/${lang}/${serieId}/${x.id}/001/low.webp` : "";
 const iconGone = id => `this.replaceWith(Object.assign(document.createElement('span'),{className:'logo',textContent:'${id.replace(/[^\w.+-]/g, "")}'}))`;
@@ -252,6 +270,7 @@ const lastRow = (k, d) => { const h = (store.prices[k] || []).filter(x => (!d ||
 
 async function fetchCard(lang, id) {
   const c = await api(`/${lang}/cards/${encodeURIComponent(id)}`);
+  await jaImgReady; patchImages(lang, [c]);
   const p = pickPrice(c.pricing && c.pricing.cardmarket);
   const k = keyOf(lang, id);
   recordPrice(k, p);
@@ -282,17 +301,31 @@ async function snapshot() {
 /* ---------- state & routing ---------- */
 const state = { tab: "sets", stack: [], setFilter: "all", setsMode: "all", q: "", sq: "" };
 store.lang = store.lang || "en";
-function go(view) { state.stack.push(view); render(); window.scrollTo(0, 0); }
-function back() { state.stack.pop(); render(); }
+/* Phone Back button: every opened set or card sheet adds a history entry, so Back closes it instead of leaving the app. */
+let closeSheet = null, skipPop = 0;
+history.replaceState({ holo: 0 }, "");
+function go(view) { state.stack.push(view); history.pushState({ holo: 1 }, ""); render(); window.scrollTo(0, 0); }
+function back() { history.back(); }
+function resetStack() {
+  const n = state.stack.length + (closeSheet ? 1 : 0);
+  state.stack = [];
+  if (n) { skipPop++; history.go(-n); }
+}
+window.addEventListener("popstate", () => {
+  if (skipPop) { skipPop--; return; }
+  if (closeSheet) { const c = closeSheet; closeSheet = null; c(); return; }
+  if (state.stack.length) { state.stack.pop(); render(); }
+});
 $("#back").onclick = back;
-document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => { state.tab = b.dataset.tab; state.stack = []; render(); window.scrollTo(0, 0); });
-document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { store.lang = b.dataset.lang; save(); state.stack = []; render(); });
+document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => { state.tab = b.dataset.tab; resetStack(); render(); window.scrollTo(0, 0); });
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { store.lang = b.dataset.lang; save(); resetStack(); render(); });
 
 function render() {
   document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-current", b.dataset.tab === state.tab ? "page" : "false"));
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === store.lang)));
   const top = state.stack[state.stack.length - 1];
   $("#back").hidden = !top;
+  $("#logo").hidden = !!top;
   if (top && top.type === "set") return renderSet(top.id);
   ({ sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
 }
@@ -382,6 +415,7 @@ async function renderSet(id) {
   loading("Opening set…");
   let set;
   try { set = await api(`/${lang}/sets/${encodeURIComponent(id)}`, { ttlHours: 12 }); } catch (e) { return errorBox(e, () => renderSet(id)); }
+  await jaImgReady; patchImages(lang, set.cards || []);
   setTitle(setName(lang, set.id, set.name));
   const tot = set.cardCount.official || set.cardCount.total;
   const draw = () => {
@@ -480,12 +514,14 @@ function changeQty(lang, c, set, d, variant) {
 async function openCard(lang, id, { brief, set } = {}, onChange) {
   const root = $("#sheet-root");
   const close = () => { root.innerHTML = ""; document.body.style.overflow = ""; onChange && onChange(); };
+  history.pushState({ holo: 2 }, ""); closeSheet = close;
   root.innerHTML = `<div class="scrim" id="scrim"></div><div class="sheet" role="dialog" aria-modal="true" aria-label="Card"><div class="grab"></div><div id="sheetbody"><div class="empty">Loading card…</div></div></div>`;
   document.body.style.overflow = "hidden";
-  $("#scrim").onclick = close;
+  $("#scrim").onclick = () => history.back();
   let card, price;
   try { ({ card, price } = await fetchCard(lang, id)); save(); }
-  catch (e) { $("#sheetbody").innerHTML = `<div class="empty"><b>Couldn't load this card</b>Check your connection and try again.</div>`; return; }
+  catch (e) { if (closeSheet !== close) return; $("#sheetbody").innerHTML = `<div class="empty"><b>Couldn't load this card</b>Check your connection and try again.</div>`; return; }
+  if (closeSheet !== close) return;
   const k = keyOf(lang, id);
   const s = set || card.set;
   const draw = () => {
@@ -595,7 +631,7 @@ function renderSearch() {
     if (q.length < 2) { box.innerHTML = `<div class="empty"><b>Find any card</b>Search by name across every ${lang === "ja" ? "Japanese" : "English"} set.</div>`; return; }
     box.innerHTML = `<div class="empty">Searching…</div>`;
     let list;
-    try { list = await api(`/${lang}/cards?name=${encodeURIComponent(q)}`); } catch (e) { box.innerHTML = `<div class="empty"><b>Search failed</b>Check your connection and try again.</div>`; return; }
+    try { list = await api(`/${lang}/cards?name=${encodeURIComponent(q)}`); await jaImgReady; patchImages(lang, list); } catch (e) { box.innerHTML = `<div class="empty"><b>Search failed</b>Check your connection and try again.</div>`; return; }
     if (q !== state.sq.trim()) return;
     list = (list || []).slice().reverse();
     const shown = list.slice(0, 150);

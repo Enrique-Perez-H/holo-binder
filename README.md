@@ -11,6 +11,8 @@ Card data and images come from [TCGdex](https://tcgdex.dev). Daily prices come f
 | `index.html` | The whole app. |
 | `.github/workflows/prices.yml` | Runs every day at 07:23 UTC and saves Cardmarket prices for the cards you track. |
 | `scripts/update_prices.py` | Downloads the Cardmarket price guide and appends one row per tracked card to `history.json`. |
+| `ja-images.json` | Card pictures for Japanese sets TCGdex has none for (from the official Pokémon Card site). Rebuild with `python3 scripts/build_ja_images.py`. |
+| `icon.svg`, `manifest.webmanifest`, `*.png` | The app icon (a binder with a Poké Ball) for the home screen. |
 | `collection.json` | Your cards. The app writes this file, so don't edit it by hand. |
 | `history.json` | Daily prices. The Action writes this file. |
 
