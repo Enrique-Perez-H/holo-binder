@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793021738836,
+ "updatedAt": 1793021747303,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2084,6 +2084,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803125
+  },
+  "ja:SV8a-018": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-26",
+   "name": "ヤバソチャ",
+   "localId": "018",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/018",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803131
   }
  }
 }
