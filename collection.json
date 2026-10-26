@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793022158150,
+ "updatedAt": 1793022176151,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -868,7 +868,7 @@
    "cm": 899818
   },
   "ja:M6-010": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -879,7 +879,7 @@
    "setName": "ストームエメラルダ"
   },
   "ja:M6-012": {
-   "qty": 1,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -891,7 +891,7 @@
    "cm": 899857
   },
   "ja:M6-013": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -903,7 +903,7 @@
    "cm": 899861
   },
   "ja:M6-014": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -927,7 +927,7 @@
    "cm": 899868
   },
   "ja:M6-016": {
-   "qty": 1,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -939,7 +939,7 @@
    "cm": 899881
   },
   "ja:M6-017": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
