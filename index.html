@@ -458,6 +458,8 @@ async function renderSet(id) {
           <div><span class="label">Value owned</span><span class="big">${eur(value)}</span></div>
         </div>
         <div class="bar"><i class="${r >= 1 ? "done" : ""}" style="width:${(r * 100).toFixed(1)}%"></i></div>
+        ${(() => { const c = completion(lang, set.id); if (!c) return ""; const left = tot - ownedN, nop = Math.max(0, left - c.missing);
+          return left <= 0 ? `<div class="sub ok">Set complete 🎉</div>` : `<div class="sub">To complete: <b class="num">${eur(c.cost)}</b> · ${left} card${left === 1 ? "" : "s"} missing${nop ? ` (${nop} without a price)` : ""}</div>`; })()}
         ${boxesFor(lang, set.id).map(b => { const row = b.rows[b.rows.length - 1], ch = boxChange(b.rows); return `<div class="sub"><span class="pill">${lang === "ja" ? "JP" : "EN"}</span> ${esc(b.name)}: <b class="num">${eur(row[1])}</b>${ch ? ` <span class="${ch.pct > 0 ? "up" : "down"}">${pct(ch.pct)}</span>` : ""}</div>`; }).join("")}
         ${set.releaseDate ? `<div class="sub">Released ${esc(set.releaseDate)} · ${cards.length} cards${set.cardCount.official && set.cardCount.official < cards.length ? ` (${set.cardCount.official} main set + ${cards.length - set.cardCount.official} secret rares)` : ""}</div>` : ""}
       </div>
@@ -784,7 +786,7 @@ async function renderHome() {
       ${x.i && setIcon(lang, x.i.serie, x.i.x) ? `<img class="logo" loading="lazy" src="${esc(setIcon(lang, x.i.serie, x.i.x))}" alt="" onerror="${iconGone(x.id)}">` : iconBadge(x.id)}
       <span class="meta"><span class="name">${esc(x.name)}</span>
         <span class="bar"><i class="${x.r >= 1 ? "done" : ""}" style="width:${(x.r * 100).toFixed(1)}%"></i></span>
-        <span class="count num"><span>${x.n} / ${x.tot || "?"}</span><span>${x.tot ? Math.round(x.r * 100) + "%" : ""}${box ? ` · box ${eur(box.rows[box.rows.length - 1][1])}` : ""}</span></span></span></button>`; }).join("") +
+        <span class="count num"><span>${x.n} / ${x.tot || "?"}</span><span>${x.tot ? Math.round(x.r * 100) + "%" : ""}${(() => { const c = completion(lang, x.id); return c && c.missing ? ` · ${eur(c.cost)} to go` : ""; })()}${box ? ` · box ${eur(box.rows[box.rows.length - 1][1])}` : ""}</span></span></span></button>`; }).join("") +
     (rows.length > shown.length ? `<button class="btn" id="home-allsets" style="grid-column:1/-1">All ${rows.length} sets I collect</button>` : "");
   view().querySelectorAll("#home-sets .set").forEach(b => b.onclick = () => go({ type: "set", id: b.dataset.id }));
   const all = $("#home-allsets"); if (all) all.onclick = () => { state.tab = "sets"; state.setsMode = "mine"; resetStack(); render(); window.scrollTo(0, 0); };
@@ -913,6 +915,14 @@ function boxesFor(lang, setId) {
   if (!e) return [];
   return Object.entries(e.products || {}).map(([pid, name]) => ({ name, rows: (boxData.products[pid] || []).filter(r => r[1] != null) }))
     .filter(b => b.rows.length).sort((a, b) => a.rows[a.rows.length - 1][1] - b.rows[b.rows.length - 1][1]);
+}
+/* What the cards you don't own yet cost, from the job's daily snapshot of every card in the sets you collect */
+function completion(lang, setId) {
+  const sp = boxData && boxData.setprices && boxData.setprices[lang + ":" + setId];
+  if (!sp) return null;
+  let cost = 0, missing = 0;
+  for (const [n, price] of Object.entries(sp)) { const r = store.cards[keyOf(lang, setId + "-" + n)]; if (!(r && r.qty > 0)) { cost += price; missing++; } }
+  return { cost, missing };
 }
 function boxChange(rows) {
   if (rows.length < 2) return null;
