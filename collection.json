@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793098081341,
+ "updatedAt": 1793098090842,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2421,6 +2421,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803223
+  },
+  "ja:SV8a-122": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "コライドン",
+   "localId": "122",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/122",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803235
   }
  }
 }
