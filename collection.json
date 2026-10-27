@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793098073553,
+ "updatedAt": 1793098081341,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -496,7 +496,7 @@
    "cm": 803225
   },
   "ja:SV8a-114": {
-   "qty": 3,
+   "qty": 4,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -505,7 +505,10 @@
    "image": "https://assets.tcgdex.net/ja/SV/SV8a/114",
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
-   "cm": 803227
+   "cm": 803227,
+   "variants": {
+    "reverse": 1
+   }
   },
   "ja:SV8a-134": {
    "qty": 4,
