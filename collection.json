@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793114070818,
+ "updatedAt": 1793114080600,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2481,6 +2481,29 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 899955
+  },
+  "ja:M6-096": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ファイアローex",
+   "localId": "096",
+   "image": "ho:M6/050537_P_FUAIAROIEKKUSU.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900129
+  },
+  "ja:M6-111": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ギリー",
+   "localId": "111",
+   "image": "ho:M6/050552_T_GIRI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ"
   }
  }
 }
