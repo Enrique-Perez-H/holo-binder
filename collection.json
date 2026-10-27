@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793022354350,
+ "updatedAt": 1793098003173,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -782,7 +782,8 @@
    "localId": "002",
    "setId": "M6",
    "setName": "ストームエメラルダ",
-   "image": "ho:M6/050340_P_AMETAMA.jpg"
+   "image": "ho:M6/050340_P_AMETAMA.jpg",
+   "cm": 899791
   },
   "ja:M6-003": {
    "qty": 2,
@@ -876,7 +877,8 @@
    "localId": "010",
    "image": "ho:M6/050348_P_GADEI.jpg",
    "setId": "M6",
-   "setName": "ストームエメラルダ"
+   "setName": "ストームエメラルダ",
+   "cm": 899839
   },
   "ja:M6-012": {
    "qty": 3,
