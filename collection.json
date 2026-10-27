@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793098059867,
+ "updatedAt": 1793098073553,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -496,7 +496,7 @@
    "cm": 803225
   },
   "ja:SV8a-114": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -2406,6 +2406,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803201
+  },
+  "ja:SV8a-110": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ニダンギル",
+   "localId": "110",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/110",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803223
   }
  }
 }
