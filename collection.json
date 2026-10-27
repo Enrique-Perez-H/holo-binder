@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793131916350,
+ "updatedAt": 1793131920834,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2505,6 +2505,18 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 900144
+  },
+  "ja:M5-001": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "トロピウス",
+   "localId": "001",
+   "image": "ho:M5/050220_P_TOROPIUSU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888185
   }
  }
 }
