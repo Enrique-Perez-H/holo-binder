@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793098117919,
+ "updatedAt": 1793114070818,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2457,6 +2457,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803268
+  },
+  "ja:M6-011": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ウインディ",
+   "localId": "011",
+   "image": "ho:M6/050349_P_UINDEI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 899854
+  },
+  "ja:M6-052": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ジャラランガ",
+   "localId": "052",
+   "image": "ho:M6/050390_P_JIXYARARANGA.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 899955
   }
  }
 }
