@@ -8,12 +8,18 @@ Row format matches the app: [date, trend, avg, low, avg7, avg30, reverse_trend].
 It also tracks the booster box of every set in the collection. The set's Cardmarket expansion is
 found from the Cardmarket IDs of its cards, the boxes are looked up in Cardmarket's product list,
 and their prices go into the same history under history["boxes"] (set -> box names and IDs).
+
+To show what's left to complete a set, it also keeps history["setcards"] (set -> {card number ->
+Cardmarket ID}, looked up once from TCGdex) and history["setprices"] (set -> {card number -> today's
+price}) for every card in the sets you collect, including the ones you don't own yet.
 """
+import concurrent.futures
 import datetime
 import json
 import pathlib
 import re
 import sys
+import urllib.parse
 import urllib.request
 
 GUIDE_URL = "https://downloads.s3.cardmarket.com/productCatalog/priceGuide/price_guide_6.json"
@@ -91,6 +97,33 @@ def find_boxes(sets, boxes, date):
         print(f"{key}: expansion {expansion}, boxes: {', '.join(products.values()) or 'none found'}")
 
 
+TCGDEX = "https://api.tcgdex.net/v2/%s/%s"
+
+
+def find_set_cards(sets, setcards, date):
+    """Fill in setcards[set_key] = {localId: Cardmarket id} for sets we haven't looked up yet (retried weekly if empty)."""
+    todo = [k for k in sets if k not in setcards or (not setcards[k].get("cards") and _days_between(setcards[k].get("checked", date), date) >= RECHECK_DAYS)]
+
+    def card_id(lang, card):
+        try:
+            cm = (fetch_json(TCGDEX % (lang, "cards/" + urllib.parse.quote(card["id"]))).get("pricing") or {}).get("cardmarket") or {}
+            return card["localId"], cm.get("idProduct")
+        except Exception:
+            return card["localId"], None
+
+    for key in todo:
+        lang, set_id = key.split(":", 1)
+        try:
+            cards = fetch_json(TCGDEX % (lang, "sets/" + urllib.parse.quote(set_id))).get("cards", [])
+            with concurrent.futures.ThreadPoolExecutor(8) as pool:
+                found = dict(pool.map(lambda c: card_id(lang, c), cards))
+        except Exception as e:
+            print(f"{key}: couldn't list cards ({e}), will retry")
+            continue
+        setcards[key] = {"cards": {n: pid for n, pid in found.items() if pid}, "total": len(cards), "checked": date}
+        print(f"{key}: {len(setcards[key]['cards'])} of {len(cards)} cards have a Cardmarket price page")
+
+
 def _days_between(a, b):
     return (datetime.date.fromisoformat(b) - datetime.date.fromisoformat(a)).days
 
@@ -127,6 +160,14 @@ def main(guide_source=GUIDE_URL):
     for key in list(boxes):
         if key not in sets:
             del boxes[key]
+    setcards = history.setdefault("setcards", {})
+    try:
+        find_set_cards(sets, setcards, date)
+    except Exception as e:  # never stop the card prices
+        print(f"Couldn't look up set cards: {e}")
+    for key in list(setcards):
+        if key not in sets:
+            del setcards[key]
     box_ids = {pid for entry in boxes.values() for pid in entry.get("products", {})}
     ids |= box_ids
     written = missing = 0
@@ -152,6 +193,16 @@ def main(guide_source=GUIDE_URL):
             rows.append(row)
         del rows[:-KEEP_DAYS]
         written += 1
+
+    setprices = history["setprices"] = {}
+    for key, entry in setcards.items():
+        prices = {}
+        for number, pid in entry.get("cards", {}).items():
+            g = by_id.get(str(pid))
+            price = next((v for v in (pick(g, "trend"), pick(g, "avg"), pick(g, "low")) if v is not None), None) if g else None
+            if price is not None:
+                prices[number] = price
+        setprices[key] = prices
 
     history["updated"] = date
     history["source"] = "Cardmarket price guide"
