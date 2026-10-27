@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793131920834,
+ "updatedAt": 1793131940764,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2517,6 +2517,66 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888185
+  },
+  "ja:M5-020": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ナミイルカ",
+   "localId": "020",
+   "image": "ho:M5/050239_P_NAMIIRUKA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888262
+  },
+  "ja:M5-025": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "クワガノン",
+   "localId": "025",
+   "image": "ho:M5/050244_P_KUWAGANON.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888267
+  },
+  "ja:M5-032": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ジュペッタ",
+   "localId": "032",
+   "image": "ho:M5/050251_P_JIXYUPETTA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888275
+  },
+  "ja:M5-039": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "コノヨザル",
+   "localId": "039",
+   "image": "ho:M5/050258_P_KONOYOZARU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888283
+  },
+  "ja:M5-040": {
+   "qty": 2,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "マンキー",
+   "localId": "040",
+   "image": "ho:M5/050259_P_MANKI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888285
   }
  }
 }
