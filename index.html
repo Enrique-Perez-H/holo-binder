@@ -142,6 +142,15 @@ svg.chart{width:100%;height:auto;display:block}
 .item .right{text-align:right;display:grid;gap:2px;justify-items:end}
 .pill{font:600 11px var(--f-display);letter-spacing:.06em;border-radius:6px;padding:2px 7px;background:var(--raised)}
 .pill.deal{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.hscroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin:0 -2px;scroll-snap-type:x proximity}
+.hcard{flex:0 0 104px;border:0;background:none;padding:0;text-align:left;display:grid;gap:3px;align-content:start;scroll-snap-align:start;min-width:0}
+.hcard .img{aspect-ratio:63/88;border-radius:6px;overflow:hidden;background:var(--raised);position:relative}
+.hcard .img img{width:100%;height:100%;object-fit:cover;display:block}
+.hcard .nm{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hcard .pr{font:700 13px var(--f-display)}
+.hero-card{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--surface);margin-bottom:12px;display:grid;gap:6px}
+.hero-card .big{font-size:38px}
+.sub.ok{color:var(--good)}
 .pill.drop{background:color-mix(in srgb,var(--bad) 22%,transparent);color:var(--bad)}
 nav.tabs button{position:relative}
 .tabbadge{position:absolute;top:2px;left:calc(50% + 6px);min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font:700 10px/16px var(--f-display);text-align:center}
@@ -155,7 +164,7 @@ nav.tabs button{position:relative}
 .panel h3{margin:0 0 10px;font:600 15px var(--f-display)}
 
 /* tab bar */
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);
   padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
 nav.tabs button{border:0;background:none;display:grid;justify-items:center;gap:2px;padding:6px 0;font:600 11px var(--f-body);color:var(--muted)}
 nav.tabs button svg{width:22px;height:22px}
@@ -178,6 +187,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
 <main id="view"></main>
 
 <nav class="tabs" aria-label="Sections">
+  <button data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 11l8-7 8 7v8a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1z"/></svg>Home</button>
   <button data-tab="sets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></svg>Sets</button>
   <button data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>Search</button>
   <button data-tab="wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>Wishlist</button>
@@ -306,12 +316,12 @@ async function snapshot() {
   if (changedQuiet) { changedQuiet = false; changed(); } else save();
   st.textContent = fail ? `Prices updated. ${fail} card(s) couldn't be reached.` : `Prices updated for ${keys.length} card(s).`;
   setTimeout(() => st.hidden = true, 3500);
-  if (state.tab === "wish" || state.tab === "value") render();
+  if (state.tab === "wish" || state.tab === "value" || state.tab === "home") render();
   checkDrops();
 }
 
 /* ---------- state & routing ---------- */
-const state = { tab: "sets", stack: [], setFilter: "all", setsMode: "all", q: "", sq: "" };
+const state = { tab: "home", stack: [], setFilter: "all", setsMode: "all", q: "", sq: "" };
 store.lang = store.lang || "en";
 /* Phone Back button: every opened set or card sheet adds a history entry, so Back closes it instead of leaving the app. */
 let closeSheet = null, skipPop = 0;
@@ -339,7 +349,7 @@ function render() {
   $("#back").hidden = !top;
   $("#logo").hidden = !!top;
   if (top && top.type === "set") return renderSet(top.id);
-  ({ sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
+  ({ home: renderHome, sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
 }
 const setTitle = t => $("#title").textContent = t;
 const view = () => $("#view");
@@ -715,6 +725,71 @@ function renderWish() {
 }
 
 /* ---------- collection value ---------- */
+/* ---------- home overview ---------- */
+function portfolioSeries(owned, v = "all") {
+  const dates = [...new Set(owned.flatMap(([k]) => (store.prices[k] || []).map(h => h[0])))].sort();
+  return dates.map(d => [d, owned.reduce((s, [k, r]) => s + viewValue(r, lastRow(k, d), v), 0)]);
+}
+function seriesChange(series, days) {
+  if (series.length < 2) return null;
+  const last = series[series.length - 1], cut = Date.parse(last[0]) - days * 864e5;
+  const ref = series.filter(x => Date.parse(x[0]) <= cut).pop() || series[0];
+  return ref === last || !ref[1] ? null : { pct: last[1] / ref[1] - 1, abs: last[1] - ref[1], since: ref[0] };
+}
+const changePill = (c, label) => c ? `<span style="font-weight:700;color:var(${c.pct >= 0 ? "--good" : "--bad"})">${c.pct >= 0 ? "▲" : "▼"} ${pct(c.pct)}</span> <span class="sub">${label}</span>` : "";
+const cardStrip = (items, lang) => `<div class="hscroll">${items.map(x => `<button class="hcard" data-k="${esc(x.k)}">
+  <span class="img">${x.r.image ? `<img loading="lazy" src="${esc(imgUrl(x.r.image))}" alt="">` : ""}</span>
+  <span class="nm">${esc(x.r.name)}</span><span class="pr num">${eur(x.p)}</span>${x.note || ""}</button>`).join("")}</div>`;
+async function renderHome() {
+  setTitle("Overview");
+  const lang = store.lang;
+  const mine = Object.entries(store.cards).filter(([k]) => k.startsWith(lang + ":"));
+  const owned = mine.filter(([, r]) => r.qty > 0), wished = mine.filter(([, r]) => r.wish);
+  if (!owned.length && !wished.length) {
+    view().innerHTML = `<div class="empty"><b>Welcome to your binder</b>Open <b>Sets</b>, pick a set and tap + on the cards you own. Your overview fills in here.</div>`;
+    return;
+  }
+  const series = portfolioSeries(owned);
+  const total = owned.reduce((s, [k, r]) => s + copiesValue(r, lastRow(k)), 0);
+  const c7 = seriesChange(series, 7), c30 = seriesChange(series, 30);
+  const copies = owned.reduce((s, [, r]) => s + r.qty, 0);
+  const best = owned.map(([k, r]) => ({ k, r, p: singleValue(r, lastRow(k)) })).filter(x => x.p).sort((a, b) => b.p - a.p).slice(0, 10);
+  const chases = wished.map(([k, r]) => ({ k, r, p: latest(k), d: priceDrop(k, r) })).filter(x => x.p).sort((a, b) => b.p - a.p).slice(0, 10)
+    .map(x => ({ ...x, note: x.d ? `<span class="pill drop" style="justify-self:start">▼ ${Math.abs(x.d.pct * 100).toFixed(0)}%</span>` : "" }));
+  view().innerHTML = `
+    <div class="hero-card num">
+      <span class="label">Portfolio value</span>
+      <span class="big">${eur(total)}</span>
+      <div>${changePill(c7, "7 days") || ""}${c7 && c30 ? " · " : ""}${changePill(c30, "30 days")}${!c7 && !c30 ? `<span class="sub">The trend builds up as prices are saved each day.</span>` : ""}</div>
+      <span class="sub">${owned.length} unique cards · ${copies} copies · ${new Set(owned.map(([, r]) => r.setId)).size} sets</span>
+    </div>
+    <div class="panel num"><h3>Portfolio evolution</h3>${chart(series)}</div>
+    <div class="panel"><h3>Collections I'm working on</h3><div id="home-sets" class="sets"><div class="sub">Loading sets…</div></div></div>
+    <div class="panel"><h3>My best cards</h3>${best.length ? cardStrip(best, lang) : `<div class="sub">Cards with a Cardmarket price show up here.</div>`}</div>
+    <div class="panel"><h3>Top chases</h3>${chases.length ? cardStrip(chases, lang) : `<div class="sub">Add cards you want to your wishlist and the most valuable ones show up here.</div>`}</div>`;
+  view().querySelectorAll(".hcard").forEach(b => b.onclick = () => { const id = b.dataset.k.slice(lang.length + 1), r = store.cards[b.dataset.k];
+    openCard(lang, id, { brief: { id, name: r.name, localId: r.localId, image: r.image }, set: { id: r.setId, name: r.setName } }, renderHome); });
+  let series2;
+  try { series2 = await loadSeries(lang); } catch (e) { const el = $("#home-sets"); if (el) el.innerHTML = `<div class="sub">Couldn't load set details. Check your connection.</div>`; return; }
+  if (state.tab !== "home" || state.stack.length || store.lang !== lang || !$("#home-sets")) return;
+  const info = {}; for (const s of series2) for (const x of s.sets || []) info[x.id] = { x, serie: s.id };
+  const have = ownedBySet(lang);
+  const rows = Object.keys(have).map(id => {
+    const i = info[id], tot = i ? (i.x.cardCount && (i.x.cardCount.total || i.x.cardCount.official)) || 0 : 0;
+    return { id, i, tot, n: have[id], r: tot ? Math.min(1, have[id] / tot) : 0, name: i ? setName(lang, id, i.x.name) : id };
+  }).sort((a, b) => ((a.r >= 1) - (b.r >= 1)) || (b.r - a.r) || (b.n - a.n));
+  const shown = rows.slice(0, 6);
+  $("#home-sets").innerHTML = shown.map(x => { const box = boxesFor(lang, x.id)[0];
+    return `<button class="set" data-id="${esc(x.id)}">
+      ${x.i && setIcon(lang, x.i.serie, x.i.x) ? `<img class="logo" loading="lazy" src="${esc(setIcon(lang, x.i.serie, x.i.x))}" alt="" onerror="${iconGone(x.id)}">` : iconBadge(x.id)}
+      <span class="meta"><span class="name">${esc(x.name)}</span>
+        <span class="bar"><i class="${x.r >= 1 ? "done" : ""}" style="width:${(x.r * 100).toFixed(1)}%"></i></span>
+        <span class="count num"><span>${x.n} / ${x.tot || "?"}</span><span>${x.tot ? Math.round(x.r * 100) + "%" : ""}${box ? ` · box ${eur(box.rows[box.rows.length - 1][1])}` : ""}</span></span></span></button>`; }).join("") +
+    (rows.length > shown.length ? `<button class="btn" id="home-allsets" style="grid-column:1/-1">All ${rows.length} sets I collect</button>` : "");
+  view().querySelectorAll("#home-sets .set").forEach(b => b.onclick = () => go({ type: "set", id: b.dataset.id }));
+  const all = $("#home-allsets"); if (all) all.onclick = () => { state.tab = "sets"; state.setsMode = "mine"; resetStack(); render(); window.scrollTo(0, 0); };
+}
+
 function boxesPanel(lang, owned) {
   const seen = new Set(), rows = [];
   for (const [, r] of owned) if (r.setId && !seen.has(r.setId)) { seen.add(r.setId); for (const b of boxesFor(lang, r.setId)) rows.push({ set: setName(lang, r.setId, r.setName), b }); }
@@ -828,6 +903,7 @@ async function loadBoxes() {
     if (!res.ok) return;
     boxData = await res.json();
     if (state.tab === "value" && !state.stack.length && !closeSheet) renderValue();
+    else if (state.tab === "home" && !state.stack.length && !closeSheet) renderHome();
     else if (state.stack.length && !closeSheet) { const top = state.stack[state.stack.length - 1]; if (top.type === "set") renderSet(top.id); }
   } catch (e) {}
 }
@@ -864,7 +940,7 @@ async function loadHistory() {
 function syncError(e) {
   const s = e && e.status;
   syncInfo = { ...syncInfo, state: "error", msg: s === 401 ? "GitHub rejected the token. Create a new one and reconnect." : s === 403 ? "The token can't write to this repo. Give it Contents: Read and write." : s === 404 ? "Repo not found. Check the owner/name." : "Couldn't reach GitHub. It will retry next time you open the app." };
-  if (state.tab === "value" && !state.stack.length) render();
+  if ((state.tab === "value" || state.tab === "home") && !state.stack.length) render();
 }
 
 let starting = null;
