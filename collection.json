@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793131949905,
+ "updatedAt": 1793131961012,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2625,6 +2625,42 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888313
+  },
+  "ja:M5-069": {
+   "qty": 2,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "オトシドリ",
+   "localId": "069",
+   "image": "ho:M5/050288_P_OTOSHIDORI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888337
+  },
+  "ja:M5-077": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "サビ組のしたっぱ",
+   "localId": "077",
+   "image": "ho:M5/050296_T_SABIGUMINOSHITAPPA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888349
+  },
+  "ja:M5-089": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "フォクスライ",
+   "localId": "089",
+   "image": "ho:M5/050309_P_FUOKUSURAI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888634
   }
  }
 }
