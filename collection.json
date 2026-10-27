@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793131961012,
+ "updatedAt": 1793131993117,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2661,6 +2661,76 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888634
+  },
+  "ja:M5-114": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "メガダークライex",
+   "localId": "114",
+   "image": "ho:M5/050334_P_MDAKURAIEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888659,
+   "wishPrice": 108.72,
+   "wishAt": "2026-10-27"
+  },
+  "ja:M5-118": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "メガダークライex",
+   "localId": "118",
+   "image": "ho:M5/050338_P_MDAKURAIEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888663,
+   "wishPrice": 121.5,
+   "wishAt": "2026-10-27"
+  },
+  "ja:M5-113": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "メガシャンデラex",
+   "localId": "113",
+   "image": "ho:M5/050333_P_MSHIXYANDERAEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888658,
+   "wishPrice": 15.14,
+   "wishAt": "2026-10-27"
+  },
+  "ja:M5-112": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "メガゼラオラex",
+   "localId": "112",
+   "image": "ho:M5/050332_P_MZERAORAEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888657,
+   "wishPrice": 15.77,
+   "wishAt": "2026-10-27"
+  },
+  "ja:M5-115": {
+   "qty": 0,
+   "wish": true,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "モルペコex",
+   "localId": "115",
+   "image": "ho:M5/050335_P_MORUPEKOEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888660,
+   "wishPrice": 25.42,
+   "wishAt": "2026-10-27"
   }
  }
 }
