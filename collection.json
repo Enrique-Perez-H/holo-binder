@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793114080600,
+ "updatedAt": 1793131916350,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2503,7 +2503,8 @@
    "localId": "111",
    "image": "ho:M6/050552_T_GIRI.jpg",
    "setId": "M6",
-   "setName": "ストームエメラルダ"
+   "setName": "ストームエメラルダ",
+   "cm": 900144
   }
  }
 }
