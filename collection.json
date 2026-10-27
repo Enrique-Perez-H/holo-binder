@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793131940764,
+ "updatedAt": 1793131949905,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2577,6 +2577,54 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888285
+  },
+  "ja:M5-048": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "バルジーナ",
+   "localId": "048",
+   "image": "ho:M5/050267_P_BARUJINA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888303
+  },
+  "ja:M5-049": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "マーイーカ",
+   "localId": "049",
+   "image": "ho:M5/050268_P_MAIKA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888304
+  },
+  "ja:M5-053": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "モルペコex",
+   "localId": "053",
+   "image": "ho:M5/050272_P_MORUPEKOEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888308
+  },
+  "ja:M5-056": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "マフィティフ",
+   "localId": "056",
+   "image": "ho:M5/050275_P_MAFUITEIFU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888313
   }
  }
 }
