@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793098011883,
+ "updatedAt": 1793098017265,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2346,6 +2346,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803124
+  },
+  "ja:SV8a-023": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "カルボウ",
+   "localId": "023",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/023",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803136
   }
  }
 }
