@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793098017265,
+ "updatedAt": 1793098025107,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -196,7 +196,7 @@
    "cm": 803150
   },
   "ja:SV8a-038": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -2358,6 +2358,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803136
+  },
+  "ja:SV8a-032": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-27",
+   "name": "ワニノコ",
+   "localId": "032",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/032",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803145
   }
  }
 }
