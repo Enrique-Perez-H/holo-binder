@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793185038223,
+ "updatedAt": 1793185052221,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2815,6 +2815,78 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888299
+  },
+  "ja:M5-055": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "オラチフ",
+   "localId": "055",
+   "image": "ho:M5/050274_P_ORACHIFU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888311
+  },
+  "ja:M5-059": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "タテトプス",
+   "localId": "059",
+   "image": "ho:M5/050278_P_TATETOPUSU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888321
+  },
+  "ja:M5-065": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ケララッパ",
+   "localId": "065",
+   "image": "ho:M5/050284_P_KERARAPPA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888329
+  },
+  "ja:M5-070": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ダークベル",
+   "localId": "070",
+   "image": "ho:M5/050289_T_DAKUBERU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888339
+  },
+  "ja:M5-073": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ごうかいボム",
+   "localId": "073",
+   "image": "ho:M5/050292_T_GOUKAIBOMU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888345
+  },
+  "ja:M5-079": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "化石採掘場",
+   "localId": "079",
+   "image": "ho:M5/050298_T_KASEKISAIKUTSUJIXYOU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888351
   }
  }
 }
