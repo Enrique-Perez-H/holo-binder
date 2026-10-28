@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793203401205,
+ "updatedAt": 1793203417029,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2899,6 +2899,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888652
+  },
+  "ja:SV8a-106": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ダンバル",
+   "localId": "106",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/106",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803219
   }
  }
 }
