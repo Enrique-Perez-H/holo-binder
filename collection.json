@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793131993117,
+ "updatedAt": 1793185019275,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2731,6 +2731,18 @@
    "cm": 888660,
    "wishPrice": 25.42,
    "wishAt": "2026-10-27"
+  },
+  "ja:M5-003": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "カリキリ",
+   "localId": "003",
+   "image": "ho:M5/050222_P_KARIKIRI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888227
   }
  }
 }
