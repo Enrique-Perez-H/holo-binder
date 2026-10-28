@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793185019275,
+ "updatedAt": 1793185028618,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2519,7 +2519,7 @@
    "cm": 888185
   },
   "ja:M5-020": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2743,6 +2743,54 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888227
+  },
+  "ja:M5-006": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ヤバソチャ",
+   "localId": "006",
+   "image": "ho:M5/050225_P_YABASOCHIXYA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888243
+  },
+  "ja:M5-009": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "マルヤクデ",
+   "localId": "009",
+   "image": "ho:M5/050228_P_MARUYAKUDE.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888246
+  },
+  "ja:M5-011": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "グレンアルマ",
+   "localId": "011",
+   "image": "ho:M5/050230_P_GURENARUMA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888248
+  },
+  "ja:M5-014": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ホエルコ",
+   "localId": "014",
+   "image": "ho:M5/050233_P_HOERUKO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888251
   }
  }
 }
