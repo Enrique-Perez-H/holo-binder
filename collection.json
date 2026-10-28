@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793185052221,
+ "updatedAt": 1793185057463,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2887,6 +2887,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888351
+  },
+  "ja:M5-107": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ブレイブバングル",
+   "localId": "107",
+   "image": "ho:M5/050327_T_BUREIBUBANGURU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888652
   }
  }
 }
