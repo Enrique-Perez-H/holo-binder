@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793185028618,
+ "updatedAt": 1793185038223,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2791,6 +2791,30 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888251
+  },
+  "ja:M5-034": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "ヒトモシ",
+   "localId": "034",
+   "image": "ho:M5/050253_P_HITOMOSHI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888277
+  },
+  "ja:M5-044": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "モグリュー",
+   "localId": "044",
+   "image": "ho:M5/050263_P_MOGURIXYU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888299
   }
  }
 }
