@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793203438524,
+ "updatedAt": 1793203453780,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2923,6 +2923,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803241
+  },
+  "ja:SV8a-183": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-28",
+   "name": "月明かりの丘",
+   "localId": "183",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/183",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803296
   }
  }
 }
