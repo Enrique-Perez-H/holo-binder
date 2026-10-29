@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793268891299,
+ "updatedAt": 1793269436025,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3089,7 +3089,8 @@
    "localId": "213",
    "image": "https://assets.tcgdex.net/ja/SV/SV8a/213",
    "setId": "SV8a",
-   "setName": "テラスタルフェスex"
+   "setName": "テラスタルフェスex",
+   "cm": 803326
   }
  }
 }
