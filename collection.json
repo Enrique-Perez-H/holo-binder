@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793268879196,
+ "updatedAt": 1793268884151,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3067,6 +3067,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803271
+  },
+  "ja:SV8a-177": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "ベルのまごころ",
+   "localId": "177",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/177",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803290
   }
  }
 }
