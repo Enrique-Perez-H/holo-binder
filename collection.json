@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793268862692,
+ "updatedAt": 1793268871784,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2207,7 +2207,7 @@
    "cm": 803229
   },
   "ja:SV8a-119": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -3043,6 +3043,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803194
+  },
+  "ja:SV8a-115": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "ブロロローム",
+   "localId": "115",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/115",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803228
   }
  }
 }
