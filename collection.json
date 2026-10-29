@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793268820139,
+ "updatedAt": 1793268830280,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2877,7 +2877,7 @@
    "cm": 888345
   },
   "ja:M5-079": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -3007,6 +3007,30 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888328
+  },
+  "ja:M5-072": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "古びたたての化石",
+   "localId": "072",
+   "image": "ho:M5/050291_T_FURUBITATATENOKASEKI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888344
+  },
+  "ja:M5-088": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "ダダリン",
+   "localId": "088",
+   "image": "ho:M5/050308_P_DADARIN.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888633
   }
  }
 }
