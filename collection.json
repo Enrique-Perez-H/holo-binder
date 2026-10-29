@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793203453780,
+ "updatedAt": 1793268804177,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2745,7 +2745,7 @@
    "cm": 888227
   },
   "ja:M5-006": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -2935,6 +2935,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803296
+  },
+  "ja:M5-008": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "ヤクデ",
+   "localId": "008",
+   "image": "ho:M5/050227_P_YAKUDE.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888245
+  },
+  "ja:M5-018": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "オシャマリ",
+   "localId": "018",
+   "image": "ho:M5/050237_P_OSHIXYAMARI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888257
   }
  }
 }
