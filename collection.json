@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793268815337,
+ "updatedAt": 1793268820139,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2995,6 +2995,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888307
+  },
+  "ja:M5-064": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "ツツケラ",
+   "localId": "064",
+   "image": "ho:M5/050283_P_TSUTSUKERA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888328
   }
  }
 }
