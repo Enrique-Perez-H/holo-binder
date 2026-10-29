@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793268852391,
+ "updatedAt": 1793268862692,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -328,7 +328,7 @@
    "cm": 803180
   },
   "ja:SV8a-070": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -352,7 +352,7 @@
    "cm": 803184
   },
   "ja:SV8a-073": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -3031,6 +3031,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888633
+  },
+  "ja:SV8a-081": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-29",
+   "name": "フカマル",
+   "localId": "081",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/081",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803194
   }
  }
 }
