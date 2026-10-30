@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793269436025,
+ "updatedAt": 1793347414227,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3091,6 +3091,66 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803326
+  },
+  "ja:M5-002": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "アゴジムシ",
+   "localId": "002",
+   "image": "ho:M5/050221_P_AGOJIMUSHI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888186
+  },
+  "ja:M5-010": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "カルボウ",
+   "localId": "010",
+   "image": "ho:M5/050229_P_KARUBOU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888247
+  },
+  "ja:M5-024": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "デンヂムシ",
+   "localId": "024",
+   "image": "ho:M5/050243_P_DENJIMUSHI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888266
+  },
+  "ja:M5-029": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ヤドラン",
+   "localId": "029",
+   "image": "ho:M5/050248_P_YADORAN.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888272
+  },
+  "ja:M5-030": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ルージュラ",
+   "localId": "030",
+   "image": "ho:M5/050249_P_RUJIXYURA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888273
   }
  }
 }
