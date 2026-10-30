@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347465303,
+ "updatedAt": 1793347476715,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -292,7 +292,7 @@
    "cm": 803175
   },
   "ja:SV8a-064": {
-   "qty": 3,
+   "qty": 4,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-25",
@@ -2123,7 +2123,7 @@
    "cm": 803181
   },
   "ja:SV8a-074": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
@@ -3247,6 +3247,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888350
+  },
+  "ja:SV8a-077": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "テツノイワオ",
+   "localId": "077",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/077",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803190
   }
  }
 }
