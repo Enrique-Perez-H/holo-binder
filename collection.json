@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347476715,
+ "updatedAt": 1793347482627,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3259,6 +3259,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803190
+  },
+  "ja:SV8a-097": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ゾロアーク",
+   "localId": "097",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/097",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803210
   }
  }
 }
