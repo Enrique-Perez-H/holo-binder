@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347420467,
+ "updatedAt": 1793347440935,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2841,7 +2841,7 @@
    "cm": 888321
   },
   "ja:M5-065": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -3009,7 +3009,7 @@
    "cm": 888328
   },
   "ja:M5-072": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -3175,6 +3175,66 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888298
+  },
+  "ja:M5-045": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "コライドン",
+   "localId": "045",
+   "image": "ho:M5/050264_P_KORAIDON.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888300
+  },
+  "ja:M5-054": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ザルード",
+   "localId": "054",
+   "image": "ho:M5/050273_P_ZARUDO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888310
+  },
+  "ja:M5-058": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "エアームド",
+   "localId": "058",
+   "image": "ho:M5/050277_P_EAMUDO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888318
+  },
+  "ja:M5-061": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ドーミラー",
+   "localId": "061",
+   "image": "ho:M5/050280_P_DOMIRA.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888324
+  },
+  "ja:M5-067": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "タイプ：ヌル",
+   "localId": "067",
+   "image": "ho:M5/050286_P_TAIPUNURU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888334
   }
  }
 }
