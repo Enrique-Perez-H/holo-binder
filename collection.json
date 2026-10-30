@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347482627,
+ "updatedAt": 1793347496575,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3057,7 +3057,7 @@
    "cm": 803228
   },
   "ja:SV8a-158": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -3271,6 +3271,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803210
+  },
+  "ja:SV8a-147": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "なかよしポフィン",
+   "localId": "147",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/147",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803260
   }
  }
 }
