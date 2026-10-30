@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347414227,
+ "updatedAt": 1793347420467,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3151,6 +3151,30 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888273
+  },
+  "ja:M5-037": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ダダリン",
+   "localId": "037",
+   "image": "ho:M5/050256_P_DADARIN.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888280
+  },
+  "ja:M5-043": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ラムパルドex",
+   "localId": "043",
+   "image": "ho:M5/050262_P_RAMUPARUDOEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888298
   }
  }
 }
