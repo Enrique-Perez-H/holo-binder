@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347504782,
+ "updatedAt": 1793382893272,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2579,7 +2579,7 @@
    "cm": 888285
   },
   "ja:M5-048": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2793,7 +2793,7 @@
    "cm": 888251
   },
   "ja:M5-034": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -2865,7 +2865,7 @@
    "cm": 888339
   },
   "ja:M5-073": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -2973,7 +2973,7 @@
    "cm": 888286
   },
   "ja:M5-047": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -2997,7 +2997,7 @@
    "cm": 888307
   },
   "ja:M5-064": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -3295,6 +3295,66 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803286
+  },
+  "ja:M5-005": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "チャデス",
+   "localId": "005",
+   "image": "ho:M5/050224_P_CHIXYADESU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888241
+  },
+  "ja:M5-007": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ヒードラン",
+   "localId": "007",
+   "image": "ho:M5/050226_P_HIDORAN.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888244
+  },
+  "ja:M5-016": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ジーランス",
+   "localId": "016",
+   "image": "ho:M5/050235_P_JIRANSU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888253
+  },
+  "ja:M5-017": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "アシマリ",
+   "localId": "017",
+   "image": "ho:M5/050236_P_ASHIMARI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888255
+  },
+  "ja:M5-027": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ミライドン",
+   "localId": "027",
+   "image": "ho:M5/050246_P_MIRAIDON.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888270
   }
  }
 }
