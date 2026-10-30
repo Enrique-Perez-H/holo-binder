@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793347496575,
+ "updatedAt": 1793347504782,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3069,7 +3069,7 @@
    "cm": 803271
   },
   "ja:SV8a-177": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -3283,6 +3283,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803260
+  },
+  "ja:SV8a-173": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-30",
+   "name": "ネリネ",
+   "localId": "173",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/173",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803286
   }
  }
 }
