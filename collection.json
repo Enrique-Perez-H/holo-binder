@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793457415198,
+ "updatedAt": 1793457419410,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3439,6 +3439,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888249
+  },
+  "ja:M5-021": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "イルカマン",
+   "localId": "021",
+   "image": "ho:M5/050240_P_IRUKAMAN.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888263
   }
  }
 }
