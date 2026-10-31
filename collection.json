@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793454768942,
+ "updatedAt": 1793454773976,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3415,6 +3415,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888347
+  },
+  "ja:M5-097": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "メガシャンデラex",
+   "localId": "097",
+   "image": "ho:M5/050317_P_MSHIXYANDERAEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888642
   }
  }
 }
