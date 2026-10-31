@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793454773976,
+ "updatedAt": 1793457415198,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3427,6 +3427,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888642
+  },
+  "ja:M5-012": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "トサキント",
+   "localId": "012",
+   "image": "ho:M5/050231_P_TOSAKINTO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888249
   }
  }
 }
