@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793454764531,
+ "updatedAt": 1793454768942,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3403,6 +3403,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888297
+  },
+  "ja:M5-075": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "カスミの元気",
+   "localId": "075",
+   "image": "ho:M5/050294_T_KASUMINOGENKI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888347
   }
  }
 }
