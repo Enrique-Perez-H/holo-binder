@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793454742502,
+ "updatedAt": 1793454752409,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3355,6 +3355,42 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888270
+  },
+  "ja:M5-019": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "アシレーヌ",
+   "localId": "019",
+   "image": "ho:M5/050238_P_ASHIRENU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888260
+  },
+  "ja:M5-028": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "ヤドン",
+   "localId": "028",
+   "image": "ho:M5/050247_P_YADON.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888271
+  },
+  "ja:M5-031": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "カゲボウズ",
+   "localId": "031",
+   "image": "ho:M5/050250_P_KAGEBOUZU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888274
   }
  }
 }
