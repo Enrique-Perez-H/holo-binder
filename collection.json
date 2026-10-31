@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793457424297,
+ "updatedAt": 1793457439453,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3463,6 +3463,30 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888278
+  },
+  "ja:M5-063": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "メガドリュウズex",
+   "localId": "063",
+   "image": "ho:M5/050282_P_MDORIXYUUZUEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888327
+  },
+  "ja:M5-071": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "古びたずがいの化石",
+   "localId": "071",
+   "image": "ho:M5/050290_T_KOBITAZUGAINOKASEKI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888343
   }
  }
 }
