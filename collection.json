@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793454752409,
+ "updatedAt": 1793454758785,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2961,7 +2961,7 @@
    "cm": 888257
   },
   "ja:M5-041": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -3391,6 +3391,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888274
+  },
+  "ja:M5-042": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-10-31",
+   "name": "ズガイドス",
+   "localId": "042",
+   "image": "ho:M5/050261_P_ZUGAIDOSU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888297
   }
  }
 }
