@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793552799021,
+ "updatedAt": 1793552816417,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1831,7 +1831,7 @@
   "ja:M6-108": {
    "qty": 0,
    "wish": true,
-   "target": null,
+   "target": 25,
    "addedAt": "2026-10-26",
    "name": "ライコウex",
    "localId": "108",
