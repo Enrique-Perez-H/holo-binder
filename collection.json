@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793552747753,
+ "updatedAt": 1793552780008,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -1845,7 +1845,7 @@
   "ja:M6-110": {
    "qty": 0,
    "wish": true,
-   "target": null,
+   "target": 150,
    "addedAt": "2026-10-26",
    "name": "メガレックウザex",
    "localId": "110",
