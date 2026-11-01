@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793538987326,
+ "updatedAt": 1793549718557,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2579,7 +2579,7 @@
    "cm": 888285
   },
   "ja:M5-048": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2733,7 +2733,7 @@
    "wishAt": "2026-10-27"
   },
   "ja:M5-003": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -3141,7 +3141,7 @@
    "cm": 888272
   },
   "ja:M5-030": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3501,7 +3501,7 @@
    "cm": 888264
   },
   "ja:M5-023": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-11-01",
@@ -3559,6 +3559,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888325
+  },
+  "ja:M5-060": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "トリデプス",
+   "localId": "060",
+   "image": "ho:M5/050279_P_TORIDEPUSU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888323
   }
  }
 }
