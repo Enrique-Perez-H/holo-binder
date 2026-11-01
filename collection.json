@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793538971134,
+ "updatedAt": 1793538987326,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3477,7 +3477,7 @@
    "cm": 888327
   },
   "ja:M5-071": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-31",
@@ -3547,6 +3547,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888306
+  },
+  "ja:M5-062": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "ドータクン",
+   "localId": "062",
+   "image": "ho:M5/050281_P_DOTAKUN.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888325
   }
  }
 }
