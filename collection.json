@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793457439453,
+ "updatedAt": 1793538951012,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2507,7 +2507,7 @@
    "cm": 900144
   },
   "ja:M5-001": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2531,7 +2531,7 @@
    "cm": 888262
   },
   "ja:M5-025": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2781,7 +2781,7 @@
    "cm": 888248
   },
   "ja:M5-014": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -3093,7 +3093,7 @@
    "cm": 803326
   },
   "ja:M5-002": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3105,7 +3105,7 @@
    "cm": 888186
   },
   "ja:M5-010": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3487,6 +3487,30 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888343
+  },
+  "ja:M5-022": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "ラクライ",
+   "localId": "022",
+   "image": "ho:M5/050241_P_RAKURAI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888264
+  },
+  "ja:M5-023": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "ライボルト",
+   "localId": "023",
+   "image": "ho:M5/050242_P_RAIBORUTO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888265
   }
  }
 }
