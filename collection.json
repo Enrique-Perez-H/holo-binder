@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793538951012,
+ "updatedAt": 1793538971134,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2591,7 +2591,7 @@
    "cm": 888303
   },
   "ja:M5-049": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2793,7 +2793,7 @@
    "cm": 888251
   },
   "ja:M5-034": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -3153,7 +3153,7 @@
    "cm": 888273
   },
   "ja:M5-037": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3511,6 +3511,42 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888265
+  },
+  "ja:M5-026": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "メガゼラオラex",
+   "localId": "026",
+   "image": "ho:M5/050245_P_MZERAORAEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888269
+  },
+  "ja:M5-033": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "ミカルゲ",
+   "localId": "033",
+   "image": "ho:M5/050252_P_MIKARUGE.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888276
+  },
+  "ja:M5-051": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-01",
+   "name": "クスネ",
+   "localId": "051",
+   "image": "ho:M5/050270_P_KUSUNE.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888306
   }
  }
 }
