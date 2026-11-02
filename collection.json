@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793552816417,
+ "updatedAt": 1793651218791,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3595,6 +3595,17 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888336
+  },
+  "ja:M5-038": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "マーシャドー",
+   "localId": "038",
+   "image": "ho:M5/050257_P_MASHIXYADO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
   }
  }
 }
