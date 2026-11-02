@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793651218791,
+ "updatedAt": 1793651223175,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3604,6 +3604,17 @@
    "name": "マーシャドー",
    "localId": "038",
    "image": "ho:M5/050257_P_MASHIXYADO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-050": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "カラマネロ",
+   "localId": "050",
+   "image": "ho:M5/050269_P_KARAMANERO.jpg",
    "setId": "M5",
    "setName": "アビスアイ"
   }
