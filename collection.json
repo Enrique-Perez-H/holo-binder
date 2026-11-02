@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793651223175,
+ "updatedAt": 1793651234827,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3615,6 +3615,50 @@
    "name": "カラマネロ",
    "localId": "050",
    "image": "ho:M5/050269_P_KARAMANERO.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-057": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "イーユイ",
+   "localId": "057",
+   "image": "ho:M5/050276_P_IYUI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-066": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "ドデカバシ",
+   "localId": "066",
+   "image": "ho:M5/050285_P_DODEKABASHI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-074": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "リトライバッジ",
+   "localId": "074",
+   "image": "ho:M5/050293_T_RITORAIBAJJI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-076": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "グラジオの決戦",
+   "localId": "076",
+   "image": "ho:M5/050295_T_GURAJIONOKESSEN.jpg",
    "setId": "M5",
    "setName": "アビスアイ"
   }
