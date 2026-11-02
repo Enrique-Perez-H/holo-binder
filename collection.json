@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793651239942,
+ "updatedAt": 1793651261717,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2507,7 +2507,7 @@
    "cm": 900144
   },
   "ja:M5-001": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -2745,7 +2745,7 @@
    "cm": 888227
   },
   "ja:M5-006": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
@@ -3093,7 +3093,7 @@
    "cm": 803326
   },
   "ja:M5-002": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3297,7 +3297,7 @@
    "cm": 803286
   },
   "ja:M5-005": {
-   "qty": 1,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3605,7 +3605,8 @@
    "localId": "038",
    "image": "ho:M5/050257_P_MASHIXYADO.jpg",
    "setId": "M5",
-   "setName": "アビスアイ"
+   "setName": "アビスアイ",
+   "cm": 888281
   },
   "ja:M5-050": {
    "qty": 1,
@@ -3616,7 +3617,8 @@
    "localId": "050",
    "image": "ho:M5/050269_P_KARAMANERO.jpg",
    "setId": "M5",
-   "setName": "アビスアイ"
+   "setName": "アビスアイ",
+   "cm": 888305
   },
   "ja:M5-057": {
    "qty": 1,
@@ -3627,7 +3629,8 @@
    "localId": "057",
    "image": "ho:M5/050276_P_IYUI.jpg",
    "setId": "M5",
-   "setName": "アビスアイ"
+   "setName": "アビスアイ",
+   "cm": 888315
   },
   "ja:M5-066": {
    "qty": 1,
@@ -3638,7 +3641,8 @@
    "localId": "066",
    "image": "ho:M5/050285_P_DODEKABASHI.jpg",
    "setId": "M5",
-   "setName": "アビスアイ"
+   "setName": "アビスアイ",
+   "cm": 888330
   },
   "ja:M5-074": {
    "qty": 1,
@@ -3649,7 +3653,8 @@
    "localId": "074",
    "image": "ho:M5/050293_T_RITORAIBAJJI.jpg",
    "setId": "M5",
-   "setName": "アビスアイ"
+   "setName": "アビスアイ",
+   "cm": 888346
   },
   "ja:M5-076": {
    "qty": 1,
@@ -3660,7 +3665,8 @@
    "localId": "076",
    "image": "ho:M5/050295_T_GURAJIONOKESSEN.jpg",
    "setId": "M5",
-   "setName": "アビスアイ"
+   "setName": "アビスアイ",
+   "cm": 888348
   },
   "ja:M5-092": {
    "qty": 1,
