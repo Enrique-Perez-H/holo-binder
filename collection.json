@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793651234827,
+ "updatedAt": 1793651239942,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -3661,6 +3661,18 @@
    "image": "ho:M5/050295_T_GURAJIONOKESSEN.jpg",
    "setId": "M5",
    "setName": "アビスアイ"
+  },
+  "ja:M5-092": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-02",
+   "name": "ドデカバシ",
+   "localId": "092",
+   "image": "ho:M5/050312_P_DODEKABASHI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888637
   }
  }
 }
