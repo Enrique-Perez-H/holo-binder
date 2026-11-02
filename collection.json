@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793651367793,
+ "updatedAt": 1793651376523,
  "cards": {
   "en:me05-116": {
    "qty": 0,
@@ -2639,7 +2639,7 @@
    "cm": 888337
   },
   "ja:M5-077": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -3009,7 +3009,7 @@
    "cm": 888328
   },
   "ja:M5-072": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-29",
@@ -3657,7 +3657,7 @@
    "cm": 888346
   },
   "ja:M5-076": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-11-02",
