@@ -1,20 +1,6 @@
 {
- "updatedAt": 1793651376523,
+ "updatedAt": 1793654599549,
  "cards": {
-  "en:me05-116": {
-   "qty": 0,
-   "wish": true,
-   "target": null,
-   "addedAt": "2026-10-25",
-   "name": "Mega Darkrai ex",
-   "localId": "116",
-   "image": "https://assets.tcgdex.net/en/me/me05/116",
-   "setId": "me05",
-   "setName": "Pitch Black",
-   "cm": 895901,
-   "wishPrice": 166.87,
-   "wishAt": "2026-10-25"
-  },
   "ja:SV8a-002": {
    "qty": 1,
    "wish": false,
