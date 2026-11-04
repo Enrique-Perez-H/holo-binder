@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793785795460,
+ "updatedAt": 1793785803535,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -2731,7 +2731,7 @@
    "cm": 888227
   },
   "ja:M5-006": {
-   "qty": 3,
+   "qty": 4,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-28",
