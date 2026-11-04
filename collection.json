@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793786283683,
+ "updatedAt": 1793786291206,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3839,6 +3839,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803211
+  },
+  "ja:SV8a-105": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "モモワロウex",
+   "localId": "105",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/105",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803218
   }
  }
 }
