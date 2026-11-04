@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793786249219,
+ "updatedAt": 1793786255914,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3815,6 +3815,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803155
+  },
+  "ja:SV8a-048": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "パオジアン",
+   "localId": "048",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/048",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803161
   }
  }
 }
