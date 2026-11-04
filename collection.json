@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793654599549,
+ "updatedAt": 1793785697722,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3665,6 +3665,29 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888637
+  },
+  "ja:M5-004": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "ラランテスex",
+   "localId": "004",
+   "image": "ho:M5/050223_P_RARANTESUEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888240
+  },
+  "ja:M5-015": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "ホエルオーex",
+   "localId": "015",
+   "image": "ho:M5/050234_P_HOERUOEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
   }
  }
 }
