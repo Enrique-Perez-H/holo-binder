@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793785721205,
+ "updatedAt": 1793785730699,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3743,6 +3743,18 @@
    "image": "ho:M5/050307_P_YADORAN.jpg",
    "setId": "M5",
    "setName": "アビスアイ"
+  },
+  "ja:M5-093": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "シルヴァディ",
+   "localId": "093",
+   "image": "ho:M5/050313_P_SHIRUVUADEI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888638
   }
  }
 }
