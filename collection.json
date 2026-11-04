@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793786173498,
+ "updatedAt": 1793786226360,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3779,6 +3779,18 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888653
+  },
+  "ja:SV8a-009": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "カミッチュ",
+   "localId": "009",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/009",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803122
   }
  }
 }
