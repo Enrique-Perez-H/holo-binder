@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793785703300,
+ "updatedAt": 1793785721205,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3697,6 +3697,50 @@
    "name": "メガダークライex",
    "localId": "046",
    "image": "ho:M5/050265_P_MDAKURAIEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-080": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "ボルト雷エネルギー",
+   "localId": "080",
+   "image": "ho:M5/050299_E_BORUTOKAMINARIENERUGI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-081": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "シャドー悪エネルギー",
+   "localId": "081",
+   "image": "ho:M5/050300_E_SHIXYADOAKUENERUGI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-085": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "アシレーヌ",
+   "localId": "085",
+   "image": "ho:M5/050305_P_ASHIRENU.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-087": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "ヤドラン",
+   "localId": "087",
+   "image": "ho:M5/050307_P_YADORAN.jpg",
    "setId": "M5",
    "setName": "アビスアイ"
   }
