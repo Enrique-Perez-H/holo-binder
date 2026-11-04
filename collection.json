@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793786255914,
+ "updatedAt": 1793786283683,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3827,6 +3827,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803161
+  },
+  "ja:SV8a-098": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "モルペコ",
+   "localId": "098",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/098",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803211
   }
  }
 }
