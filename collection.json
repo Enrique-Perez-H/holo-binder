@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793785697722,
+ "updatedAt": 1793785703300,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3686,6 +3686,17 @@
    "name": "ホエルオーex",
    "localId": "015",
    "image": "ho:M5/050234_P_HOERUOEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ"
+  },
+  "ja:M5-046": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "メガダークライex",
+   "localId": "046",
+   "image": "ho:M5/050265_P_MDAKURAIEX.jpg",
    "setId": "M5",
    "setName": "アビスアイ"
   }
