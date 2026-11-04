@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793786226360,
+ "updatedAt": 1793786244689,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3791,6 +3791,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803122
+  },
+  "ja:SV8a-039": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "ガブリアスex",
+   "localId": "039",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/039",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803152
   }
  }
 }
