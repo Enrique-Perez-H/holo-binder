@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793785730699,
+ "updatedAt": 1793785737414,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3755,6 +3755,30 @@
    "setId": "M5",
    "setName": "アビスアイ",
    "cm": 888638
+  },
+  "ja:M5-103": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "エネルギーつけかえ",
+   "localId": "103",
+   "image": "ho:M5/050323_T_ENERUGITSUKEKAE.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888648
+  },
+  "ja:M5-108": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "カスミの元気",
+   "localId": "108",
+   "image": "ho:M5/050328_T_KASUMINOGENKI.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888653
   }
  }
 }
