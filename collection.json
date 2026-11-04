@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793785898592,
+ "updatedAt": 1793785925763,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -2517,7 +2517,7 @@
    "cm": 888262
   },
   "ja:M5-025": {
-   "qty": 2,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-27",
@@ -3115,7 +3115,7 @@
    "cm": 888266
   },
   "ja:M5-029": {
-   "qty": 1,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3127,7 +3127,7 @@
    "cm": 888272
   },
   "ja:M5-030": {
-   "qty": 2,
+   "qty": 5,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3331,7 +3331,7 @@
    "cm": 888255
   },
   "ja:M5-027": {
-   "qty": 1,
+   "qty": 3,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-30",
@@ -3355,7 +3355,7 @@
    "cm": 888260
   },
   "ja:M5-028": {
-   "qty": 2,
+   "qty": 4,
    "wish": false,
    "target": null,
    "addedAt": "2026-10-31",
@@ -3499,7 +3499,7 @@
    "cm": 888265
   },
   "ja:M5-026": {
-   "qty": 1,
+   "qty": 2,
    "wish": false,
    "target": null,
    "addedAt": "2026-11-01",
