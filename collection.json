@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793786306423,
+ "updatedAt": 1793786329816,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3863,6 +3863,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803240
+  },
+  "ja:SV8a-160": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-04",
+   "name": "ワザマシン エヴォリューション",
+   "localId": "160",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/160",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803273
   }
  }
 }
