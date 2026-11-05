@@ -258,7 +258,7 @@ function pickPrice(cm) {
   /* Cardmarket's "-holo" fields are the foil price. When the card also has a normal price, that is the reverse holo. */
   const f = x => cm[x + "-holo"] ?? null;
   const rev = { trend: f("trend"), avg: f("avg"), low: f("low"), avg1: f("avg1"), avg7: f("avg7"), avg30: f("avg30") };
-  if ((cm.trend ?? cm.avg ?? cm.low) != null && (rev.trend ?? rev.avg ?? rev.low) != null) p.rev = rev;
+  if ((cm.trend ?? cm.avg ?? cm.low) != null && (rev.trend || rev.avg || rev.low)) p.rev = rev;
   return (p.trend ?? p.avg ?? p.low) == null ? null : p;
 }
 const mainPrice = p => p ? (p.trend ?? p.avg ?? p.low) : null;
@@ -276,14 +276,14 @@ const latest = k => { const a = store.prices[k]; return a && a.length ? a[a.leng
 function copiesValue(r, row) {
   if (!row || row[1] == null) return 0;
   const rv = (r.variants && r.variants.reverse) || 0;
-  const rp = row[6] != null ? row[6] : row[1];
+  const rp = row[6] > 0 ? row[6] : row[1];
   return (r.qty - rv) * row[1] + rv * rp;
 }
 /* One copy of a card is a "single" (the most valuable one you hold); every extra copy is a duplicate. */
 function singleValue(r, row) {
   if (!row || row[1] == null || r.qty < 1) return 0;
   const rv = (r.variants && r.variants.reverse) || 0;
-  const rp = row[6] != null ? row[6] : row[1];
+  const rp = row[6] > 0 ? row[6] : row[1];
   return Math.max(r.qty - rv > 0 ? row[1] : 0, rv > 0 ? rp : 0);
 }
 const viewValue = (r, row, v) => v === "singles" ? singleValue(r, row) : v === "dupes" ? copiesValue(r, row) - singleValue(r, row) : copiesValue(r, row);
@@ -601,7 +601,7 @@ async function openCard(lang, id, { brief, set } = {}, onChange) {
         </div>
       </div>
       <div class="prices num">
-        <div class="row" style="justify-content:space-between"><span class="label">Cardmarket · EUR${price && price.rev ? " · " + mainLabel : ""}</span>${price && price.updated ? `<span class="sub">Updated ${esc(price.updated.slice(0, 10))}</span>` : ""}</div>
+        <div class="row" style="justify-content:space-between"><span class="label">Cardmarket · EUR${price && price.rev ? " · " + mainLabel : ""}</span>${price && price.updated ? `<span class="sub">Updated ${esc(price.updated.slice(0, 10))}${price.idProduct ? " · product #" + price.idProduct : ""}</span>` : ""}</div>
         ${price ? `
         <div class="row" style="align-items:baseline;gap:8px"><span class="big">${eur(now)}</span><span class="sub">trend</span>
           ${vs30 != null ? `<span class="${vs30 > 0 ? "up" : "down"}" style="font-weight:700">${pct(vs30)} vs 30-day avg</span>` : ""}</div>

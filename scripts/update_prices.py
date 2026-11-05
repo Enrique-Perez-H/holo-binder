@@ -184,7 +184,7 @@ def main(guide_source=GUIDE_URL):
         rev = None
         if pid not in box_ids and (g.get("trend") is not None or g.get("avg") is not None or g.get("low") is not None):
             # With a normal price present, the "-holo" fields are the reverse holo price.
-            rev = next((g.get(f + "-holo") for f in ("trend", "avg", "low") if g.get(f + "-holo") is not None), None)
+            rev = next((g.get(f + "-holo") for f in ("trend", "avg", "low") if g.get(f + "-holo")), None)
         row = [date, main_price, avg, low, pick(g, "avg7"), pick(g, "avg30"), rev]
         rows = products.setdefault(pid, [])
         if rows and rows[-1][0] == date:
