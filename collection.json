@@ -1,5 +1,5 @@
 {
- "updatedAt": 1793787476223,
+ "updatedAt": 1794299326137,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3881,6 +3881,66 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803273
+  },
+  "ja:SV8a-188": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-10",
+   "name": "アオキの手際",
+   "localId": "188",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/188",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803301
+  },
+  "ja:SV8a-189": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-10",
+   "name": "オルティガ",
+   "localId": "189",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/189",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803302
+  },
+  "ja:SV8a-192": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-10",
+   "name": "シュウメイ",
+   "localId": "192",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/192",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803305
+  },
+  "ja:SV8a-194": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-10",
+   "name": "ネリネ",
+   "localId": "194",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/194",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803307
+  },
+  "ja:SV8a-195": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-10",
+   "name": "パルデアの仲間たち",
+   "localId": "195",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/195",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803308
   }
  }
 }
