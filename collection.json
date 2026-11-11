@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413277969,
+ "updatedAt": 1794413283338,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4565,6 +4565,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803338
+  },
+  "ja:SV8a-230": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "スグリ",
+   "localId": "230",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/230",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803343
   }
  }
 }
