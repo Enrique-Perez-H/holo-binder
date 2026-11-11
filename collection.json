@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413187002,
+ "updatedAt": 1794413194049,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4325,6 +4325,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803245
+  },
+  "ja:SV8a-140": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ガラスのラッパ",
+   "localId": "140",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/140",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803253
+  },
+  "ja:SV8a-142": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "つりざおMAX",
+   "localId": "142",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/142",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803255
   }
  }
 }
