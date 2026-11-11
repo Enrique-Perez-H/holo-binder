@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794411042574,
+ "updatedAt": 1794411074641,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4228,6 +4228,29 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803202
+  },
+  "ja:SV8a-095": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ダストダス",
+   "localId": "095",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/095",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex"
+  },
+  "ja:SV8a-100": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "トドロクツキ",
+   "localId": "100",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/100",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803213
   }
  }
 }
