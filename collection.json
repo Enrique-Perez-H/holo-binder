@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413202201,
+ "updatedAt": 1794413215035,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4385,6 +4385,66 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803261
+  },
+  "ja:SV8a-150": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "むしとりセット",
+   "localId": "150",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/150",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803263
+  },
+  "ja:SV8a-153": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "緊急ボード",
+   "localId": "153",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/153",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803266
+  },
+  "ja:SV8a-154": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "くさりもち",
+   "localId": "154",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/154",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803267
+  },
+  "ja:SV8a-156": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ハバンのみ",
+   "localId": "156",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/156",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803269
+  },
+  "ja:SV8a-157": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ブーストエナジー 古代",
+   "localId": "157",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/157",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803270
   }
  }
 }
