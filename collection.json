@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413243249,
+ "updatedAt": 1794413261197,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4481,6 +4481,66 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803291
+  },
+  "ja:SV8a-182": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ゼロの大空洞",
+   "localId": "182",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/182",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803295
+  },
+  "ja:SV8a-184": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ニュートラルセンター",
+   "localId": "184",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/184",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803297
+  },
+  "ja:SV8a-185": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ジェットエネルギー",
+   "localId": "185",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/185",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803298
+  },
+  "ja:SV8a-186": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ミストエネルギー",
+   "localId": "186",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/186",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803299
+  },
+  "ja:SV8a-196": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ピーニャ",
+   "localId": "196",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/196",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803309
   }
  }
 }
