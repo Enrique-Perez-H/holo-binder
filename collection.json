@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413272505,
+ "updatedAt": 1794413277969,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4553,6 +4553,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803323
+  },
+  "ja:SV8a-225": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ガチグマ アカツキex",
+   "localId": "225",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/225",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803338
   }
  }
 }
