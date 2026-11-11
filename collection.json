@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794299341654,
+ "updatedAt": 1794411000424,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -3989,6 +3989,54 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803346
+  },
+  "ja:SV8a-001": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "スボミー",
+   "localId": "001",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/001",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803114
+  },
+  "ja:SV8a-005": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "エルフーン",
+   "localId": "005",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/005",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803118
+  },
+  "ja:SV8a-015": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "チオンジェン",
+   "localId": "015",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/015",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803128
+  },
+  "ja:SV8a-017": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "チャデス",
+   "localId": "017",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/017",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803130
   }
  }
 }
