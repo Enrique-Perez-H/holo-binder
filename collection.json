@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794411074641,
+ "updatedAt": 1794411090747,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4251,6 +4251,78 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803213
+  },
+  "ja:SV8a-109": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ヒトツキ",
+   "localId": "109",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/109",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803222
+  },
+  "ja:SV8a-118": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ドラメシヤ",
+   "localId": "118",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/118",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803231
+  },
+  "ja:SV8a-123": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ミライドン",
+   "localId": "123",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/123",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803236
+  },
+  "ja:SV8a-129": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ノコッチ",
+   "localId": "129",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/129",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803242
+  },
+  "ja:SV8a-130": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ノココッチ",
+   "localId": "130",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/130",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803243
+  },
+  "ja:SV8a-132": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "レジギガス",
+   "localId": "132",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/132",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803245
   }
  }
 }
