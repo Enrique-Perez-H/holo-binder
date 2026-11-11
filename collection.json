@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794411015559,
+ "updatedAt": 1794411026127,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4084,6 +4084,90 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803156
+  },
+  "ja:SV8a-055": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "テツノイバラ",
+   "localId": "055",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/055",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803168
+  },
+  "ja:SV8a-053": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ゼラオラ",
+   "localId": "053",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/053",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803166
+  },
+  "ja:SV8a-057": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ケーシィ",
+   "localId": "057",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/057",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803170
+  },
+  "ja:SV8a-059": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "フーディン",
+   "localId": "059",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/059",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803172
+  },
+  "ja:SV8a-060": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ネイティ",
+   "localId": "060",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/060",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803173
+  },
+  "ja:SV8a-061": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ネイティオ",
+   "localId": "061",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/061",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803174
+  },
+  "ja:SV8a-066": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ヨノワール",
+   "localId": "066",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/066",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803179
   }
  }
 }
