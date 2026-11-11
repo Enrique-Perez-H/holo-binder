@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794411007944,
+ "updatedAt": 1794411015559,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4049,6 +4049,41 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803135
+  },
+  "ja:SV8a-034": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "オーダイル",
+   "localId": "034",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/034",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex"
+  },
+  "ja:SV8a-040": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "グレイシア",
+   "localId": "040",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/040",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803153
+  },
+  "ja:SV8a-043": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ウミトリオ",
+   "localId": "043",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/043",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803156
   }
  }
 }
