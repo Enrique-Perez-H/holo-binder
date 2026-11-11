@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413226463,
+ "updatedAt": 1794413243249,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4457,6 +4457,30 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803277
+  },
+  "ja:SV8a-168": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "スイレンのお世話",
+   "localId": "168",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/168",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803281
+  },
+  "ja:SV8a-178": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "マツバの確信",
+   "localId": "178",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/178",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803291
   }
  }
 }
