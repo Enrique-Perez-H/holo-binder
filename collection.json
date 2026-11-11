@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413194049,
+ "updatedAt": 1794413202201,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4349,6 +4349,42 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803255
+  },
+  "ja:SV8a-144": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "テクノレーダー",
+   "localId": "144",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/144",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803257
+  },
+  "ja:SV8a-146": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "トレジャーガジェット",
+   "localId": "146",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/146",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803259
+  },
+  "ja:SV8a-148": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "プライムキャッチャー",
+   "localId": "148",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/148",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803261
   }
  }
 }
