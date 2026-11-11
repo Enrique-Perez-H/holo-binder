@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794413215035,
+ "updatedAt": 1794413226463,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4445,6 +4445,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803270
+  },
+  "ja:SV8a-164": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "アクロマの執念",
+   "localId": "164",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/164",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803277
   }
  }
 }
