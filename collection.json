@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794411000424,
+ "updatedAt": 1794411007944,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4037,6 +4037,18 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803130
+  },
+  "ja:SV8a-022": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-11",
+   "name": "ブースターex",
+   "localId": "022",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/022",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803135
   }
  }
 }
