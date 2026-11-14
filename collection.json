@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794644827981,
+ "updatedAt": 1794644838195,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4791,6 +4791,42 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803312
+  },
+  "ja:SV8a-227": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "アカマツ",
+   "localId": "227",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/227",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803340
+  },
+  "ja:SV8a-228": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "アンズの秘技",
+   "localId": "228",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/228",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803341
+  },
+  "ja:SV8a-232": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "ネリネ",
+   "localId": "232",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/232",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803345
   }
  }
 }
