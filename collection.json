@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794644807626,
+ "updatedAt": 1794644814407,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4744,6 +4744,17 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803217
+  },
+  "ja:SV8a-139": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "カウンターキャッチャー",
+   "localId": "139",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/139",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex"
   }
  }
 }
