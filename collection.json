@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794644777038,
+ "updatedAt": 1794644789978,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4660,6 +4660,54 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803159
+  },
+  "ja:SV8a-052": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "サンダースex",
+   "localId": "052",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/052",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803165
+  },
+  "ja:SV8a-054": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "テツノカイナex",
+   "localId": "054",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/054",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803167
+  },
+  "ja:SV8a-056": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "テツノイバラex",
+   "localId": "056",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/056",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803169
+  },
+  "ja:SV8a-063": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "エーフィex",
+   "localId": "063",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/063",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803176
   }
  }
 }
