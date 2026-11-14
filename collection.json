@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794644814407,
+ "updatedAt": 1794644827981,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4755,6 +4755,42 @@
    "image": "https://assets.tcgdex.net/ja/SV/SV8a/139",
    "setId": "SV8a",
    "setName": "テラスタルフェスex"
+  },
+  "ja:SV8a-190": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "コルサ",
+   "localId": "190",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/190",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803303
+  },
+  "ja:SV8a-198": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "メロコ",
+   "localId": "198",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/198",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803311
+  },
+  "ja:SV8a-199": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "レホール",
+   "localId": "199",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/199",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803312
   }
  }
 }
