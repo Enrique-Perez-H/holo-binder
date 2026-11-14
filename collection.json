@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794644789978,
+ "updatedAt": 1794644807626,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4708,6 +4708,42 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803176
+  },
+  "ja:SV8a-091": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "オーガポン いしずえのめんex",
+   "localId": "091",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/091",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803204
+  },
+  "ja:SV8a-093": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "ブラッキーex",
+   "localId": "093",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/093",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803206
+  },
+  "ja:SV8a-104": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-14",
+   "name": "キチキギスex",
+   "localId": "104",
+   "image": "https://assets.tcgdex.net/ja/SV/SV8a/104",
+   "setId": "SV8a",
+   "setName": "テラスタルフェスex",
+   "cm": 803217
   }
  }
 }
