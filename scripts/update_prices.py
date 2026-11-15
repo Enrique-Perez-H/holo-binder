@@ -31,6 +31,7 @@ CATALOG = "https://downloads.s3.cardmarket.com/productCatalog/productList/produc
 BOX_CATEGORY = 53  # "Pokémon Display"
 BOX_NAME = re.compile(r"Booster Box( \(\d+ Boosters?\))?$")
 RECHECK_DAYS = 7
+OTHER_LANGUAGE = re.compile(r"Chinese|S-Ch|T-Ch|Korean|Thai|Indonesian")  # boxes in a language the app does not track
 
 
 def pick(guide, field):
@@ -91,7 +92,7 @@ def find_boxes(sets, boxes, date):
             str(p["idProduct"]): p["name"]
             for p in sealed
             if expansion and p["idExpansion"] == expansion and p["idCategory"] == BOX_CATEGORY
-            and BOX_NAME.search(p["name"]) and "Jumbo" not in p["name"]
+            and BOX_NAME.search(p["name"]) and "Jumbo" not in p["name"] and not OTHER_LANGUAGE.search(p["name"])
         }
         boxes[key] = {"expansion": expansion, "products": products, "checked": date, "cards": len(ids)}
         print(f"{key}: expansion {expansion}, boxes: {', '.join(products.values()) or 'none found'}")
@@ -208,6 +209,11 @@ def main(guide_source=GUIDE_URL):
     history["source"] = "Cardmarket price guide"
     HISTORY.write_text(json.dumps(history, separators=(",", ":"), sort_keys=True), encoding="utf-8")
     print(f"{date}: saved {written} cards, {missing} without a Cardmarket price.")
+    try:  # the Discover tab's data; never stops the card prices
+        import build_discover
+        build_discover.main(guide_source)
+    except Exception as e:
+        print(f"Couldn't update the Discover data: {e}")
     return 0
 
 
