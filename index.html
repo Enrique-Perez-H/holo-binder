@@ -142,6 +142,24 @@ svg.chart{width:100%;height:auto;display:block}
 .item .right{text-align:right;display:grid;gap:2px;justify-items:end}
 .pill{font:600 11px var(--f-display);letter-spacing:.06em;border-radius:6px;padding:2px 7px;background:var(--raised)}
 .pill.deal{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.rk{display:grid;gap:10px;border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--surface);margin-bottom:10px}
+.rk-head{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:0;width:100%;color:inherit}
+.rk-pos{font:700 20px var(--f-display);color:var(--muted);text-align:center}
+.rk.first .rk-pos{color:var(--accent)}
+.rk-name,.rk-head .sub{display:block}
+.rk-name{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-score{font:700 22px var(--f-display)}
+.rk-facts{display:flex;flex-wrap:wrap;gap:6px}
+.rk-facts .pill{background:var(--raised);font-weight:600;letter-spacing:0}
+.pill.good{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--warn)}
+.mons{display:grid;gap:6px}
+.mon{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center}
+.mon img{width:34px;height:34px;object-fit:contain}
+.mon .ph34{width:34px;height:34px;border-radius:50%;background:var(--raised)}
+.weights{display:grid;gap:8px}
+.weights label{display:grid;grid-template-columns:96px 1fr 22px;gap:8px;align-items:center;font-size:13px}
+.weights input{width:100%;accent-color:var(--accent)}
 .hscroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin:0 -2px;scroll-snap-type:x proximity}
 .hcard{flex:0 0 104px;border:0;background:none;padding:0;text-align:left;display:grid;gap:3px;align-content:start;scroll-snap-align:start;min-width:0}
 .hcard .img{aspect-ratio:63/88;border-radius:6px;overflow:hidden;background:var(--raised);position:relative}
@@ -164,7 +182,7 @@ nav.tabs button{position:relative}
 .panel h3{margin:0 0 10px;font:600 15px var(--f-display)}
 
 /* tab bar */
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr);
   padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
 nav.tabs button{border:0;background:none;display:grid;justify-items:center;gap:2px;padding:6px 0;font:600 11px var(--f-body);color:var(--muted)}
 nav.tabs button svg{width:22px;height:22px}
@@ -191,6 +209,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
   <button data-tab="sets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></svg>Sets</button>
   <button data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>Search</button>
   <button data-tab="wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>Wishlist</button>
+  <button data-tab="discover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>Discover</button>
   <button data-tab="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19h16M6 15l4-5 3 3 5-7"/></svg>Value</button>
 </nav>
 <div id="sheet-root"></div>
@@ -349,7 +368,7 @@ function render() {
   $("#back").hidden = !top;
   $("#logo").hidden = !!top;
   if (top && top.type === "set") return renderSet(top.id);
-  ({ home: renderHome, sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
+  ({ home: renderHome, discover: renderDiscover, sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
 }
 const setTitle = t => $("#title").textContent = t;
 const view = () => $("#view");
@@ -727,6 +746,72 @@ function renderWish() {
 }
 
 /* ---------- collection value ---------- */
+/* ---------- discover: which recent set to collect ---------- */
+let discoverData = null, discoverTried = false;
+const WEIGHTS_KEY = "hb-disc-weights", DEFAULT_WEIGHTS = { recency: 2, box: 2, singles: 2, spread: 2 };
+function discWeights() { try { return Object.assign({}, DEFAULT_WEIGHTS, JSON.parse(localStorage.getItem(WEIGHTS_KEY))); } catch (e) { return Object.assign({}, DEFAULT_WEIGHTS); } }
+/* each part is 0 to 1, higher is better: newer, cheaper box, cheaper to complete, value spread over more cards */
+function rankSets(list, w) {
+  const today = Date.now();
+  const norm = (vals, lowerBetter) => { const f = vals.filter(v => v != null); if (!f.length) return vals.map(() => 0.5); const lo = Math.min(...f), hi = Math.max(...f);
+    return vals.map(v => v == null ? 0.5 : hi === lo ? 0.5 : (lowerBetter ? hi - v : v - lo) / (hi - lo)); };
+  const age = list.map(x => (today - Date.parse(x.releaseDate)) / 864e5);
+  const parts = { recency: norm(age, true), box: norm(list.map(x => x.box && x.box.price), true), singles: norm(list.map(x => x.priced ? x.total : null), true),
+    spread: norm(list.map(x => x.top1 == null ? null : 0.6 * x.top1 + 0.4 * x.top3), true) };
+  const sum = Object.values(w).reduce((a, b) => a + b, 0) || 1;
+  return list.map((x, i) => ({ x, age: age[i], parts: Object.fromEntries(Object.keys(parts).map(k => [k, parts[k][i]])),
+    score: Math.round(100 * Object.keys(parts).reduce((t, k) => t + w[k] * parts[k][i], 0) / sum) })).sort((a, b) => b.score - a.score);
+}
+const spreadLabel = t => t == null ? ["", ""] : t <= 0.25 ? ["Evenly spread", "good"] : t <= 0.45 ? ["Balanced", ""] : ["Top-heavy", "warn"];
+async function renderDiscover() {
+  setTitle("Discover");
+  const lang = store.lang;
+  if (!discoverData && !discoverTried) {
+    loading("Loading the latest sets…");
+    try { const r = await fetch("discover.json?" + Date.now()); if (r.ok) discoverData = await r.json(); } catch (e) {}
+    discoverTried = true;
+    if (state.tab !== "discover" || state.stack.length || store.lang !== lang) return;
+  }
+  const list = discoverData && discoverData.sets && discoverData.sets[lang];
+  if (!list || !list.length) { view().innerHTML = `<div class="empty"><b>Nothing to show yet</b>The ranking is built by the daily price job. Run it once from the Actions tab on GitHub (Daily Cardmarket prices → Run workflow) and come back.</div>`; discoverTried = false; return; }
+  await jaImgReady;
+  const w = discWeights(), ranked = rankSets(list, w), have = ownedBySet(lang);
+  const names = { recency: "Newer", box: "Cheaper box", singles: "Cheaper cards", spread: "Spread out" };
+  view().innerHTML = `
+    <div class="sub" style="margin:0 2px 10px">The latest ${list.length} ${lang === "ja" ? "Japanese" : "English"} sets, ranked by what matters to you. Prices are Cardmarket, all conditions.</div>
+    <details class="panel"><summary class="label" style="cursor:pointer">What matters</summary>
+      <div class="weights" style="margin-top:10px">${Object.keys(names).map(k => `<label>${names[k]}<input type="range" min="0" max="4" step="1" value="${w[k]}" data-w="${k}"><span class="num">${w[k]}</span></label>`).join("")}</div>
+      <div class="sub" style="margin-top:8px">0 ignores it, 4 counts it most. "Spread out" penalizes sets where a few cards hold most of the value.</div></details>
+    ${ranked.map((r, i) => discoverCard(lang, r, i, have)).join("")}`;
+  view().querySelectorAll("[data-w]").forEach(el => el.oninput = () => { const cur = discWeights(); cur[el.dataset.w] = +el.value; try { localStorage.setItem(WEIGHTS_KEY, JSON.stringify(cur)); } catch (e) {} renderDiscover(); });
+  view().querySelectorAll(".rk-head").forEach(b => b.onclick = () => { const d = b.parentElement.querySelector(".rk-more"); d.hidden = !d.hidden; });
+  view().querySelectorAll("[data-open-set]").forEach(b => b.onclick = () => go({ type: "set", id: b.dataset.openSet }));
+  view().querySelectorAll(".hcard[data-id]").forEach(b => b.onclick = () => { const id = b.dataset.id, setId = id.slice(0, id.lastIndexOf("-")), sx = list.find(x => x.id === setId), c = sx.top.find(t => t.id === id);
+    openCard(lang, id, { brief: { id, name: c.name, localId: c.n, image: c.image }, set: { id: setId, name: sx.name } }, renderDiscover); });
+}
+function discoverCard(lang, r, i, have) {
+  const x = r.x, name = setName(lang, x.id, x.name) !== x.name ? setName(lang, x.id, x.name) : (x.cmName || x.name);
+  const [sl, sc] = spreadLabel(x.top3 == null ? null : x.top1);
+  const days = Math.round(r.age), fresh = days < 21 || x.priced < x.cards * 0.6;
+  patchImages(lang, x.top);
+  return `<div class="rk${i === 0 ? " first" : ""}">
+    <button class="rk-head" aria-label="${esc(name)} details">
+      <span class="rk-pos">${i + 1}</span>
+      <span style="min-width:0"><span class="rk-name">${esc(name)}</span><span class="sub">${esc(x.releaseDate)} · ${days < 60 ? days + " days ago" : Math.round(days / 30) + " months ago"} · ${x.cards} cards${have[x.id] ? " · you own " + have[x.id] : ""}</span></span>
+      <span class="rk-score num">${r.score}</span></button>
+    <div class="rk-facts num">
+      ${x.box ? `<span class="pill">Box ${eur(x.box.price)}</span>` : `<span class="pill">No box listed</span>`}
+      ${x.priced ? `<span class="pill">All cards ${eur(x.total)}</span>` : ""}
+      ${x.top1 != null ? `<span class="pill ${sc}">${sl} · top card ${Math.round(x.top1 * 100)}%</span>` : ""}
+      ${fresh ? `<span class="pill warn">Prices still settling</span>` : ""}</div>
+    ${x.top.length ? `<div class="hscroll num">${x.top.map(c => `<button class="hcard" data-id="${esc(c.id)}"><span class="img">${c.image ? `<img loading="lazy" src="${esc(imgUrl(c.image))}" alt="">` : ""}</span><span class="nm">${esc(c.en || c.name)}</span><span class="pr">${eur(c.price)}</span></button>`).join("")}</div>` : ""}
+    <div class="rk-more" hidden>
+      <div class="mons num">${x.featured.map(m => `<div class="mon">${m.sprite ? `<img loading="lazy" src="${esc(m.sprite)}" alt="" onerror="this.style.visibility='hidden'">` : `<span class="ph34"></span>`}<span><b>${esc(m.name)}</b><span class="sub"> · ${m.cards} card${m.cards === 1 ? "" : "s"}</span></span><span><b>${eur(m.value)}</b></span></div>`).join("") || `<div class="sub">No Pokémon prices yet.</div>`}</div>
+      ${x.top1 != null ? `<div class="sub num" style="margin-top:6px">Top card ${Math.round(x.top1 * 100)}% of the set's value, top 3 ${Math.round(x.top3 * 100)}%, top 10 ${Math.round(x.top10 * 100)}%. Without the top card the rest is worth ${eur(x.total * (1 - x.top1))}. ${x.hits20} card${x.hits20 === 1 ? "" : "s"} over €20.</div>` : ""}
+      <div class="row" style="margin-top:8px"><button class="btn" data-open-set="${esc(x.id)}">Open set</button></div>
+    </div></div>`;
+}
+
 /* ---------- home overview ---------- */
 function portfolioSeries(owned, v = "all") {
   const dates = [...new Set(owned.flatMap(([k]) => (store.prices[k] || []).map(h => h[0])))].sort();
