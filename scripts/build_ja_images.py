@@ -60,7 +60,7 @@ def main(pages=200, cache=None):
         if not theirs or any(c.get("image") for c in theirs):
             continue  # TCGdex already has pictures for this set
         cards = sorted(cards, key=lambda c: int(c["cardID"]))
-        if len(cards) < len(theirs) * 0.9:
+        if len(cards) < len(theirs) * 0.75:
             print(f"{folder}: only {len(cards)} of {len(theirs)} cards found, skipped")
             continue
         # Align by name so a few cards missing on one side don't shift everything after them.

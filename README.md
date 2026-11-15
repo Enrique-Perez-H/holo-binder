@@ -36,5 +36,6 @@ On iPhone, open the app in Safari and choose Share → Add to Home Screen.
 - **What gets tracked.** Only cards that Cardmarket lists are tracked. Many Japanese cards have no Cardmarket ID. The Value tab shows how many of your cards are tracked.
 - **Booster boxes.** The daily job also finds the Cardmarket booster box of every set you collect and tracks its price. It shows on the set page and in the Value tab. Box prices appear after the job has run once, and the trend builds up day by day.
 - **Cost to complete.** The daily job also saves today's price of every card in the sets you collect, so each set page can show what the cards you're missing cost. It appears after the job has run, and a new set is looked up the first time the job sees it.
+- **Discover.** The Discover tab ranks the latest 10 sets of the selected language. The daily job writes `discover.json` (box price, every card's price, top cards, Pokémon that carry each set); the ranking itself is computed in the app from the weights you set. `discover-cache.json` holds what never changes so daily runs are quick.
 - **Two price sources.** The app still saves a price whenever you open it. The Action fills in the days you don't open it, and the app merges both into the charts.
 - **Several phones.** If you edit on two phones, the most recent change wins.
