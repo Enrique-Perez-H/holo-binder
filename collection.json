@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794994649177,
+ "updatedAt": 1795019501822,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4839,7 +4839,8 @@
    "localId": "099",
    "image": "ho:M6/050540_T_TOKUCHIXYUUCHIXYOKKI.jpg",
    "setId": "M6",
-   "setName": "ストームエメラルダ"
+   "setName": "ストームエメラルダ",
+   "cm": 900132
   },
   "ja:M6-104": {
    "qty": 1,
