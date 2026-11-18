@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794663953011,
+ "updatedAt": 1794994639990,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4829,6 +4829,29 @@
    "setId": "SV8a",
    "setName": "テラスタルフェスex",
    "cm": 803345
+  },
+  "ja:M6-099": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-18",
+   "name": "とくちゅうチョッキ",
+   "localId": "099",
+   "image": "ho:M6/050540_T_TOKUCHIXYUUCHIXYOKKI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ"
+  },
+  "ja:M6-104": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-18",
+   "name": "グロウ草エネルギー",
+   "localId": "104",
+   "image": "ho:M6/050545_E_GUROUKUSAENERUGI.jpg",
+   "setId": "M6",
+   "setName": "ストームエメラルダ",
+   "cm": 900137
   }
  }
 }
