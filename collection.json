@@ -1,5 +1,5 @@
 {
- "updatedAt": 1794994639990,
+ "updatedAt": 1794994649177,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -4852,6 +4852,30 @@
    "setId": "M6",
    "setName": "ストームエメラルダ",
    "cm": 900137
+  },
+  "ja:M5-099": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-18",
+   "name": "メガダークライex",
+   "localId": "099",
+   "image": "ho:M5/050319_P_MDAKURAIEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888644
+  },
+  "ja:M5-101": {
+   "qty": 1,
+   "wish": false,
+   "target": null,
+   "addedAt": "2026-11-18",
+   "name": "メガドリュウズex",
+   "localId": "101",
+   "image": "ho:M5/050321_P_MDORIXYUUZUEX.jpg",
+   "setId": "M5",
+   "setName": "アビスアイ",
+   "cm": 888646
   }
  }
 }
