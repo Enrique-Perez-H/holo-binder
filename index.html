@@ -111,7 +111,7 @@ main{padding:14px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(saf
 .grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto 12px}
 .detail{display:grid;gap:16px}
 .hero{display:grid;grid-template-columns:minmax(0,150px) 1fr;gap:14px;align-items:start}
-.hero .img{aspect-ratio:63/88;border-radius:8px;overflow:hidden;background:var(--raised)}
+.hero .img{aspect-ratio:63/88;border-radius:8px;overflow:hidden;background:var(--raised);position:relative}
 .hero img{width:100%;height:100%;object-fit:cover;display:block}
 .hero h2{font:700 22px/1.15 var(--f-display);margin:0 0 4px;text-wrap:balance}
 .sub{color:var(--muted);font-size:13px}
@@ -142,6 +142,22 @@ svg.chart{width:100%;height:auto;display:block}
 .item .right{text-align:right;display:grid;gap:2px;justify-items:end}
 .pill{font:600 11px var(--f-display);letter-spacing:.06em;border-radius:6px;padding:2px 7px;background:var(--raised)}
 .pill.deal{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.gpage{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);margin-bottom:12px}
+.gslot{position:relative;border:0;padding:0;background:none;display:grid;gap:3px;align-content:start;min-width:0;text-align:left;color:inherit}
+.gslot .img{aspect-ratio:63/88;border-radius:6px;overflow:hidden;background:var(--raised);position:relative;display:grid;place-items:center}
+.gslot .img img{width:100%;height:100%;object-fit:cover;display:block}
+.gslot.empty .img{background:none;border:2px dashed var(--line);color:var(--muted);font:700 22px var(--f-display)}
+.gslot .gp{position:absolute;right:4px;bottom:4px;background:rgba(0,0,0,.72);color:#fff;border-radius:6px;padding:1px 6px;font:700 11px var(--f-display)}
+.gslot .gn{position:absolute;left:4px;top:4px;background:rgba(0,0,0,.6);color:#fff;border-radius:50%;width:18px;height:18px;display:grid;place-items:center;font:700 10px var(--f-display)}
+.gslot .gx{position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font:700 14px/1 var(--f-body);display:grid;place-items:center}
+.gslot .nm{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.glist .item{cursor:default}
+.gsug{display:grid;gap:4px;margin-top:8px}
+.gsug button{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:6px 10px;text-align:left;color:inherit}
+.gsug img{width:36px;height:36px;object-fit:contain}
+.gpick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.gv{display:grid;gap:6px;margin-top:10px}
+.gv button{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px;font-weight:700;color:inherit}
 .rk{display:grid;gap:10px;border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--surface);margin-bottom:10px}
 .rk-head{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:0;width:100%;color:inherit}
 .rk-pos{font:700 20px var(--f-display);color:var(--muted);text-align:center}
@@ -182,9 +198,9 @@ nav.tabs button{position:relative}
 .panel h3{margin:0 0 10px;font:600 15px var(--f-display)}
 
 /* tab bar */
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr);
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(7,1fr);
   padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
-nav.tabs button{border:0;background:none;display:grid;justify-items:center;gap:2px;padding:6px 0;font:600 11px var(--f-body);color:var(--muted)}
+nav.tabs button{border:0;background:none;display:grid;justify-items:center;gap:2px;padding:6px 0;font:600 10px var(--f-body);color:var(--muted)}
 nav.tabs button svg{width:22px;height:22px}
 nav.tabs button[aria-current="page"]{color:var(--accent)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:9px 14px;border-radius:12px;font-weight:600;z-index:60;font-size:13px}
@@ -210,6 +226,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
   <button data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>Search</button>
   <button data-tab="wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>Wishlist</button>
   <button data-tab="discover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>Discover</button>
+  <button data-tab="gifts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8c-2.5 0-4-1-4-2.5S9.5 3 12 8c2.5-5 4-3.5 4-2.5S14.5 8 12 8z"/></svg>Gifts</button>
   <button data-tab="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19h16M6 15l4-5 3 3 5-7"/></svg>Value</button>
 </nav>
 <div id="sheet-root"></div>
@@ -368,7 +385,7 @@ function render() {
   $("#back").hidden = !top;
   $("#logo").hidden = !!top;
   if (top && top.type === "set") return renderSet(top.id);
-  ({ home: renderHome, discover: renderDiscover, sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
+  ({ home: renderHome, gifts: renderGifts, discover: renderDiscover, sets: renderSets, search: renderSearch, wish: renderWish, value: renderValue })[state.tab]();
 }
 const setTitle = t => $("#title").textContent = t;
 const view = () => $("#view");
@@ -810,6 +827,144 @@ function discoverCard(lang, r, i, have) {
       ${x.top1 != null ? `<div class="sub num" style="margin-top:6px">Top card ${Math.round(x.top1 * 100)}% of the set's value, top 3 ${Math.round(x.top3 * 100)}%, top 10 ${Math.round(x.top10 * 100)}%. Without the top card the rest is worth ${eur(x.total * (1 - x.top1))}. ${x.hits20} card${x.hits20 === 1 ? "" : "s"} over €20.</div>` : ""}
       <div class="row" style="margin-top:8px"><button class="btn" data-open-set="${esc(x.id)}">Open set</button></div>
     </div></div>`;
+}
+
+/* ---------- gifts: plan a 3x3 page of cards and see what it costs ---------- */
+const giftSlots = () => (store.gifts && store.gifts.length === 9 ? store.gifts : (store.gifts = Array(9).fill(null)));
+let dexList = null;
+async function loadDexList() {
+  if (dexList) return dexList;
+  try { const c = JSON.parse(localStorage.getItem("hb-dex")); if (c && c.length > 900) return (dexList = c); } catch (e) {}
+  const r = await fetch("https://pokeapi.co/api/v2/pokemon-species?limit=2000");
+  const d = await r.json();
+  dexList = d.results.map(x => [+x.url.split("/").filter(Boolean).pop(), x.name.split("-").map(w => w[0].toUpperCase() + w.slice(1)).join(" ")]);
+  try { localStorage.setItem("hb-dex", JSON.stringify(dexList)); } catch (e) {}
+  return dexList;
+}
+const spriteOf = dex => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dex}.png`;
+/* price and details of one card, without saving anything to your collection */
+async function giftInfo(lang, id) {
+  const c = await api(`/${lang}/cards/${encodeURIComponent(id)}`);
+  const p = pickPrice(c.pricing && c.pricing.cardmarket);
+  return { id, name: c.name, localId: c.localId, rarity: c.rarity && c.rarity !== "None" ? c.rarity : "", setName: c.set ? setName(lang, c.set.id, c.set.name) : "", image: c.image,
+    variants: c.variants || {}, price: p ? mainPrice(p) : null, rev: p && p.rev ? mainPrice(p.rev) : null, cm: p && p.idProduct };
+}
+function giftOptions(i) {
+  const o = [{ key: "normal", label: i.variants.holo && !i.variants.normal ? "Holo" : "Normal", price: i.price }];
+  if (i.rev) o.push({ key: "reverse", label: "Reverse holo", price: i.rev });
+  return o;
+}
+async function refreshGiftPrices() {
+  const slots = giftSlots(); let any = false;
+  await Promise.all(slots.map(async (g, n) => { if (!g || g.at === today()) return;
+    try { const i = await giftInfo(g.lang, g.id); const o = giftOptions(i).find(x => x.key === g.variant) || giftOptions(i)[0]; g.price = o.price; g.at = today(); any = true; } catch (e) {} }));
+  if (any) { save(); if (state.tab === "gifts" && !state.stack.length && !closeSheet) renderGifts(); }
+}
+function renderGifts() {
+  setTitle("Gifts");
+  const slots = giftSlots(), filled = slots.filter(Boolean);
+  const owned = g => { const r = store.cards[keyOf(g.lang, g.id)]; return r && r.qty > 0; };
+  const sum = a => a.reduce((t, g) => t + (g.price || 0), 0);
+  const total = sum(filled), toBuy = sum(filled.filter(g => !owned(g)));
+  const priced = filled.filter(g => g.price != null);
+  const hi = priced.slice().sort((a, b) => b.price - a.price)[0], lo = priced.slice().sort((a, b) => a.price - b.price)[0];
+  view().innerHTML = `
+    <div class="sub" style="margin:0 2px 10px">Plan a page of 9 cards. Tap a slot, pick a Pokémon, then compare its versions and prices.</div>
+    <div class="gpage">${slots.map((g, n) => g ? `<div class="gslot" data-n="${n}">
+        <button class="img" data-pick="${n}" aria-label="Change card ${n + 1}" style="border:0;padding:0">${g.image ? `<img loading="lazy" src="${esc(imgUrl(g.image))}" alt="">` : ""}<span class="gn">${n + 1}</span>${g.price != null ? `<span class="gp num">${eur(g.price)}</span>` : ""}</button>
+        <button class="gx" data-clear="${n}" aria-label="Remove card ${n + 1}">×</button><span class="nm">${esc(g.pokemon)}</span></div>`
+      : `<button class="gslot empty" data-pick="${n}" aria-label="Choose card ${n + 1}"><span class="img">+</span><span class="nm sub">Slot ${n + 1}</span></button>`).join("")}</div>
+    <div class="tiles num">
+      <div class="stat"><div class="label">Total cost</div><div class="big">${eur(total)}</div><div class="sub">${filled.length} of 9 cards</div></div>
+      <div class="stat"><div class="label">Still to buy</div><div class="big">${eur(toBuy)}</div><div class="sub">${filled.filter(owned).length} already in your collection</div></div>
+      <div class="stat"><div class="label">Average card</div><div class="big">${priced.length ? eur(sum(priced) / priced.length) : "—"}</div></div>
+      <div class="stat"><div class="label">Priciest</div><div class="big">${hi ? eur(hi.price) : "—"}</div><div class="sub">${hi ? esc(hi.pokemon) : ""}${lo && lo !== hi ? ` · cheapest ${eur(lo.price)}` : ""}</div></div>
+    </div>
+    ${filled.length ? `<div class="panel glist"><h3>Breakdown</h3><div class="list">${slots.map((g, n) => g ? `<div class="item"><span class="thumb">${g.image ? `<img loading="lazy" src="${esc(imgUrl(g.image))}" alt="">` : ""}</span>
+        <span class="meta"><b>${n + 1}. ${esc(g.name)}</b><span class="sub">${esc(g.setName)}${g.rarity ? " · " + esc(g.rarity) : ""}${g.variant === "reverse" ? " · Reverse holo" : ""} · #${esc(g.localId)} · ${g.lang === "ja" ? "JP" : "EN"}</span></span>
+        <span class="right num"><b>${g.price != null ? eur(g.price) : "No price"}</b>${owned(g) ? `<span class="sub up" style="color:var(--good)">owned ✓</span>` : ""}</span></div>` : "").join("")}</div>
+      <div class="row" style="margin-top:10px"><button class="btn" id="g-clear">Clear all</button></div></div>` : ""}`;
+  view().querySelectorAll("[data-pick]").forEach(b => b.onclick = () => openGiftPicker(+b.dataset.pick));
+  view().querySelectorAll("[data-clear]").forEach(b => b.onclick = () => { slots[+b.dataset.clear] = null; save(); renderGifts(); });
+  const clr = $("#g-clear"); if (clr) clr.onclick = () => { if (confirm("Remove all 9 cards from this page?")) { store.gifts = Array(9).fill(null); save(); renderGifts(); } };
+  refreshGiftPrices();
+}
+async function openGiftPicker(idx) {
+  const lang = store.lang, root = $("#sheet-root");
+  const close = () => { root.innerHTML = ""; document.body.style.overflow = ""; renderGifts(); };
+  root.innerHTML = `<div class="scrim" id="scrim"></div><div class="sheet" role="dialog" aria-modal="true" aria-label="Choose a card"><div class="grab"></div><div id="sheetbody"></div></div>`;
+  document.body.style.overflow = "hidden";
+  history.pushState({ holo: 2 }, ""); closeSheet = close;
+  $("#scrim").onclick = () => history.back();
+  const body = $("#sheetbody"), alive = () => closeSheet === close;
+  const cur = giftSlots()[idx];
+  const pick = (card, info, opt, mon) => {
+    giftSlots()[idx] = { pokemon: mon.name, dex: mon.id, lang, id: card.id, name: info.name, localId: info.localId, setName: info.setName, rarity: info.rarity, image: card.image || info.image, variant: opt.key, price: opt.price, at: today(), cm: info.cm };
+    save(); history.back();
+  };
+  function showSearch() {
+    body.innerHTML = `<div class="detail"><h2>Slot ${idx + 1}</h2>
+      ${cur ? `<div class="sub">Now: ${esc(cur.name)} · ${esc(cur.setName)} · ${cur.price != null ? eur(cur.price) : "no price"}</div>` : ""}
+      <input class="search" id="g-q" type="search" placeholder="Pokémon name, e.g. Pikachu" autocomplete="off" autofocus style="margin-top:10px">
+      <div class="gsug" id="g-sug"><div class="sub">Type a name to find a Pokémon.</div></div></div>`;
+    const q = $("#g-q");
+    loadDexList().then(list => {
+      const show = () => { const t = q.value.trim().toLowerCase(); const el = $("#g-sug"); if (!el) return;
+        if (t.length < 2) { el.innerHTML = `<div class="sub">Type a name to find a Pokémon.</div>`; return; }
+        const m = list.filter(x => x[1].toLowerCase().includes(t)).sort((a, b) => (b[1].toLowerCase().startsWith(t) - a[1].toLowerCase().startsWith(t)) || a[0] - b[0]).slice(0, 10);
+        el.innerHTML = m.map(x => `<button data-dex="${x[0]}" data-name="${esc(x[1])}"><img src="${esc(spriteOf(x[0]))}" alt="" onerror="this.style.visibility='hidden'"><span><b>${esc(x[1])}</b><span class="sub"> #${x[0]}</span></span></button>`).join("") || `<div class="sub">No Pokémon with that name.</div>`;
+        el.querySelectorAll("button").forEach(b => b.onclick = () => showCards({ id: +b.dataset.dex, name: b.dataset.name })); };
+      q.oninput = show; show();
+    }).catch(() => { const el = $("#g-sug"); if (el) el.innerHTML = `<div class="sub">Couldn't load the Pokémon list. Check your connection.</div>`; });
+  }
+  async function showCards(mon) {
+    body.innerHTML = `<div class="empty">Finding ${esc(mon.name)} cards…</div>`;
+    let list;
+    try { list = await api(`/${lang}/cards?dexId=eq:${mon.id}`); } catch (e) { body.innerHTML = `<div class="empty"><b>Couldn't load cards</b>Check your connection and try again.</div>`; return; }
+    if (!alive()) return;
+    await jaImgReady; patchImages(lang, list);
+    const info = {}; let shown = 24, sort = "default", rar = "all", loading = false;
+    const loadMore = async (ids) => { const todo = ids.filter(id => !info[id]); let n = 0;
+      await Promise.all(Array.from({ length: 6 }, async () => { while (n < todo.length && alive()) { const id = todo[n++]; try { info[id] = await giftInfo(lang, id); } catch (e) { info[id] = { id, price: null, variants: {}, setName: "", rarity: "" }; } if (n % 6 === 0) draw(); } }));
+      if (alive()) draw(); };
+    const draw = () => {
+      if (!alive()) return;
+      let rows = list.map(c => ({ c, i: info[c.id] }));
+      const rars = [...new Set(rows.map(r => r.i && r.i.rarity).filter(Boolean))].sort();
+      if (rar !== "all") rows = rows.filter(r => r.i && r.i.rarity === rar);
+      if (sort !== "default") { const pr = r => r.i && r.i.price != null ? r.i.price : null;
+        rows.sort((a, b) => { const x = pr(a), y = pr(b); return x == null && y == null ? 0 : x == null ? 1 : y == null ? -1 : sort === "low" ? x - y : y - x; }); }
+      const vis = rows.slice(0, sort === "default" && rar === "all" ? shown : rows.length), loaded = Object.keys(info).length;
+      body.innerHTML = `<div class="detail"><div class="row" style="justify-content:space-between"><h2>${esc(mon.name)}</h2><button class="btn" id="g-back">Change Pokémon</button></div>
+        <div class="sub">${list.length} ${lang === "ja" ? "Japanese" : "English"} cards · prices loaded for ${loaded}</div>
+        <div class="toolbar" role="group" aria-label="Sort">${[["default", "Default"], ["low", "Cheapest"], ["high", "Priciest"]].map(([k, l]) => `<button class="chip" data-s="${k}" aria-pressed="${sort === k}">${l}</button>`).join("")}</div>
+        ${rars.length > 1 ? `<div class="toolbar" role="group" aria-label="Rarity"><button class="chip" data-r="all" aria-pressed="${rar === "all"}">All rarities</button>${rars.map(r => `<button class="chip" data-r="${esc(r)}" aria-pressed="${rar === r}">${esc(r)}</button>`).join("")}</div>` : ""}
+        <div class="gpick num">${vis.map(({ c, i }) => `<button class="gslot" data-c="${esc(c.id)}"><span class="img">${c.image ? `<img loading="lazy" src="${esc(imgUrl(c.image))}" alt="">` : `<span class="ph">${esc(c.name)}</span>`}${i && i.price != null ? `<span class="gp">${eur(i.price)}</span>` : ""}</span>
+          <span class="nm">${esc(i && i.setName ? i.setName : c.name)}</span><span class="sub" style="font-size:11px">${i ? esc(i.rarity || "") : "…"}</span></button>`).join("")}</div>
+        <div class="row" style="margin-top:12px;justify-content:center">${sort === "default" && rar === "all" && shown < list.length ? `<button class="btn" id="g-more">Show more</button>` : ""}${loaded < list.length ? `<button class="btn" id="g-all">${loading ? "Loading prices…" : "Load all prices"}</button>` : ""}</div></div>`;
+      body.querySelectorAll("[data-s]").forEach(b => b.onclick = async () => { sort = b.dataset.s; draw(); });
+      body.querySelectorAll("[data-r]").forEach(b => b.onclick = () => { rar = b.dataset.r; draw(); });
+      $("#g-back").onclick = showSearch;
+      const more = $("#g-more"); if (more) more.onclick = () => { shown += 24; draw(); loadMore(list.slice(0, shown).map(c => c.id)); };
+      const all = $("#g-all"); if (all) all.onclick = () => { loading = true; draw(); loadMore(list.map(c => c.id)).then(() => { loading = false; draw(); }); };
+      body.querySelectorAll("[data-c]").forEach(b => b.onclick = () => showVersion(mon, list.find(c => c.id === b.dataset.c), info[b.dataset.c], draw));
+    };
+    draw(); loadMore(list.slice(0, shown).map(c => c.id));
+  }
+  async function showVersion(mon, card, inf, back) {
+    body.innerHTML = `<div class="empty">Loading…</div>`;
+    let i = inf && inf.name ? inf : null;
+    if (!i) { try { i = await giftInfo(lang, card.id); } catch (e) { body.innerHTML = `<div class="empty"><b>Couldn't load this card</b></div>`; return; } }
+    if (!alive()) return;
+    const opts = giftOptions(i);
+    body.innerHTML = `<div class="detail"><div class="hero"><div class="img">${card.image ? `<img src="${esc(imgUrl(card.image, "high"))}" alt="${esc(i.name)}">` : `<span class="ph">No image yet</span>`}</div>
+      <div style="min-width:0;display:grid;gap:10px;align-content:start"><div><h2>${esc(i.name)}</h2><div class="sub">${esc(i.setName)} · #${esc(i.localId)}${i.rarity ? "<br>" + esc(i.rarity) : ""}</div></div>
+      <div class="gv num">${opts.map(o => `<button data-v="${o.key}"><span>Use ${esc(o.label)}</span><span>${o.price != null ? eur(o.price) : "No price"}</span></button>`).join("")}</div>
+      <button class="btn" id="g-cards">Back to the cards</button></div></div></div>`;
+    body.querySelectorAll("[data-v]").forEach(b => b.onclick = () => pick(card, i, opts.find(o => o.key === b.dataset.v), mon));
+    $("#g-cards").onclick = () => back();
+  }
+  showSearch();
 }
 
 /* ---------- home overview ---------- */
