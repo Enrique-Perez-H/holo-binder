@@ -1,5 +1,5 @@
 {
- "updatedAt": 1795270210824,
+ "updatedAt": 1795684184262,
  "cards": {
   "ja:SV8a-002": {
    "qty": 1,
@@ -1843,8 +1843,8 @@
    "wishAt": "2026-10-26"
   },
   "ja:M6-109": {
-   "qty": 0,
-   "wish": true,
+   "qty": 1,
+   "wish": false,
    "target": null,
    "addedAt": "2026-10-26",
    "name": "メガゴルーグex",
